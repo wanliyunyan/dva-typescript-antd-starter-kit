@@ -1,6 +1,5 @@
 {
   "name": "dva-typescript-webpack-starter-kit",
-  "version": "0.1",
   "description": "A practice project",
   "private": true,
   "scripts": {
