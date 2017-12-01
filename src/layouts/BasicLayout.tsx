@@ -14,7 +14,7 @@ import NoticeIcon from "../components/NoticeIcon";
 import NotFound from "../routes/Exception/404";
 import { getRouteData } from "../utils/utils";
 
-import * as styles from "./BasicLayout.less";
+import styles from "./BasicLayout.less";
 
 const {Header, Sider, Content} = Layout;
 const {SubMenu} = Menu;
@@ -338,9 +338,29 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
                   />
                 ))
               }
-              <Redirect exact from="/" to="/dashboard/analysis" />
+              <Redirect exact from="/" to="/dashboard/table-list" />
               <Route component={NotFound} />
             </Switch>
+            <GlobalFooter
+              links={[{
+                title: "Pro 首页",
+                href: "http://pro.ant.design",
+                blankTarget: true,
+              }, {
+                title: "GitHub",
+                href: "https://github.com/ant-design/ant-design-pro",
+                blankTarget: true,
+              }, {
+                title: "Ant Design",
+                href: "http://ant.design",
+                blankTarget: true,
+              }]}
+              copyright={
+                <div>
+                  Copyright <Icon type="copyright" /> 2017 蚂蚁金服体验技术部出品
+                </div>
+              }
+           />
           </Content>
         </Layout>
       </Layout>

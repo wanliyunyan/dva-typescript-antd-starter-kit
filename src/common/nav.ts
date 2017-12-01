@@ -1,7 +1,7 @@
 import BasicLayout from "../layouts/BasicLayout";
 import BlankLayout from "../layouts/BlankLayout";
 import UserLayout from "../layouts/UserLayout";
-
+import TableList from '../routes/List/TableList';
 const data = [{
   component: BasicLayout,
   layout: "BasicLayout",
@@ -55,7 +55,7 @@ const data = [{
     children: [{
       name: "查询表格",
       path: "table-list",
-      component: null,
+      component: TableList,
     }, {
       name: "标准列表",
       path: "basic-list",
