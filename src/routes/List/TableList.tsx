@@ -16,7 +16,7 @@ import {
 } from "antd";
 import {connect} from "dva";
 import React, {PureComponent} from "react";
-// import StandardTable from "../../components/StandardTable";
+import StandardTable from "../../components/StandardTable";
 import PageHeaderLayout from "../../layouts/PageHeaderLayout";
 
 import styles from "./TableList.less";
@@ -37,10 +37,11 @@ const {Option} = Select;
 const getValue = (obj) => Object.keys(obj).map((key) => obj[key]).join(",");
 
 @connect((state) => ({
-  ruleL: state.rule,
+  rule: state.rule,
 }))
 // @Form.create()
 export default class TableList extends PureComponent<IProps, any> {
+
   public state = {
     addInputValue: "",
     modalVisible: false,
@@ -78,8 +79,41 @@ export default class TableList extends PureComponent<IProps, any> {
     return null;
   }
 
+  public handleSelectRows = (rows) => {
+    this.setState({
+      selectedRows: rows,
+    });
+  }
+
+  public handleStandardTableChange= (pagination, filtersArg, sorter) => {
+    const {dispatch} = this.props;
+    const { formValues } = this.state;
+
+    console.log(filtersArg);
+
+    const filters = Object.keys(filtersArg).reduce((obj, key) => {
+      const newObj = { ...obj };
+      newObj[key] = getValue(filtersArg[key]);
+      return newObj;
+    }, {});
+    console.log(filters);
+
+    const params = {
+      currentPage: pagination.current,
+      pageSize: pagination.pageSize,
+      ...formValues,
+      ...filters,
+    };
+    console.log("params",params);
+    dispatch({
+      type: "rule/fetch",
+      payload: params,
+    });
+
+  }
+
   public render() {
-    console.log(this.props.rule)
+    console.log(this.props.rule);
     const { rule: { loading: ruleLoading, data } } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
@@ -114,6 +148,14 @@ export default class TableList extends PureComponent<IProps, any> {
                 )
               }
             </div>
+            <StandardTable
+              selectedRows={selectedRows}
+              loading={ruleLoading}
+              data={data}
+              onSelectRow={this.handleSelectRows}
+              onChange={this.handleStandardTableChange}
+            />
+
           </div>
         </Card>
       </PageHeaderLayout>

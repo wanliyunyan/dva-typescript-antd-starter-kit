@@ -34,6 +34,7 @@ export default class StandardTable extends PureComponent<any, any> {
   };
 
   public componentWillReceiveProps(nextProps): void {
+    console.log("selectedRows",typeof nextProps.selectedRows)
     if (nextProps.selecrtdRows.length === 0) {
       this.setState({
         selectedRowKeys: [],
