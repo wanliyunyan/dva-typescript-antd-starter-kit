@@ -4,7 +4,6 @@ import {connect} from "dva";
 import {Link, Redirect, Route, Switch} from "dva/router";
 import {groupBy} from "lodash";
 import moment from "moment";
-import PropTypes from "prop-types";
 import React from "react";
 import {ContainerQuery} from "react-container-query";
 import {getNavData} from "../common/nav";

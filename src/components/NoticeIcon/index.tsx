@@ -1,6 +1,5 @@
 import { Badge, Icon, Popover, Spin, Tabs } from "antd";
 import classNames from "classnames";
-// import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import * as styles from "./index.less";
 import List from "./NoticeList";
