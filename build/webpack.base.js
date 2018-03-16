@@ -51,7 +51,7 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader?outputStyle=expanded'],
       },
-            {
+      {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           use: [{
@@ -65,19 +65,14 @@ module.exports = {
             },
           }, {
             loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            },
           }],
           fallback: 'style-loader',
         }),
-      }
-/*      {
-        test: /\.less$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ],
-      },*/
-      ,{
+      },
+      {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
         loader: ['url-loader?limit=30000&name=/images/[name].[ext]'],
       },

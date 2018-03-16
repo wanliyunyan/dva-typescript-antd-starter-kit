@@ -6,7 +6,7 @@ import * as styles from "./index.less";
 interface IProps {
   className?: any;
   placeholder?: string;
-  dataSource?: [string];
+  dataSource?: [string,string,string];
   onSearch?: (value) => any;
   onPressEnter?: (value) => any;
   onChange?: () => any;

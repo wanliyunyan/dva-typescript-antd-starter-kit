@@ -1,8 +1,7 @@
 
 /*
- * @ author sessionboy
+ * @ author panxiaosheng
  * @ github  https://github.com/sessionboy
- * @ website http://sinn.boyagirl.com
  * @ use 开发环境webpack构建
  */
 const commonConfig = require('./webpack.base.js');
@@ -40,31 +39,46 @@ module.exports = function () {
       publicPath: '/assets/',
       compress: true,
       port: 8000,
-/*      proxy: {
+      /*      proxy: {
         '/api': {
        //  target: 'http://www.boyagirl.com:8080',
           target: 'http://localhost:8080',
           secure: false,
         },
-      },*/
+      }, */
     },
+    /* optimization: {
+      minimize: false,
+      runtimeChunk: {
+        name: 'vendor',
+      },
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /node_modules/,
+            name: 'vendor',
+            chunks: 'all',
+            minSize: 1,
+          },
+        },
+      },
+    }, */
     plugins: [
       // new webpack.NoErrorsPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
-      // new OpenBrowserPlugin({ url: 'http://localhost:8000' }),
-      new webpack.optimize.CommonsChunkPlugin({
+      /* new webpack.optimize.CommonsChunkPlugin({
         names: ['lib', 'vendor', 'manifest'],
         minChunks: 2,
-      }),
+      }), */
       new ExtractTextPlugin({
         filename: 'style.css',
         disable: false,
         allChunks: true,
       }),
-      /*new webpack.WatchIgnorePlugin([
+      /* new webpack.WatchIgnorePlugin([
         /css\.d\.ts$/,
-      ]),*/
+      ]), */
     ],
   });
 };

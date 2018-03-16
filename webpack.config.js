@@ -1,6 +1,5 @@
 /*
 * @ author panxiaosheng
-* @ github https://github.com/sessionboy
 * @ dev Params 开发环境webpack构建
 * @ prod Params 生产环境webpack构建
 */

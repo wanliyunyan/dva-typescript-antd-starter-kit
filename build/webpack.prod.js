@@ -1,8 +1,7 @@
 
 /*
- * @ author sessionboy
+ * @ author wanliyunyan
  * @ github  https://github.com/sessionboy
- * @ website http://sinn.boyagirl.com
  * @ use 生产环境webpack构建, 最终根目录下生成dist文件夹
  */
 
