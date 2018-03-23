@@ -1,7 +1,6 @@
-
 /*
- * @ author panxiaosheng
- * @ github  https://github.com/sessionboy
+ * @ author wanliyunyan
+ * @ github  https://github.com/wanliyunyan
  * @ use 开发环境webpack构建
  */
 const commonConfig = require('./webpack.base.js');

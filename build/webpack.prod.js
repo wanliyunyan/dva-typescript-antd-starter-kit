@@ -1,8 +1,7 @@
-
 /*
  * @ author wanliyunyan
- * @ github  https://github.com/sessionboy
- * @ use 生产环境webpack构建, 最终根目录下生成dist文件夹
+ * @ github  https://github.com/wanliyunyan
+ * @ use 开发环境webpack构建
  */
 
 const commonConfig = require('./webpack.base.js');

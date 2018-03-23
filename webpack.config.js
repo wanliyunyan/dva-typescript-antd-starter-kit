@@ -1,5 +1,5 @@
 /*
-* @ author panxiaosheng
+* @ author wanliyunyan
 * @ dev Params 开发环境webpack构建
 * @ prod Params 生产环境webpack构建
 */
