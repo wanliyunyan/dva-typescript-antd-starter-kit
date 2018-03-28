@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { connect } from 'dva';
-//import styles from './IndexPage.css';
-const styles = require('./IndexPage.css');
-import Example from '../components/Example'
-import A from '../components/a';
+import styles from './IndexPage.less';
 
 function IndexPage() {
 
@@ -14,8 +11,6 @@ function IndexPage() {
       <ul className={styles.list}>
         <li>编辑 <code>src/index.js</code> 然后ctrl + s 保存实现热加载</li>
       </ul>
-      <Example/>
-      <A/>
     </div>
   );
 }

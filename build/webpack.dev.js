@@ -46,38 +46,19 @@ module.exports = function () {
         },
       }, */
     },
-    /* optimization: {
-      minimize: false,
+    optimization: {
       runtimeChunk: {
-        name: 'vendor',
+        name: 'manifest',
       },
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /node_modules/,
-            name: 'vendor',
-            chunks: 'all',
-            minSize: 1,
-          },
-        },
-      },
-    }, */
+    },
     plugins: [
-      // new webpack.NoErrorsPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
-      /* new webpack.optimize.CommonsChunkPlugin({
-        names: ['lib', 'vendor', 'manifest'],
-        minChunks: 2,
-      }), */
       new ExtractTextPlugin({
         filename: 'style.css',
         disable: false,
         allChunks: true,
       }),
-      /* new webpack.WatchIgnorePlugin([
-        /css\.d\.ts$/,
-      ]), */
     ],
   });
 };

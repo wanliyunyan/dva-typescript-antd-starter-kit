@@ -24,6 +24,11 @@ module.exports = function (env) {
       publicPath: '/assets',
       sourceMapFilename: '[name].map',
     },
+    optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
+    },
     plugins: [
       new webpack.LoaderOptionsPlugin({
         minimize: true,
@@ -32,16 +37,6 @@ module.exports = function (env) {
         'process.env': {
           NODE_ENV: JSON.stringify('production'),
         },
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        beautify: false,
-        mangle: { screw_ie8: true, keep_fnames: true },
-        compress: { screw_ie8: true },
-        comments: false,
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['lib', 'vendor', 'manifest'],
-        minChunks: 2,
       }),
       new ExtractTextPlugin({
         filename: 'style.css',
