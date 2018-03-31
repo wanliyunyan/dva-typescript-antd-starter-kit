@@ -1,7 +1,8 @@
 import BasicLayout from "../layouts/BasicLayout";
 import BlankLayout from "../layouts/BlankLayout";
 import UserLayout from "../layouts/UserLayout";
-//import TableList from '../routes/List/TableList';
+import IndexPage from "../routes/IndexPage/IndexPage";
+
 const data = [{
   component: BasicLayout,
   layout: "BasicLayout",
@@ -14,7 +15,7 @@ const data = [{
     children: [{
       name: "分析页",
       path: "analysis",
-      component: null,
+      component: IndexPage,
     }, {
       name: "监控页",
       path: "monitor",

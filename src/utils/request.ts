@@ -79,10 +79,10 @@ function handelData(res) {
 }
 
 function handleError(error) {
-  const data = error.response.data;
-  if (data.errors) {
+  const {data} = error.response;
+  if (data && data.errors) {
     //message.error(`${data.message}：${data.errors}`, 5)
-  } else if (data.error) {
+  } else if (data && data.error) {
     //message.error(`${data.error}：${data.error_description}`, 5)
   } else {
     //message.error('未知错误！', 5)

@@ -8,6 +8,7 @@ const commonConfig = require('./webpack.base.js');
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (env) {
   return Object.assign({}, commonConfig, {
@@ -20,8 +21,8 @@ module.exports = function (env) {
     },
     output: {
       path: path.join(__dirname, '/../dist/assets/'),
-      filename: '[name].js',
-      publicPath: '/assets',
+      filename: 'js/[name].js',
+      publicPath: '',
       sourceMapFilename: '[name].map',
     },
     optimization: {
@@ -30,6 +31,11 @@ module.exports = function (env) {
       },
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        favicon: 'src/favicon.ico',
+        template: 'src/assets/index.html',
+        filename: '/index.html',
+      }),
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),

@@ -2,12 +2,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.tsx'],
-  output: {
-    path: path.resolve(__dirname, '/../dist/'),
-    filename: 'bundle.js',
-    publicPath: '/assets/',
-  },
   module: {
     rules: [
       {
@@ -32,18 +26,6 @@ module.exports = {
           fallback: 'style-loader',
         }),
       },
-      /*      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            },
-          },
-        ],
-      }, */
       {
         test: /\.sass$/,
         use: ['style-loader', 'css-loader', 'sass-loader?outputStyle=expanded&indentedSyntax'],
@@ -74,7 +56,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-        loader: ['url-loader?limit=8192&name=images/[hash:8].[name].[ext]'],
+        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+        options: {
+          publicPath: '/',
+        },
       },
     ],
   },

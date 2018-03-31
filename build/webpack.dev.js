@@ -38,11 +38,11 @@ module.exports = function () {
       publicPath: '/assets/',
       compress: true,
       port: 8000,
-      /*      proxy: {
-        '/api': {
-       //  target: 'http://www.boyagirl.com:8080',
-          target: 'http://localhost:8080',
+      /* proxy: {
+        '/api/v1/last-stories': {
+          target: 'https://zhihu-daily.leanapp.cn',
           secure: false,
+          changeOrigin: true,
         },
       }, */
     },
