@@ -1,4 +1,4 @@
-import {Avatar, Dropdown, Icon, Layout, Menu, message, Spin, Tag} from "antd";
+import {Divider, Dropdown, Icon, Layout, Menu, message, Spin, Tag} from "antd";
 import classNames from "classnames";
 import {connect} from "dva";
 import {Link, Redirect, Route, Switch} from "dva/router";
@@ -274,6 +274,9 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
               type={collapsed ? "menu-unfold" : "menu-fold"}
               onClick={this.toggle}
             />
+
+            <Divider dashed type="vertical" style={{height:"50px"}}/>
+
             <div className={styles.right}>
               <HeaderSearch
                 className={`${styles.action} ${styles.search}`}
@@ -289,6 +292,9 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
             </div>
           </Header>
           <Content style={{ margin: "24px 24px 0", height: "100%" }}>
+
+
+
             <Switch>
               {
                 getRouteData("BasicLayout").map((item) => (
@@ -303,6 +309,8 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
               <Redirect exact from="/" to="/dashboard/table-list" />
               <Route component={NotFound} />
             </Switch>
+
+
 
             <A/>
 
