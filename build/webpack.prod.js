@@ -3,12 +3,12 @@
  * @ github  https://github.com/wanliyunyan
  * @ use 开发环境webpack构建
  */
-
 const commonConfig = require('./webpack.base.js');
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (env) {
   return Object.assign({}, commonConfig, {
@@ -20,8 +20,8 @@ module.exports = function (env) {
       lib: ['antd'],
     },
     output: {
-      path: path.join(__dirname, '/../dist/assets/'),
-      filename: 'js/[name].js',
+      path: path.join(__dirname, '/../dist/'),
+      filename: 'assets/js/[name].js',
       publicPath: '',
       sourceMapFilename: '[name].map',
     },
@@ -34,7 +34,7 @@ module.exports = function (env) {
       new HtmlWebpackPlugin({
         favicon: 'src/favicon.ico',
         template: 'src/assets/index.html',
-        filename: '/index.html',
+        filename: 'index.html',
       }),
       new webpack.LoaderOptionsPlugin({
         minimize: true,
@@ -49,6 +49,12 @@ module.exports = function (env) {
         disable: false,
         allChunks: true,
       }),
+      /* new CopyWebpackPlugin([
+        {
+          from: '',
+          to: 'assets/',
+        },
+      ]), */
     ],
   });
 };

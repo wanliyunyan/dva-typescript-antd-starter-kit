@@ -1,7 +1,8 @@
 import {Divider, Dropdown, Icon, Layout, Menu, message, Spin, Tag} from "antd";
 import classNames from "classnames";
 import {connect} from "dva";
-import {Link, Redirect, Route, Switch} from "dva/router";
+import {Redirect, Route, Switch} from "dva/router";
+import {Link} from "react-router-dom";
 import {groupBy} from "lodash";
 import moment from "moment";
 import React from "react";

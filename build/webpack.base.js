@@ -1,6 +1,11 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const command = process.argv.slice(2)[0];
+const env = command.substring(command.indexOf('=') + 1);
+const devUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]';
+const prodUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]&outputPath=assets/images/&publicPath=assets/images';
+
 module.exports = {
   module: {
     rules: [
@@ -46,6 +51,20 @@ module.exports = {
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
           }, {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              sourceMap: true,
+              plugins: loader => [
+                require('postcss-import')(),
+                // require('stylelint')(),
+                require('autoprefixer')({
+                  browsers: ['last 15 versions'],
+                }),
+              ],
+            },
+          },
+          {
             loader: 'less-loader',
             options: {
               javascriptEnabled: true,
@@ -55,11 +74,12 @@ module.exports = {
         }),
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
-        options: {
-          publicPath: '/',
-        },
+        test: /\.(png|jpe?g|gif|woff|woff2|ttf|eot)$/,
+        loader: env === 'dev' ? devUrlLoader : prodUrlLoader,
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
       },
     ],
   },

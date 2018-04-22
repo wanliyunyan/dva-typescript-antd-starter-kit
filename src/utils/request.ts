@@ -1,14 +1,19 @@
-import { notification } from "antd";
+import { message, notification } from "antd";
 import axios from "axios";
 
 interface InterfaceCssError extends Error {
   response?: any;
 }
 
-interface IParam {
-  url: string;
-  option?: any;
-}
+// 增加拦截器
+axios.interceptors.response.use((response) => {
+  //const {data} = response;
+  //location.replace("#/login");
+  return response;
+}, (error) => {
+  // Do something with response error
+  return Promise.reject(error);
+});
 
 export function get(url: string, options?: any) {
   return request(url, { ...options, method: "get" });
@@ -27,39 +32,30 @@ export function remove(url, options?) {
 }
 
 const fetch = (url, options) => {
-  const { method = "get", data } = options;
+  const { method = "get", param } = options;
+
   switch (method.toLowerCase()) {
     case "get":
-      return axios.get(url, { params: data });
+      return axios.get(url);
     case "delete":
-      return axios.delete(url, { data });
+      return axios.delete(url, param);
     case "head":
-      return axios.head(url, data);
+      return axios.head(url, param);
     case "post":
-      return axios.post(url, JSON.stringify(data));
+      return axios.post(url, param);
     case "put":
-      return axios.put(url, JSON.stringify(data));
+      return axios.put(url,  param);
     case "patch":
-      return axios.patch(url, data);
+      return axios.patch(url, param);
     default:
       return axios(options);
   }
 };
 
-/*function parseJSON(response) {
-  return response.json();
-}*/
-
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  notification.error({
-    description: response.statusText,
-    message: `请求错误 ${response.status}: ${response.url}`,
-  });
-
-  // const error = new cssError(response.statusText); //TODO 需要类型
 
   const error = {} as InterfaceCssError;
   error.response = response;
@@ -68,26 +64,29 @@ function checkStatus(response) {
 }
 
 function handelData(res) {
-  const data = res.data;
-  if (data && data.msg && !data.success) {
-    //message.error(data.msg)
+  const {data}  = res;
+  if (data.status === "10000") {
+    return { ...res.data, success: true };
+  } else {
+    if (data.message) {message.error(data.message); }
+    return { ...res.data, success: false };
   }
-  // else if(data && data.msg && data.success) {
-  //   message.success(data.msg)
-  // }
-  return { ...data.data, success: data.success || data.message === "Success" };
 }
 
 function handleError(error) {
-  const {data} = error.response;
-  if (data && data.errors) {
-    //message.error(`${data.message}：${data.errors}`, 5)
-  } else if (data && data.error) {
-    //message.error(`${data.error}：${data.error_description}`, 5)
-  } else {
-    //message.error('未知错误！', 5)
+  const {response} = error;
+  if (response) {
+    const {data, config} = response;
+    if (data) {
+      notification.error({
+        message: `${response.status}:${response.statusText}`,
+        description:  `url:${config.url}\n exception:${data.exception}`,
+      });
+    } else {
+      message.error("未知错误!");
+    }
+    return { success: false };
   }
-  return { success: false };
 }
 
 export default function request(url, options) {
@@ -96,18 +95,3 @@ export default function request(url, options) {
     .then(handelData)
     .catch(handleError);
 }
-
-/**
- * Requests a URL, returning a promise.
- *
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
- * @return {object}           An object containing either "data" or "err"
- */
-/*export default function request(url, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
-}*/

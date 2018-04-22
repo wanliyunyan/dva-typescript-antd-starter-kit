@@ -20,18 +20,6 @@ export default {
         payload: data,
       });
     },
-    *clearNotices({ payload }, { put, select }) {
-      const count = yield select((state) => state.global.notices.length);
-      yield put({
-        type: "user/changeNotifyCount",
-        payload: count,
-      });
-
-      yield put({
-        type: "saveClearedNotices",
-        payload,
-      });
-    },
   },
   reducers: {
     changeLayoutCollapsed(state, { payload }) {

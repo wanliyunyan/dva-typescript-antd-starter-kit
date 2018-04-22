@@ -1,4 +1,4 @@
-import { Link } from "dva/router";
+import {Link} from "react-router-dom";
 import React from "react";
 import Exception from "../../components/Exception";
 

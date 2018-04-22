@@ -8,7 +8,20 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = function () {
+function getIPAddress() {
+  const interfaces = require('os').networkInterfaces();
+  for (const devName in interfaces) {
+    const iface = interfaces[devName];
+    for (let i = 0; i < iface.length; i++) {
+      const alias = iface[i];
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address;
+      }
+    }
+  }
+}
+
+module.exports = function (env) {
   return Object.assign({}, commonConfig, {
     cache: true,
     devtool: 'source-map',
@@ -37,6 +50,7 @@ module.exports = function () {
       contentBase: './src/',
       publicPath: '/assets/',
       compress: true,
+      // host: getIPAddress(),
       port: 8000,
       /* proxy: {
         '/api/v1/last-stories': {
@@ -53,7 +67,6 @@ module.exports = function () {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin(),
       new ExtractTextPlugin({
         filename: 'style.css',
         disable: false,
