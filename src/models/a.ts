@@ -1,5 +1,4 @@
 import { Model } from "dva";
-import localForage from "localforage";
 import { create, query, remove, update } from "../services/a";
 
 const a: Model = {
@@ -21,13 +20,6 @@ const a: Model = {
   },
   effects: {
     *query(action, { call, put }) {
-
-      // TODO  localForage的简单用法
-      localForage.setItem("key", "value").
-      then(() => localForage.getItem("key")).
-      then((value) => value).
-      catch((err) => err);
-
       yield call(query);
       yield put({ type: "querySuccess", payload: "get请求已发送" });
     },

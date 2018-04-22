@@ -74,9 +74,9 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
   }
 
   public componentDidMount() {
-    this.props.dispatch({
+    /*this.props.dispatch({
       type: "user/fetchCurrent",
-    });
+    });*/
   }
 
   public componentWillUnmount() {
