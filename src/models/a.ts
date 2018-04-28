@@ -16,7 +16,7 @@ const a: Model = {
     },
     updateSuccess(state: any, { payload }: any) {
       return payload;
-    },
+    }
   },
   effects: {
     *query(action, { call, put }) {
@@ -34,8 +34,8 @@ const a: Model = {
     *update(action, { call, put }) {
       yield call(update);
       yield put({ type: "updateSuccess", payload: "update请求已发送" });
-    },
-  },
+    }
+  }
 };
 
 export default a;

@@ -6,49 +6,49 @@ const a: Model = {
   state: {
     list: [],
     loading: false,
-    currentUser: {},
+    currentUser: {}
   },
   effects: {
     *fetch(action, { call, put }) {
       yield put({
         type: "changeLoading",
-        payload: true,
+        payload: true
       });
       const response = yield call(queryUsers);
       yield put({
         type: "save",
-        payload: response,
+        payload: response
       });
       yield put({
         type: "changeLoading",
-        payload: false,
+        payload: false
       });
     },
     *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
       yield put({
         type: "saveCurrentUser",
-        payload: response,
+        payload: response
       });
-    },
+    }
   },
   reducers: {
     save(state, action) {
       return {
         ...state,
-        list: action.payload,
+        list: action.payload
       };
     },
     changeLoading(state, action) {
       return {
         ...state,
-        loading: action.payload,
+        loading: action.payload
       };
     },
     saveCurrentUser(state, action) {
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: action.payload
       };
     },
     changeNotifyCount(state, action) {
@@ -56,11 +56,11 @@ const a: Model = {
         ...state,
         currentUser: {
           ...state.currentUser,
-          notifyCount: action.payload,
-        },
+          notifyCount: action.payload
+        }
       };
-    },
-  },
+    }
+  }
 };
 
 export default a;

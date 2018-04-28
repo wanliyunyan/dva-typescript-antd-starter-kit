@@ -5,75 +5,79 @@ export default {
   state: {
     data: {
       list: [],
-      pagination: {},
+      pagination: {}
     },
-    loading: true,
+    loading: true
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
       yield put({
         type: "changeLoading",
-        payload: true,
+        payload: true
       });
       const response = yield call(queryRule, payload);
       yield put({
         type: "save",
-        payload: response,
+        payload: response
       });
       yield put({
         type: "changeLoading",
-        payload: false,
+        payload: false
       });
     },
     *add({ payload, callback }, { call, put }) {
       yield put({
         type: "changeLoading",
-        payload: true,
+        payload: true
       });
       const response = yield call(addRule, payload);
       yield put({
         type: "save",
-        payload: response,
+        payload: response
       });
       yield put({
         type: "changeLoading",
-        payload: false,
+        payload: false
       });
 
-      if (callback) { callback(); }
+      if (callback) {
+        callback();
+      }
     },
     *remove({ payload, callback }, { call, put }) {
       yield put({
         type: "changeLoading",
-        payload: true,
+        payload: true
       });
       const response = yield call(removeRule, payload);
       yield put({
         type: "save",
-        payload: response,
+        payload: response
       });
       yield put({
         type: "changeLoading",
-        payload: false,
+        payload: false
       });
 
-      if (callback) { callback(); }
-    },
+      if (callback) {
+        callback();
+      }
+    }
   },
 
   reducers: {
     save(state, action) {
       return {
         ...state,
-        data: action.payload,
+        data: action.payload
       };
     },
     changeLoading(state, action) {
       return {
         ...state,
-        loading: action.payload,
+        loading: action.payload
       };
-    },
-  },
+    }
+  }
 };

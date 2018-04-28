@@ -3,20 +3,26 @@ import classNames from "classnames";
 import React from "react";
 import styles from "./NoticeList.less";
 
-export default  ({
-  data= [], onClick, onClear, title, locale, emptyText, emptyImage,
+export default ({
+  data = [],
+  onClick,
+  onClear,
+  title,
+  locale,
+  emptyText,
+  emptyImage
 }) => {
   if (data.length === 0) {
-    return(
+    return (
       <div className={styles.notFound}>
-        {emptyImage ? <img src={emptyImage} alt={"not found"}/> : null}
+        {emptyImage ? <img src={emptyImage} alt={"not found"} /> : null}
         <div>{emptyText || locale.emptyText}</div>
       </div>
     );
   }
-  return(
+  return (
     <div>
-{/*      <List className={styles.list}>
+      {/*      <List className={styles.list}>
         {
           data.map((item, i) => {
             const itemCls = classNames(styles.item, {
@@ -48,7 +54,8 @@ export default  ({
         }
       </List>*/}
       <div className={styles.clear} onClick={onClear}>
-        {locale.clear}{title}
+        {locale.clear}
+        {title}
       </div>
     </div>
   );

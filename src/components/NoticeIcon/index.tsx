@@ -12,8 +12,8 @@ interface IProps {
   onPopupVisibleChange?: () => any;
   loading?: any;
   locale?: {
-    emptyText: string,
-    clear: string,
+    emptyText: string;
+    clear: string;
   };
   popupVisible?: any;
   onTabChange?: (type) => any;
@@ -26,8 +26,7 @@ interface IProps {
 
 const { TabPane } = Tabs;
 
-export default class NoticeIcon extends PureComponent <IProps, any> {
-
+export default class NoticeIcon extends PureComponent<IProps, any> {
   public static Tab = TabPane;
 
   public state: any;
@@ -43,28 +42,29 @@ export default class NoticeIcon extends PureComponent <IProps, any> {
   public onItemClick = (item, tabProps) => {
     const { onItemClick } = this.props;
     onItemClick(item, tabProps);
-  }
+  };
 
-  public onTabChange = (tabType) => {
+  public onTabChange = tabType => {
     this.setState({ tabType });
     this.props.onTabChange(tabType);
-  }
+  };
 
-  public getNotificationBox= () => {
-    const {children, loading, locale} = this.props;
+  public getNotificationBox = () => {
+    const { children, loading, locale } = this.props;
     if (!children) {
       return null;
     }
-    const panes = children.map((child) => {
-      const title = child.props.list && child.props.list.length > 0
-        ? `${child.props.title}(${child.props.list.length})`
-        : child.props.title;
-      return(
+    const panes = children.map(child => {
+      const title =
+        child.props.list && child.props.list.length > 0
+          ? `${child.props.title}(${child.props.list.length})`
+          : child.props.title;
+      return (
         <TabPane tab={title} key={child.props.title}>
           <List
             {...child.props}
             data={child.props.list}
-            onClick={(item) => this.onItemClick(item, child.props)}
+            onClick={item => this.onItemClick(item, child.props)}
             onClear={() => this.props.onClear(child.props.title)}
             title={child.props.title}
             locale={locale}
@@ -79,16 +79,18 @@ export default class NoticeIcon extends PureComponent <IProps, any> {
         </Tabs>
       </Spin>
     );
-  }
+  };
 
   public render() {
-    const {className, count, onPopupVisibleChange} = this.props;
+    const { className, count, onPopupVisibleChange } = this.props;
     const noticeButtonClass = classNames(className, styles.noticeButton);
-    const notificationBox  = this.getNotificationBox();
+    const notificationBox = this.getNotificationBox();
     const trigger = (
       <span className={noticeButtonClass}>
-        <Badge count={count}> className={styles.badge}>
-          <Icon type={"bell"} className={styles.icon}/>
+        <Badge count={count}>
+          {" "}
+          className={styles.badge}>
+          <Icon type={"bell"} className={styles.icon} />
         </Badge>
       </span>
     );
@@ -98,14 +100,14 @@ export default class NoticeIcon extends PureComponent <IProps, any> {
     }
 
     const popoverProps = {
-      visible: false,
+      visible: false
     };
 
     if ("popupVisible" in this.props) {
       popoverProps.visible = this.props.popupVisible;
     }
 
-    return  (
+    return (
       <Popover
         placement="bottomRight"
         content={notificationBox}

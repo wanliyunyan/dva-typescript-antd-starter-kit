@@ -6,14 +6,17 @@ interface InterfaceCssError extends Error {
 }
 
 // 增加拦截器
-axios.interceptors.response.use((response) => {
-  //const {data} = response;
-  //location.replace("#/login");
-  return response;
-}, (error) => {
-  // Do something with response error
-  return Promise.reject(error);
-});
+axios.interceptors.response.use(
+  response => {
+    //const {data} = response;
+    //location.replace("#/login");
+    return response;
+  },
+  error => {
+    // Do something with response error
+    return Promise.reject(error);
+  }
+);
 
 export function get(url: string, options?: any) {
   return request(url, { ...options, method: "get" });
@@ -44,7 +47,7 @@ const fetch = (url, options) => {
     case "post":
       return axios.post(url, param);
     case "put":
-      return axios.put(url,  param);
+      return axios.put(url, param);
     case "patch":
       return axios.patch(url, param);
     default:
@@ -64,23 +67,25 @@ function checkStatus(response) {
 }
 
 function handelData(res) {
-  const {data}  = res;
+  const { data } = res;
   if (data.status === "10000") {
     return { ...res.data, success: true };
   } else {
-    if (data.message) {message.error(data.message); }
+    if (data.message) {
+      message.error(data.message);
+    }
     return { ...res.data, success: false };
   }
 }
 
 function handleError(error) {
-  const {response} = error;
+  const { response } = error;
   if (response) {
-    const {data, config} = response;
+    const { data, config } = response;
     if (data) {
       notification.error({
         message: `${response.status}:${response.statusText}`,
-        description:  `url:${config.url}\n exception:${data.exception}`,
+        description: `url:${config.url}\n exception:${data.exception}`
       });
     } else {
       message.error("未知错误!");

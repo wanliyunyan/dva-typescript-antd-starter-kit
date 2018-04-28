@@ -12,10 +12,5 @@ interface InterfaceExceptionConfig {
 }
 
 export default (config: InterfaceExceptionConfig) => {
-
-  return (
-    <div>
-
-    </div>
-  );
+  return <div />;
 };

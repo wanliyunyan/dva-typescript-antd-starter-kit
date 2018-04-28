@@ -1,5 +1,5 @@
 import { stringify } from "qs";
-import {get, post, put, remove} from "../utils/request";
+import { get, post, put, remove } from "../utils/request";
 
 export async function queryProjectNotice() {
   return get("/api/project/notice");
@@ -14,15 +14,15 @@ export async function queryRule(params) {
 }
 
 export async function removeRule(params) {
-  return remove("/api/activities", {params});
+  return remove("/api/activities", { params });
 }
 
 export async function addRule(params) {
-  return post("/api/activities", {params});
+  return post("/api/activities", { params });
 }
 
 export async function fakeSubmitForm(params) {
-  return post("/api/forms", {params});
+  return post("/api/forms", { params });
 }
 
 export async function fakeChartData() {
@@ -46,16 +46,17 @@ export async function queryFakeList(params) {
 }
 
 export async function fakeAccountLogin(params) {
-  return post("/api/login/account", {params,
+  return post("/api/login/account", {
+    params
   });
 }
 
 export async function fakeMobileLogin(params) {
-  return post("/api/login/mobile", {params});
+  return post("/api/login/mobile", { params });
 }
 
 export async function fakeRegister(params) {
-  return post("/api/register", {params});
+  return post("/api/register", { params });
 }
 
 export async function queryNotices() {

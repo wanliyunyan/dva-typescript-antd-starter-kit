@@ -1,6 +1,6 @@
 import dva from "dva";
 import "./index.less";
-import models from './models';
+import models from "./models";
 import a from "./models/a";
 import router from "./router";
 
@@ -13,7 +13,7 @@ const app = dva();
 // 3. Model
 //app.model(a);
 
-models.forEach((m) => {
+models.forEach(m => {
   app.model(m.default); // ts 导出格式包含default
 });
 

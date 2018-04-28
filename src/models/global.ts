@@ -6,46 +6,46 @@ export default {
   state: {
     collapsed: false,
     notices: [],
-    fetchingNotices: false,
+    fetchingNotices: false
   },
   effects: {
     *fetchNotices(_, { call, put }) {
       yield put({
         type: "changeNoticeLoading",
-        payload: true,
+        payload: true
       });
       const data = yield call(queryNotices);
       yield put({
         type: "saveNotices",
-        payload: data,
+        payload: data
       });
-    },
+    }
   },
   reducers: {
     changeLayoutCollapsed(state, { payload }) {
       return {
         ...state,
-        collapsed: payload,
+        collapsed: payload
       };
     },
     saveNotices(state, { payload }) {
       return {
         ...state,
         notices: payload,
-        fetchingNotices: false,
+        fetchingNotices: false
       };
     },
     saveClearedNotices(state, { payload }) {
       return {
         ...state,
-        notices: state.notices.filter((item) => item.type !== payload),
+        notices: state.notices.filter(item => item.type !== payload)
       };
     },
     changeNoticeLoading(state, { payload }) {
       return {
         ...state,
-        fetchingNotices: payload,
+        fetchingNotices: payload
       };
-    },
-  },
+    }
+  }
 } as Model;

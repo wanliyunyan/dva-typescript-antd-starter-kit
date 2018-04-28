@@ -6,7 +6,7 @@ import * as styles from "./index.less";
 interface IProps {
   className?: any;
   placeholder?: string;
-  dataSource?: [string,string,string];
+  dataSource?: [string, string, string];
   onSearch?: (value) => any;
   onPressEnter?: (value) => any;
   onChange?: () => any;
@@ -22,50 +22,50 @@ export default class HeaderSearch extends PureComponent<IProps, IState> {
   public input: any;
   public state = {
     searchMode: false,
-    value: "",
+    value: ""
   };
 
   public componentWillUnmount() {
     clearTimeout(this.timeout);
   }
 
-  public onKeyDown= (e) => {
+  public onKeyDown = e => {
     if (e.key === "Enter") {
-      this.timeout  = setTimeout(() => {
+      this.timeout = setTimeout(() => {
         this.props.onPressEnter(this.state.value);
       }, 0);
     }
-  }
+  };
 
-  public onChange= (value) => {
-    this.setState({value});
+  public onChange = value => {
+    this.setState({ value });
     if (this.props.onChange) {
       this.props.onChange();
     }
-  }
+  };
 
   public enterSearchMode = () => {
-    this.setState({searchMode: true}, () => {
+    this.setState({ searchMode: true }, () => {
       if (this.state.searchMode) {
         this.input.focus();
       }
     });
-  }
+  };
 
-  public leaveSearchMode= () => {
+  public leaveSearchMode = () => {
     this.setState({
       searchMode: false,
-      value: "",
+      value: ""
     });
-  }
+  };
 
   public render() {
     const { className, placeholder, dataSource, ...restProps } = this.props;
     const inputClass = classNames(styles.input, {
-      [styles.show]: this.state.searchMode,
+      [styles.show]: this.state.searchMode
     });
 
-    return  (
+    return (
       <span
         className={classNames(className, styles.headerSearch)}
         onClick={this.enterSearchMode}
@@ -80,7 +80,9 @@ export default class HeaderSearch extends PureComponent<IProps, IState> {
         >
           <Input
             placeholder={placeholder}
-            ref = {(node) => {this.input = node; }}
+            ref={node => {
+              this.input = node;
+            }}
             onKeyDown={this.onKeyDown}
             onBlur={this.leaveSearchMode}
           />
