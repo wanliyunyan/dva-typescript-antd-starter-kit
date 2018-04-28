@@ -55,16 +55,6 @@ module.exports = {
             },
           }, {
             loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              sourceMap: true,
-              plugins: loader => [
-                require('postcss-import')(),
-                require('autoprefixer')({
-                  browsers: ['last 15 versions'],
-                }),
-              ],
-            },
           },
           {
             loader: 'less-loader',
@@ -87,16 +77,6 @@ module.exports = {
             },
           }, {
             loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              sourceMap: true,
-              plugins: loader => [
-                require('postcss-import')(),
-                require('autoprefixer')({
-                  browsers: ['last 15 versions'],
-                }),
-              ],
-            },
           },
           {
             loader: 'less-loader',
