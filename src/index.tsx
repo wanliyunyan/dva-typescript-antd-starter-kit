@@ -11,8 +11,6 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-//app.model(a);
-
 models.forEach(m => {
   app.model(m.default); // ts 导出格式包含default
 });

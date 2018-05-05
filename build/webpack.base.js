@@ -3,8 +3,8 @@ const fs = require('fs');
 const lessToJs = require('less-vars-to-js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const command = process.argv.slice(2)[0];
-const env = command.substring(command.indexOf('=') + 1);
+const env = process.argv.slice(-1)[0];
+
 const devUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]';
 const prodUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]&outputPath=assets/images/&publicPath=assets/images';
 
@@ -90,7 +90,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|woff|woff2|ttf|eot)$/,
-        loader: env === 'dev' ? devUrlLoader : prodUrlLoader,
+        loader: env === 'development' ? devUrlLoader : prodUrlLoader,
       },
       {
         test: /\.svg$/,
