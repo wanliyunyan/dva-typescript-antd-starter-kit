@@ -1,12 +1,65 @@
 # dva-typescript-antd-starter-kit
 
-A admin dashboard application demo based on antd   
-Now it is not perfect, then I will continue to improve the project  
-There is a little mistake on the page,but the structure is no problem
+A admin dashboard application demo based on antd
+Now it is not perfect, then I will continue to improve the project. 
+If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm intall, You can use it directly.
 
-原计划拿ts吧antd pro 的项目模仿一遍，然后把单元测试补完整了，但是精力有限，能力有限，慢慢来吧，基本都是中国人看这个项目，也没有必要google翻译成英语了
+## About
+项目的主要结构模仿的[ant-design-pro](https://github.com/ant-design/ant-design-pro)，但是没有使用dva的默认配置，使用了webpack4。项目的中的package都使用最新版本，支持最新的chrome浏览器。如果想使用最基础的dva+ts，请点击[dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
 
-如果想使用最基础的dva+ts，请点击 https://github.com/wanliyunyan/dva-typescript-starter-kit
+## Installation
+
+```bash
+npm install
+```
+
+## Running Dev Server
+
+```bash
+npm run dev
+```
+
+## Building
+
+```bash
+npm run build
+```
+
+## 项目目录
+
+```bash
+├── /build/            # webpack配置
+├── /dist/             # 项目输出目录
+├── /src/              # 项目源码目录
+│ ├── /assets/         # 公共文件，编译时copy至dist目录
+│ │ └── /images/       # 图片
+│ │ └── /style/        # 样式
+│ │ └── /svg/          # svg文件
+│ ├── /common/         # 公共文件
+│ ├── /components/     # UI组件及UI相关方法
+│ ├── /layouts/        # 布局
+│ ├── /models/         # 数据模型
+│ ├── /routes/         # 路由
+│ ├── /services/       # 数据接口
+│ ├── /utils/          # 工具函数
+│ │ └── request.js     # 异步请求函数
+│ ├── favicon.ico      # 图标
+│ ├── index.html       # 入口html
+│ ├── index.less       # 全局样式
+│ ├── index.less.d.ts  # 声明文件
+│ ├── index.tsx        # 入口文件
+│ └── route.tsx        # 路由配置
+├── .babelrc           # babel配置
+├── .editorconfig      # idea配置
+├── .eslintrc          # esint配置
+├── .gitignore         # 忽略配置
+├── .stylelintrc       # stylelint配置
+├── package.json       # 项目信息
+├── postcss.config.js  # postcss配置
+├── tsconfig.json      # TypeScript配置
+├── tslint.json        # TSlint配置
+└── webpack.config.js  # webpack配置
+```
 
 ## Package
 dependencies
@@ -74,57 +127,3 @@ devDependencies
 -   [webpack](https://github.com/webpack/webpack) A bundler for javascript and friends. Packs many modules into a few bundled assets. Code Splitting allows to load parts for the application on demand. Through "loaders," modules can be CommonJs, AMD, ES6 modules, CSS, Images, JSON, Coffeescript, LESS, ... and your custom stuff.
 -   [webpack-cli](https://github.com/webpack/webpack-cli) Webpack's Command Line Interface.
 -   [webpack-dev-server](https://github.com/webpack/webpack-dev-server) Serves a webpack app. Updates the browser on changes.
-
-## Installation
-
-```bash
-npm install
-```
-
-## Running Dev Server
-
-```bash
-npm run dev
-```
-
-## Building
-
-```bash
-npm run build
-```
-
-## 项目目录
-
-```bash
-├── /build/            # webpack配置
-├── /dist/             # 项目输出目录
-├── /src/              # 项目源码目录
-│ ├── /assets/         # 公共文件，编译时copy至dist目录
-│ │ └── /images/       # 图片
-│ │ └── /style/        # 样式
-│ │ └── /svg/          # svg文件
-│ ├── /common/         # 公共文件
-│ ├── /components/     # UI组件及UI相关方法
-│ ├── /layouts/        # 布局
-│ ├── /models/         # 数据模型
-│ ├── /routes/         # 路由
-│ ├── /services/       # 数据接口
-│ ├── /utils/          # 工具函数
-│ │ └── request.js     # 异步请求函数
-│ ├── favicon.ico      # 图标
-│ ├── index.html       # 入口html
-│ ├── index.less       # 全局样式
-│ ├── index.less.d.ts  # 声明文件
-│ ├── index.tsx        # 入口文件
-│ └── route.tsx        # 路由配置
-├── .babelrc           # babel配置
-├── .editorconfig      # idea配置
-├── .eslintrc          # esint配置
-├── .gitignore         # 忽略配置
-├── .stylelintrc       # stylelint配置
-├── package.json       # 项目信息
-├── postcss.config.js  # postcss配置
-├── tsconfig.json      # TypeScript配置
-├── tslint.json        # TSlint配置
-└── webpack.config.js  # webpack配置
-```
