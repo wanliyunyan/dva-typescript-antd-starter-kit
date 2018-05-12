@@ -1,4 +1,4 @@
-import { stringify } from "qs";
+import queryString from "query-string";
 import { get, post, put, remove } from "../utils/request";
 
 export async function queryProjectNotice() {
@@ -10,7 +10,7 @@ export async function queryActivities() {
 }
 
 export async function queryRule(params) {
-  return get(`/api/rule?${stringify(params)}`);
+  return get(`/api/rule?${queryString.stringify(params)}`);
 }
 
 export async function removeRule(params) {
@@ -42,7 +42,7 @@ export async function queryAdvancedProfile() {
 }
 
 export async function queryFakeList(params) {
-  return get(`/api/fake_list?${stringify(params)}`);
+  return get(`/api/fake_list?${queryString.stringify(params)}`);
 }
 
 export async function fakeAccountLogin(params) {
