@@ -131,7 +131,7 @@ const data = [
           {
             name: "失败",
             path: "fail",
-            component: Error
+            component: null
           }
         ]
       },

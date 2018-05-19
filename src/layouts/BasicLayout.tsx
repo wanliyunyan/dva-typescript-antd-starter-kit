@@ -85,16 +85,6 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
     };
   }
 
-  public componentDidMount() {
-    /*this.props.dispatch({
-      type: "user/fetchCurrent",
-    });*/
-  }
-
-  public componentWillUnmount() {
-    // clearTimeout(this.resizeTimeout);
-  }
-
   // 折叠
   public onCollapse = collapsed => {
     this.props.dispatch({
@@ -332,7 +322,7 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
                   component={item.component}
                 />
               ))}
-              <Redirect exact from="/" to="/dashboard/table-list" />
+              <Redirect exact from="/" to="/dashboard/analysis" />
               <Route component={NotFound} />
             </Switch>
 

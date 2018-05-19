@@ -5,9 +5,7 @@ import styles from "./IndexPage.less";
 function IndexPage() {
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>
-        dva + webpack-dev-server + hot-loader + typescript + antd + axios
-      </h1>
+      <h1 className={styles.title}>dva-typescript-antd-starter-kit</h1>
       <div className={styles.welcome} />
     </div>
   );
