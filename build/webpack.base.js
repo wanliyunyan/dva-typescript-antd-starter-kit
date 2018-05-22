@@ -16,12 +16,26 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: ['babel-loader', 'ts-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader',
+          },
+        ],
+        include: [
+          path.join(__dirname, '../src'),
+        ],
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -100,14 +114,12 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.join(__dirname, 'src'),
+      path.join(__dirname, '../src'),
       'node_modules',
     ],
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
-      config: path.resolve(__dirname, 'src/config/'),
-      shared: path.resolve(__dirname, 'src/shared/'),
-      utils: path.resolve(__dirname, 'src/utils/'),
+      utils: path.join(__dirname, '../src/utils/'),
     },
   },
 };
