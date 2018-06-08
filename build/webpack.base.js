@@ -114,12 +114,12 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.join(__dirname, '../src'),
+      path.resolve(__dirname, '../src'),
       'node_modules',
     ],
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
-      utils: path.join(__dirname, '../src/utils/'),
+      src: path.resolve(__dirname, '../src/'),
     },
   },
 };
