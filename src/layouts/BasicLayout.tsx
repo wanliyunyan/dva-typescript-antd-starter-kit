@@ -10,11 +10,11 @@ import {
 } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
-import { Redirect, Route, Switch } from "dva/router";
 import { groupBy } from "lodash";
 import moment from "moment";
 import React from "react";
 import { ContainerQuery } from "react-container-query";
+import { Redirect, Route, Switch } from "react-router";
 import { Link } from "react-router-dom";
 import { getNavData } from "../common/nav";
 import A from "../components/a";
@@ -235,10 +235,10 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
 
     const menu = (
       <Menu className="menu">
-        <Menu.Item disabled>
+        <Menu.Item disabled={true}>
           <Icon type="user" />个人中心
         </Menu.Item>
-        <Menu.Item disabled>
+        <Menu.Item disabled={true}>
           <Icon type="setting" />设置
         </Menu.Item>
         <Menu.Divider />
@@ -261,7 +261,7 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
       <Layout>
         <Sider
           trigger={null}
-          collapsible
+          collapsible={true}
           collapsed={collapsed}
           breakpoint="md"
           onCollapse={this.onCollapse}
@@ -296,7 +296,7 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
               onClick={this.toggle}
             />
 
-            <Divider dashed type="vertical" style={{ height: "50px" }} />
+            <Divider dashed={true} type="vertical" style={{ height: "50px" }} />
 
             <div className={styles.right}>
               <HeaderSearch
@@ -322,7 +322,7 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
                   component={item.component}
                 />
               ))}
-              <Redirect exact from="/" to="/dashboard/analysis" />
+              <Redirect exact={true} from="/" to="/dashboard/analysis" />
               <Route component={NotFound} />
             </Switch>
 
