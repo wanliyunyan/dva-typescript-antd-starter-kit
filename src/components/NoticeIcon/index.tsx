@@ -113,7 +113,7 @@ export default class NoticeIcon extends PureComponent<IProps, any> {
         content={notificationBox}
         overlayClassName={styles.popover}
         trigger={"click"}
-        arrowPointAtCenter
+        arrowPointAtCenter={true}
         onVisibleChange={onPopupVisibleChange}
         {...popoverProps}
       >

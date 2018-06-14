@@ -168,13 +168,13 @@ export default class StandardTable extends PureComponent<any, any> {
               </p>
             }
             type="info"
-            showIcon
+            showIcon={true}
           />
         </div>
 
         <Table
           dataSource={list}
-          //columns ={columns}
+          // columns ={columns}
         />
 
         <ITable

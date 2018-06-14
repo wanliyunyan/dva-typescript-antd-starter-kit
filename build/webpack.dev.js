@@ -52,13 +52,13 @@ module.exports = function (env) {
       compress: true,
       // host: getIPAddress(),
       port: 8000,
-      /* proxy: {
-        '/api/v1/last-stories': {
-          target: 'https://zhihu-daily.leanapp.cn',
+      proxy: {
+        '/api/*': {
+          target: 'http://localhost:9090',
           secure: false,
           changeOrigin: true,
         },
-      }, */
+      },
     },
     optimization: {
       runtimeChunk: {

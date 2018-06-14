@@ -8,8 +8,8 @@ interface InterfaceCssError extends Error {
 // 增加拦截器
 axios.interceptors.response.use(
   response => {
-    //const {data} = response;
-    //location.replace("#/login");
+    // const {data} = response;
+    // location.replace("#/login");
     return response;
   },
   error => {
