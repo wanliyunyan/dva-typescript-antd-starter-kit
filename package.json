@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "mock": "node_modules/.bin/json-server --watch mock/db.json --routes mock/routes.json --port 9090",
+    "mockjs": "node_modules/.bin/json-server --watch mock/db.js --port 9091",
     "build": "webpack --mode production",
     "tslint:fix": "tslint --fix \"src/**/*.{ts,tsx}\" ",
     "lint:style": "stylelint --syntax less \"src/**/*.less\" ",
@@ -20,6 +21,7 @@
     "classnames": "^2.2.6",
     "dva": "^2.3.1",
     "lodash": "^4.17.10",
+    "mockjs": "^1.0.1-beta3",
     "moment": "^2.22.2",
     "query-string": "^6.1.0",
     "react": "^16.4.1",
@@ -29,7 +31,7 @@
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
-    "@types/react": "^16.3.17",
+    "@types/react": "^16.3.18",
     "@types/react-dom": "^16.0.6",
     "@types/react-router": "^4.0.26",
     "@types/webpack": "^4.4.0",
@@ -65,11 +67,11 @@
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "prettier": "^1.13.5",
-    "react-hot-loader": "^4.3.2",
+    "react-hot-loader": "^4.3.3",
     "sass-loader": "^7.0.3",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
-    "stylelint": "^9.2.1",
+    "stylelint": "^9.3.0",
     "stylelint-config-prettier": "^3.2.0",
     "stylelint-config-standard": "^18.2.0",
     "svg-sprite-loader": "^3.8.0",
@@ -80,7 +82,7 @@
     "typescript": "^2.9.2",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.0",
-    "webpack-cli": "^3.0.6",
+    "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   },
   "lint-staged": {
