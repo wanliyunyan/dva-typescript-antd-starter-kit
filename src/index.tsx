@@ -1,14 +1,14 @@
 import dva from "dva";
+import createLoading from "dva-loading";
 import "./index.less";
 import models from "./models";
-import a from "./models/a";
 import router from "./router";
 
 // 1. Initialize
 const app = dva();
 
 // 2. Plugins
-// app.use({});
+app.use(createLoading());
 
 // 3. Model
 models.forEach(m => {

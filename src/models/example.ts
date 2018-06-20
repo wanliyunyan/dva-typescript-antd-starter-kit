@@ -3,7 +3,9 @@ import { query } from "../services/a";
 export default {
   namespace: "example",
 
-  state: {},
+  state: {
+    data: []
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {
@@ -12,11 +14,8 @@ export default {
   },
 
   effects: {
-    *query({}, { select, call, put }) {
-      const pathQuery = yield select(
-        ({ routing }) => routing.locationBeforeTransitions.query
-      );
-      const data = yield call(query, pathQuery);
+    *query({ payload }, { select, call, put }) {
+      const data = yield call(query, payload);
       if (data && data.success) {
         yield put({
           type: "querySuccess",

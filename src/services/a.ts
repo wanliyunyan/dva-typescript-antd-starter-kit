@@ -1,29 +1,17 @@
-import request from "../utils/request";
+import { del, get, post, put } from "../utils/request";
 
-export async function query(params) {
-  return request("/api/admin", {
-    method: "get",
-    data: params
-  });
+export async function create(param) {
+  return post("/api/list", { param });
 }
 
-export async function create(params) {
-  return request("/api/admin", {
-    method: "post",
-    data: params
-  });
+export async function query(param) {
+  return get("/api/list", { param });
 }
 
-export async function remove(params) {
-  return request("/api/admin", {
-    method: "delete",
-    data: params
-  });
+export async function update(param) {
+  return put("/api/list", { param });
 }
 
-export async function update(params) {
-  return request("/api/admin", {
-    method: "put",
-    data: params
-  });
+export async function remove(param) {
+  return del("/api/list", { param });
 }

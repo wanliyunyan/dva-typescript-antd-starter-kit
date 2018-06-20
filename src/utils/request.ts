@@ -18,38 +18,37 @@ axios.interceptors.response.use(
   }
 );
 
-export function get(url: string, options?: any) {
-  return request(url, { ...options, method: "get" });
+export function get(url: string, options?: any, config?: any) {
+  return request(url, { ...options, method: "get" }, config);
 }
 
-export function post(url, options?) {
-  return request(url, { ...options, method: "post" });
+export function post(url: string, options?: any, config?: any) {
+  return request(url, { ...options, method: "post" }, config);
 }
 
-export function put(url, options?) {
-  return request(url, { ...options, method: "put" });
+export function put(url: string, options?: any, config?: any) {
+  return request(url, { ...options, method: "put" }, config);
 }
 
-export function remove(url, options?) {
-  return request(url, { ...options, method: "delete" });
+export function del(url: string, options?: any, config?: any) {
+  return request(url, { ...options, method: "delete" }, config);
 }
 
-const fetch = (url, options) => {
+const fetch = (url, options, config) => {
   const { method = "get", param } = options;
-
   switch (method.toLowerCase()) {
     case "get":
-      return axios.get(url);
+      return axios.get(url, config);
     case "delete":
       return axios.delete(url, param);
     case "head":
       return axios.head(url, param);
     case "post":
-      return axios.post(url, param);
+      return axios.post(url, param, config);
     case "put":
-      return axios.put(url, param);
+      return axios.put(url, param, config);
     case "patch":
-      return axios.patch(url, param);
+      return axios.patch(url, param, config);
     default:
       return axios(options);
   }
@@ -67,15 +66,7 @@ function checkStatus(response) {
 }
 
 function handelData(res) {
-  const { data } = res;
-  if (data.status === "10000") {
-    return { ...res.data, success: true };
-  } else {
-    if (data.message) {
-      message.error(data.message);
-    }
-    return { ...res.data, success: false };
-  }
+  return { ...res };
 }
 
 function handleError(error) {
@@ -94,8 +85,8 @@ function handleError(error) {
   }
 }
 
-export default function request(url, options) {
-  return fetch(url, options)
+export default function request(url, options, config) {
+  return fetch(url, options, config)
     .then(checkStatus)
     .then(handelData)
     .catch(handleError);

@@ -2,12 +2,13 @@ import BasicLayout from "../layouts/BasicLayout";
 import BlankLayout from "../layouts/BlankLayout";
 import UserLayout from "../layouts/UserLayout";
 import IndexPage from "../routes/IndexPage/IndexPage";
+import TableList from "../routes/List/TableList";
 
 const data = [
   {
     component: BasicLayout,
     layout: "BasicLayout",
-    name: "首页", // for breadcrumb
+    name: "首页",
     path: "",
     children: [
       {
@@ -72,7 +73,7 @@ const data = [
           {
             name: "查询表格",
             path: "table-list",
-            component: null
+            component: TableList
           },
           {
             name: "标准列表",

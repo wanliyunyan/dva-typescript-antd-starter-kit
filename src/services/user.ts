@@ -1,4 +1,4 @@
-import { get, post, put, remove } from "../utils/request";
+import { get } from "../utils/request";
 
 export async function query(param) {
   return get("/api/users", { param });

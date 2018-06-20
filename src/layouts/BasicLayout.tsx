@@ -1,13 +1,4 @@
-import {
-  Divider,
-  Dropdown,
-  Icon,
-  Layout,
-  Menu,
-  message,
-  Spin,
-  Tag
-} from "antd";
+import { Divider, Icon, Layout, Menu, Tag } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
 import { groupBy } from "lodash";
@@ -17,8 +8,6 @@ import { ContainerQuery } from "react-container-query";
 import { Redirect, Route, Switch } from "react-router";
 import { Link } from "react-router-dom";
 import { getNavData } from "../common/nav";
-import A from "../components/a";
-import Example from "../components/Example";
 import GlobalFooter from "../components/GlobalFooter";
 import HeaderSearch from "../components/HeaderSearch";
 import NotFound from "../routes/Exception/404";
@@ -70,9 +59,7 @@ interface IState {
   notices: state.global.notices
 }))
 class BasicLayout extends React.PureComponent<IProps, IState> {
-  // TODO 像java一样定义变量
   public menus: any;
-  public resizeTimeout: any;
 
   constructor(props) {
     super(props);
@@ -189,13 +176,6 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
       type: "global/changeLayoutCollapsed",
       payload: !collapsed
     });
-
-    // TODO  不懂这段的用处
-    this.resizeTimeout = setTimeout(() => {
-      const event = document.createEvent("HTMLEvents");
-      event.initEvent("resize", true, false);
-      window.dispatchEvent(event);
-    }, 600);
   };
 
   public getNoticeData = () => {
@@ -325,10 +305,6 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
               <Redirect exact={true} from="/" to="/dashboard/analysis" />
               <Route component={NotFound} />
             </Switch>
-
-            <A />
-
-            <Example />
 
             <GlobalFooter
               links={[

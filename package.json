@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --mode development",
-    "mock": "node_modules/.bin/json-server --watch mock/db.json --routes mock/routes.json --port 9090",
-    "mockjs": "node_modules/.bin/json-server --watch mock/db.js --port 9091",
+    "mockjson": "node_modules/.bin/json-server --watch mock/db.json --routes mock/routes.json --port 9090",
+    "mockjs": "node_modules/.bin/json-server --watch mock/db.js --routes mock/routes.json --port 9090",
     "build": "webpack --mode production",
     "tslint:fix": "tslint --fix \"src/**/*.{ts,tsx}\" ",
     "lint:style": "stylelint --syntax less \"src/**/*.less\" ",
@@ -16,10 +16,11 @@
     "install-node": "8.11.1"
   },
   "dependencies": {
-    "antd": "^3.6.2",
+    "antd": "^3.6.3",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "dva": "^2.3.1",
+    "dva-loading": "^2.0.3",
     "lodash": "^4.17.10",
     "mockjs": "^1.0.1-beta3",
     "moment": "^2.22.2",
@@ -31,12 +32,13 @@
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
-    "@types/react": "^16.3.18",
+    "@types/react": "^16.4.1",
     "@types/react-dom": "^16.0.6",
     "@types/react-router": "^4.0.26",
-    "@types/webpack": "^4.4.0",
+    "@types/react-router-dom": "^4.2.7",
+    "@types/webpack": "^4.4.1",
     "@types/webpack-env": "^1.13.6",
-    "autoprefixer": "^8.6.2",
+    "autoprefixer": "^8.6.3",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",

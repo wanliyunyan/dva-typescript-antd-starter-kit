@@ -1,5 +1,5 @@
 import queryString from "query-string";
-import { get, post, put, remove } from "../utils/request";
+import { del, get, post } from "../utils/request";
 
 export async function queryProjectNotice() {
   return get("/api/project/notice");
@@ -14,7 +14,7 @@ export async function queryRule(params) {
 }
 
 export async function removeRule(params) {
-  return remove("/api/activities", { params });
+  return del("/api/activities", { params });
 }
 
 export async function addRule(params) {
