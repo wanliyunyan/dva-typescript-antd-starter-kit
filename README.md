@@ -25,6 +25,9 @@ npm run dev
 npm run build
 ```
 
+## mock
+点击mockjs，启动mock数据，可以在“查询表格”中看到mock数据的效果
+
 ## 项目目录
 
 ```bash
