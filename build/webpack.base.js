@@ -64,7 +64,6 @@ module.exports = {
               modules: true,
               namedExport: true,
               camelCase: true,
-              minimize: true,
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
           }, {
