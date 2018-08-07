@@ -7,6 +7,7 @@ const commonConfig = require('./webpack.base.js');
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const merge = require('webpack-merge');
 
 function getIPAddress() {
   const interfaces = require('os').networkInterfaces();
@@ -22,9 +23,9 @@ function getIPAddress() {
 }
 
 module.exports = function (env) {
-  return Object.assign({}, commonConfig, {
+  return merge(commonConfig, {
     cache: true,
-    devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
     entry: {
       bundle: [
         'react-hot-loader/patch',
