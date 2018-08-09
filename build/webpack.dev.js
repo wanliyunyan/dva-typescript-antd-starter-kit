@@ -10,16 +10,18 @@ const merge = require('webpack-merge');
 const lessToJs = require('less-vars-to-js');
 const fs = require('fs');
 
-// happypack 加速打包
+
+// 获取自己定义的要覆盖antd默认样式的文件
+const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, '../src/assets/style/theme.less'), 'utf8'));
+
+//  TODO happypack
 const HappyPack = require('happypack');
 const os = require('os');
 
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const commonConfig = require('./webpack.base.js');
 
-// 获取自己定义的要覆盖antd默认样式的文件
-const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, '../src/assets/style/theme.less'), 'utf8'));
+const commonConfig = require('./webpack.base.js');
 
 function getIPAddress() {
   const interfaces = require('os').networkInterfaces();
