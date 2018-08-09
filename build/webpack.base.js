@@ -3,12 +3,6 @@ const fs = require('fs');
 const lessToJs = require('less-vars-to-js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// happypack 加速打包
-const HappyPack = require('happypack');
-const os = require('os');
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
 const env = process.argv.slice(-1)[0];
 
 const devUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]';
@@ -28,7 +22,7 @@ module.exports = {
             loader: 'babel-loader',
           },
           {
-            //loader: 'happypack/loader?id=ts',  // 用这个打包速度慢了很多
+            // loader: 'happypack/loader?id=ts',  // 用这个打包速度慢了很多
             loader: 'ts-loader',
           },
         ],
@@ -41,8 +35,8 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            //loader: 'happypack/loader?id=js',
-             loader: 'babel-loader',
+            loader: 'happypack/loader?id=js',
+            // loader: 'babel-loader',
           },
         ],
       },
@@ -67,23 +61,7 @@ module.exports = {
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           use: [{
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: true,
-              namedExport: true,
-              camelCase: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            },
-          }, {
-            loader: 'postcss-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true,
-              modifyVars: themeVariables,
-            },
+            loader: 'happypack/loader?id=less_src', // 用这个打包速度慢了很多
           }],
           fallback: 'style-loader',
         }),
@@ -93,19 +71,7 @@ module.exports = {
         exclude: /src/,
         use: ExtractTextPlugin.extract({
           use: [{
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
-          }, {
-            loader: 'postcss-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true,
-              modifyVars: themeVariables,
-            },
+            loader: 'happypack/loader?id=less_node_modules', // 用这个打包速度慢了很多
           }],
           fallback: 'style-loader',
         }),
@@ -121,28 +87,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HappyPack({
-      id: 'ts',
-      // threads: 4,
-      threadPool: happyThreadPool,
-      loaders: [
-        {
-          path: 'ts-loader',
-          query: { happyPackMode: true },
-        },
-      ],
-    }),
-    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
-    new HappyPack({
-      id: 'js',
-      loaders: ['babel-loader'],
-      threadPool: happyThreadPool,
-    }),
-    new HappyPack({
-      id: 'style',
-      loaders: ['style-loader', 'css-loader'],
-      threadPool: happyThreadPool,
-    })
+
   ],
   resolve: {
     modules: [
