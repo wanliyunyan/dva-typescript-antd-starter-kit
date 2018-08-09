@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const lessToJs = require('less-vars-to-js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const env = process.argv.slice(-1)[0];
 
@@ -23,12 +24,10 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'happypack/loader?id=js',
-            // loader: 'babel-loader',
+            loader: 'babel-loader',
           },
           {
-            loader: 'happypack/loader?id=ts',
-            // loader: 'ts-loader',
+            loader: 'ts-loader',
           },
         ],
         include: [path.join(__dirname, '../src')],
@@ -38,57 +37,84 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'happypack/loader?id=js',
-            // loader: 'babel-loader',
+            loader: 'babel-loader',
           },
         ],
       },
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-            },
-          ],
-          fallback: 'style-loader',
-        }),
-      },
-      {
-        test: /\.sass$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
+          env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader?outputStyle=expanded&indentedSyntax',
+          'postcss-loader',
+          'sass-loader',
         ],
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader?outputStyle=expanded'],
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'happypack/loader?id=less_src',
+        // use: ExtractTextPlugin.extract({
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              namedExport: true,
+              camelCase: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
-          ],
-          fallback: 'style-loader',
-        }),
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+              modifyVars: themeVariables,
+            },
+          },
+          /* {
+            loader: 'style-loader',
+          }, */
+        ],
+        // fallback: 'style-loader',
+        // }),
       },
       {
         test: /\.less$/,
         exclude: /src/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'happypack/loader?id=less_node_modules',
+        // use: ExtractTextPlugin.extract({
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
             },
-          ],
-          fallback: 'style-loader',
-        }),
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+              modifyVars: themeVariables,
+            },
+          },
+          /* {
+            loader: 'style-loader',
+          }, */
+        ],
+        // fallback: 'style-loader',
+        // }),
       },
       {
         test: /\.(png|jpe?g|gif|woff|woff2|ttf|eot)$/,
@@ -100,7 +126,29 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          test: /\.(less|css|sass|scss)$/,
+        },
+      },
+    },
+    runtimeChunk: {
+      name: 'manifest',
+    },
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+      chunkFilename: 'style.css',
+    }),
+    /* new ExtractTextPlugin({
+      filename: 'style.css',
+      disable: false,
+      allChunks: true,
+    }), */
+  ],
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
