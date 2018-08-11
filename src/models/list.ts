@@ -1,5 +1,5 @@
 import { Model } from "dva";
-import { query, create, remove, update } from "../services/list";
+import { create, query, remove, update } from "../services/list";
 
 const list: Model = {
   namespace: "list",

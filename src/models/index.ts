@@ -4,8 +4,8 @@ const context = require.context("./", false, /\.ts$/);
 const keys = context.keys().filter(item => item !== "./index.ts");
 
 const models = [];
-for (let i = 0; i < keys.length; i += 1) {
-  models.push(context(keys[i]));
-}
 
+for (const key of keys) {
+  models.push(context(key));
+}
 export default models;

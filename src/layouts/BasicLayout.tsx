@@ -117,11 +117,11 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
         return null;
       }
       let itemPath;
-      if (item.path.indexOf("http") === 0) {
-        itemPath = item.path;
-      } else {
-        itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/");
-      }
+      ``;
+      item.path.indexOf("http") === 0
+        ? (itemPath = item.path)
+        : (itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/"));
+
       if (item.children && item.children.some(child => child.name)) {
         return (
           <SubMenu
