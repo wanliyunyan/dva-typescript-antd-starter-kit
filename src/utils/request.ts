@@ -18,31 +18,31 @@ axios.interceptors.response.use(
   }
 );
 
-export function get(url: string, options?: any, config?: any) {
+export function get(url: string, options?: any, config?: any): any {
   return request(url, { ...options, method: "get" }, config);
 }
 
-export function post(url: string, options?: any, config?: any) {
+export function post(url: string, options?: any, config?: any): any {
   return request(url, { ...options, method: "post" }, config);
 }
 
-export function put(url: string, options?: any, config?: any) {
+export function put(url: string, options?: any, config?: any): any {
   return request(url, { ...options, method: "put" }, config);
 }
 
-export function del(url: string, options?: any, config?: any) {
+export function del(url: string, options?: any, config?: any): any {
   return request(url, { ...options, method: "delete" }, config);
 }
 
-const fetch = (url, options, config) => {
+const fetch = (url: string, options: any, config: any) => {
   const { method = "get", param } = options;
   switch (method.toLowerCase()) {
     case "get":
       return axios.get(url, config);
     case "delete":
-      return axios.delete(url, param);
+      return axios.delete(url, config);
     case "head":
-      return axios.head(url, param);
+      return axios.head(url, config);
     case "post":
       return axios.post(url, param, config);
     case "put":
@@ -54,7 +54,7 @@ const fetch = (url, options, config) => {
   }
 };
 
-function checkStatus(response) {
+function checkStatus(response: any): any {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -65,11 +65,11 @@ function checkStatus(response) {
   throw error;
 }
 
-function handelData(res) {
-  return { ...res };
+function handelData(res: any): any {
+  return { ...res, success: true };
 }
 
-function handleError(error) {
+function handleError(error: any): any {
   const { response } = error;
   if (response) {
     const { data, config } = response;
@@ -85,7 +85,7 @@ function handleError(error) {
   }
 }
 
-export default function request(url, options, config) {
+export default function request(url: string, options: any, config: any): any {
   return fetch(url, options, config)
     .then(checkStatus)
     .then(handelData)

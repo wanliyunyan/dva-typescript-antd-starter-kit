@@ -1,5 +1,4 @@
 import { Model } from "dva";
-import { queryNotices } from "../services/api";
 
 export default {
   namespace: "global",
@@ -8,19 +7,7 @@ export default {
     notices: [],
     fetchingNotices: false
   },
-  effects: {
-    *fetchNotices(_, { call, put }) {
-      yield put({
-        type: "changeNoticeLoading",
-        payload: true
-      });
-      const data = yield call(queryNotices);
-      yield put({
-        type: "saveNotices",
-        payload: data
-      });
-    }
-  },
+  effects: {},
   reducers: {
     changeLayoutCollapsed(state, { payload }) {
       return {

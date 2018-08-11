@@ -1,8 +1,7 @@
-import { Divider, Icon, Layout, Menu, Tag } from "antd";
+import { Divider, Icon, Layout, Menu } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
 import { groupBy } from "lodash";
-import moment from "moment";
 import React from "react";
 import { ContainerQuery } from "react-container-query";
 import { Redirect, Route, Switch } from "react-router";
@@ -10,7 +9,6 @@ import { Link } from "react-router-dom";
 import { getNavData } from "../common/nav";
 import GlobalFooter from "../components/GlobalFooter";
 import HeaderSearch from "../components/HeaderSearch";
-import NotFound from "../routes/Exception/404";
 import { getRouteData } from "../utils/utils";
 
 import styles from "./BasicLayout.less";
@@ -53,12 +51,9 @@ interface IState {
 }
 
 @connect(state => ({
-  collapsed: state.global.collapsed,
-  currentUser: state.user.currentUser,
-  fetchingNotices: state.global.fetchingNotices,
-  notices: state.global.notices
+  collapsed: state.global.collapsed
 }))
-class BasicLayout extends React.PureComponent<IProps, IState> {
+export default class BasicLayout extends React.PureComponent<IProps, IState> {
   public menus: any;
 
   constructor(props) {
@@ -178,57 +173,8 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
     });
   };
 
-  public getNoticeData = () => {
-    const { notices = [] } = this.props;
-    if (notices.length === 0) {
-      return {};
-    }
-    const newNotices = notices.map(notice => {
-      const newNotice = { ...notice };
-      if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime).fromNow();
-      }
-      // transform id to item key
-      if (newNotice.id) {
-        newNotice.key = newNotice.id;
-      }
-      if (newNotice.extra && newNotice.status) {
-        const color = {
-          todo: "",
-          processing: "blue",
-          urgent: "red",
-          doing: "gold"
-        }[newNotice.status];
-        newNotice.extra = (
-          <Tag color={color} style={{ marginRight: 0 }}>
-            {newNotice.extra}
-          </Tag>
-        );
-      }
-      return newNotice;
-    });
-    return groupBy(newNotices, "type");
-  };
-
   public render() {
-    const { currentUser, collapsed, fetchingNotices } = this.props;
-
-    const menu = (
-      <Menu className="menu">
-        <Menu.Item disabled={true}>
-          <Icon type="user" />个人中心
-        </Menu.Item>
-        <Menu.Item disabled={true}>
-          <Icon type="setting" />设置
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="logout">
-          <Icon type="logout" />退出登录
-        </Menu.Item>
-      </Menu>
-    );
-
-    const noticeData = this.getNoticeData();
+    const { collapsed } = this.props;
 
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed
@@ -303,7 +249,6 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
                 />
               ))}
               <Redirect exact={true} from="/" to="/dashboard/analysis" />
-              <Route component={NotFound} />
             </Switch>
 
             <GlobalFooter
@@ -343,5 +288,3 @@ class BasicLayout extends React.PureComponent<IProps, IState> {
     );
   }
 }
-
-export default BasicLayout;

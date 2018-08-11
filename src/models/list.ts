@@ -1,47 +1,25 @@
-import { message } from "antd";
-import { routerRedux } from "dva/router";
-import queryString from "query-string";
-import { query } from "../services/list";
+import { Model } from "dva";
+import { query, create, remove, update } from "../services/list";
 
-export const initEditData = () => {
-  return {
-    name: {
-      value: null
-    },
-    sxm: {
-      value: null
-    },
-    cd1: {
-      value: null
-    },
-    mrz: {
-      value: null
-    },
-    xybz: {
-      value: false
-    },
-    sfbl: {
-      value: false
-    },
-    zzjy: {
-      value: null
-    },
-    extendInfo: ""
-  };
-};
-
-export default {
-  namespace: "tableList",
+const list: Model = {
+  namespace: "list",
   state: {
     list: []
   },
-
+  reducers: {
+    listSave(state: any, { payload }: any) {
+      return {
+        ...state,
+        list: payload
+      };
+    }
+  },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => {
         if (pathname === "/list/table-list") {
           dispatch({
-            type: "list"
+            type: "query"
           });
         }
       });
@@ -49,15 +27,53 @@ export default {
   },
 
   effects: {
-    *list({ payload }, { call, put }) {
+    *create({ payload }, { call, put }) {
       try {
-        yield put({
-          type: "listLoading",
-          payload: true
-        });
-        const { data } = yield call(query, payload);
+        const { success } = yield call(create, payload);
 
-        if (data) {
+        if (success) {
+          yield put({
+            type: "query"
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+      }
+    },
+    *delete({ payload }, { call, put }) {
+      try {
+        const { success } = yield call(remove, payload);
+
+        if (success) {
+          yield put({
+            type: "query"
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+      }
+    },
+    *update({ payload }, { call, put }) {
+      try {
+        const { data, success } = yield call(update, payload);
+
+        if (success) {
+          yield put({
+            type: "query"
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+      }
+    },
+    *query({ payload }, { call, put }) {
+      try {
+        const { data, success } = yield call(query, payload);
+
+        if (success) {
           yield put({
             type: "listSave",
             payload: data
@@ -66,20 +82,9 @@ export default {
       } catch (e) {
         console.log(e);
       } finally {
-        yield put({
-          type: "listLoading",
-          payload: false
-        });
       }
-    }
-  },
-
-  reducers: {
-    listSave(state, { payload }) {
-      return {
-        ...state,
-        list: payload
-      };
     }
   }
 };
+
+export default list;
