@@ -90,9 +90,11 @@
     "webpack-merge": "^4.1.4"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx,less,css,json}": [
-      "prettier --write",
-      "git add"
-    ]
+    "linters": {
+      "src/**/*.{ts,tsx,js,jsx,less,css,json}": [
+        "prettier --write",
+        "git add"
+      ]
+    }
   }
 }
