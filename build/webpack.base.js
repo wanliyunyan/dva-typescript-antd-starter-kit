@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const lessToJs = require('less-vars-to-js');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const env = process.argv.slice(-1)[0];
@@ -53,7 +52,6 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        // use: ExtractTextPlugin.extract({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -78,17 +76,11 @@ module.exports = {
               modifyVars: themeVariables,
             },
           },
-          /* {
-            loader: 'style-loader',
-          }, */
         ],
-        // fallback: 'style-loader',
-        // }),
       },
       {
         test: /\.less$/,
         exclude: /src/,
-        // use: ExtractTextPlugin.extract({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -109,12 +101,7 @@ module.exports = {
               modifyVars: themeVariables,
             },
           },
-          /* {
-            loader: 'style-loader',
-          }, */
         ],
-        // fallback: 'style-loader',
-        // }),
       },
       {
         test: /\.(png|jpe?g|gif|woff|woff2|ttf|eot)$/,
@@ -143,11 +130,6 @@ module.exports = {
       filename: 'style.css',
       chunkFilename: 'style.css',
     }),
-    /* new ExtractTextPlugin({
-      filename: 'style.css',
-      disable: false,
-      allChunks: true,
-    }), */
   ],
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
