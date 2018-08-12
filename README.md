@@ -25,14 +25,22 @@ npm run dev
 npm run build
 ```
 
-## mock
-点击mockjs，启动mock数据，可以在“查询表格”中看到mock数据的效果
+## Mock
+点击mockjs，启动mock数据，可以在“列表页-查询表格”中看到mock数据的效果。
+
+## Linter
+tslint:fix 可以自动修复一部分代码   
+
+styleint 可以检测过不合格的style  
+
+prettier 可以格化式代码
 
 ## 项目目录
 
 ```bash
 ├── /build/            # webpack配置
-├── /dist/             # 项目输出目录
+├── /mock/             # 模拟数据
+├── /dist/             # 项目输出目录
 ├── /src/              # 项目源码目录
 │ ├── /assets/         # 公共文件，编译时copy至dist目录
 │ │ └── /images/       # 图片
@@ -70,17 +78,22 @@ dependencies
 -   [axios](https://github.com/axios/axios) Promise based HTTP client for the browser and node.js.
 -   [classnames](https://github.com/JedWatson/classnames) A simple javascript utility for conditionally joining classNames together.
 -   [dva](https://github.com/dvajs/dva) Lightweight front-end framework based on redux, redux-saga and react-router.
+-   [dva-loading](https://github.com/dvajs/dva/tree/master/packages/dva-loading) Auto loading plugin for dva. 👏 You don't need to write showLoading and hideLoading any more.
 -   [lodash](https://github.com/lodash/lodash) A modern JavaScript utility library delivering modularity, performance, & extras.
+-   [mockjs](https://github.com/nuysoft/Mock) A simulation data generator.
 -   [moment](https://github.com/moment/moment) A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
 -   [query-string](https://github.com/sindresorhus/query-string) Parse and stringify URL query strings.
 -   [react](https://github.com/facebook/react) A declarative, efficient, and flexible JavaScript library for building user interfaces.
 -   [react-container-query](https://github.com/d6u/react-container-query) Parse CSS and add vendor prefixes to rules by Can I Use.
 -   [react-dom](https://github.com/facebook/react) This package serves as the entry point of the DOM-related rendering paths. It is intended to be paired with the isomorphic React, which will be shipped as react to npm.
+-   [react-router](https://github.com/ReactTraining/react-router) Declarative routing for React.
+-   [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom) DOM bindings for React Router.
 
 devDependencies
--   [@types/react](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for React.
--   [@types/react-dom](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for React.
--   [@types/react-router](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for React.
+-   [@types/react](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react.
+-   [@types/react-dom](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react-dom.
+-   [@types/react-router](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react-router.
+-   [@types/react-router-dom](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react-router-dom.
 -   [@types/webpack](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for React.
 -   [@types/webpack-env](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for React.
 -   [autoprefixer](https://github.com/postcss/autoprefixer) Parse CSS and add vendor prefixes to rules by Can I Use.
@@ -93,6 +106,7 @@ devDependencies
 -   [babel-preset-react](https://github.com/babel/babel/tree/master/packages/babel-preset-react) Babel preset for all React plugins.
 -   [babel-preset-stage-2](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-2) Babel preset for stage 2 plugins.
 -   [babel-runtime](https://github.com/babel/babel/tree/master/packages/babel-runtime) 
+-   [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin) A webpack plugin to remove your build folder(s) before building.
 -   [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) Copy files and directories with webpack.
 -   [css-loader](https://github.com/webpack-contrib/css-loader) CSS Loader.
 -   [cssnano](https://github.com/ben-eb/cssnano) A modular minifier, built on top of the PostCSS ecosystem. 
@@ -102,14 +116,13 @@ devDependencies
 -   [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) Static AST checker for a11y rules on JSX elements.
 -   [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) React specific linting rules for ESLint.
 -   [expect](https://github.com/facebook/jest) 
--   [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) Extracts text from bundle into a file.
 -   [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) Simplifies creation of HTML files to serve your webpack bundles.
 -   [husky](https://github.com/typicode/husky) Git hooks made easy.
+-   [json-server](https://github.com/typicode/json-server) Get a full fake REST API with zero coding in less than 30 seconds (seriously).
 -   [less](https://github.com/less/less.js) Less. The dynamic stylesheet language.
 -   [less-loader](https://github.com/webpack-contrib/less-loader) Compiles Less to CSS.
 -   [less-vars-to-js](https://github.com/michaeltaranto/less-vars-to-js) Read LESS variables from the contents of a file and returning them as a javascript object.
 -   [lint-staged](https://github.com/okonet/lint-staged) Run linters on git staged files.
--   [postcss-cssnext](https://github.com/MoOx/postcss-cssnext) PostCSS plugin to use tomorrow's CSS syntax, today.
 -   [postcss-import](https://github.com/postcss/postcss-import) PostCSS plugin to inline @import rules content.
 -   [postcss-loader](https://github.com/postcss/postcss-loader) PostCSS loader for webpack.
 -   [prettier](https://github.com/prettier/prettier) Prettier is an opinionated code formatter.
@@ -130,3 +143,4 @@ devDependencies
 -   [webpack](https://github.com/webpack/webpack) A bundler for javascript and friends. Packs many modules into a few bundled assets. Code Splitting allows to load parts for the application on demand. Through "loaders," modules can be CommonJs, AMD, ES6 modules, CSS, Images, JSON, Coffeescript, LESS, ... and your custom stuff.
 -   [webpack-cli](https://github.com/webpack/webpack-cli) Webpack's Command Line Interface.
 -   [webpack-dev-server](https://github.com/webpack/webpack-dev-server) Serves a webpack app. Updates the browser on changes.
+-   [webpack-merge](https://github.com/survivejs/webpack-merge) SMerge designed for Webpack (MIT).
