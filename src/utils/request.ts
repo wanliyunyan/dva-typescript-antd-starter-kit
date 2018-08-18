@@ -1,38 +1,20 @@
 import { message, notification } from "antd";
 import axios from "axios";
 
-interface InterfaceCssError extends Error {
-  response?: any;
-}
+export const get = (url: string, options?: any, config?: any): any =>
+  request(url, { ...options, method: "get" }, config);
 
-// 增加拦截器
-axios.interceptors.response.use(
-  response => {
-    // const {data} = response;
-    // location.replace("#/login");
-    return response;
-  },
-  error => {
-    // Do something with response error
-    return Promise.reject(error);
-  }
-);
+export const post = (url: string, options?: any, config?: any): any =>
+  request(url, { ...options, method: "post" }, config);
 
-export function get(url: string, options?: any, config?: any): any {
-  return request(url, { ...options, method: "get" }, config);
-}
+export const put = (url: string, options?: any, config?: any): any =>
+  request(url, { ...options, method: "put" }, config);
 
-export function post(url: string, options?: any, config?: any): any {
-  return request(url, { ...options, method: "post" }, config);
-}
+export const del = (url: string, options?: any, config?: any): any =>
+  request(url, { ...options, method: "delete" }, config);
 
-export function put(url: string, options?: any, config?: any): any {
-  return request(url, { ...options, method: "put" }, config);
-}
-
-export function del(url: string, options?: any, config?: any): any {
-  return request(url, { ...options, method: "delete" }, config);
-}
+const request = (url: string, options: any, config: any): any =>
+  fetch(url, options, config).then(handleData);
 
 const fetch = (url: string, options: any, config: any) => {
   const { method = "get", param } = options;
@@ -54,40 +36,42 @@ const fetch = (url: string, options: any, config: any) => {
   }
 };
 
-function checkStatus(response: any): any {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-
-  const error = {} as InterfaceCssError;
-  error.response = response;
-
-  throw error;
-}
-
-function handelData(res: any): any {
-  return { ...res, success: true };
-}
-
-function handleError(error: any): any {
-  const { response } = error;
-  if (response) {
-    const { data, config } = response;
-    if (data) {
-      notification.error({
-        message: `${response.status}:${response.statusText}`,
-        description: `url:${config.url}\n exception:${data.exception}`
-      });
-    } else {
-      message.error("未知错误!");
+const handleData = (result: any): any => {
+  if (result) {
+    const { status, data } = result;
+    if (status >= 200 && status < 300) {
+      return { data, success: true };
     }
-    return { success: false };
+    return { data, success: false };
   }
-}
+  return { success: false };
+};
 
-export default function request(url: string, options: any, config: any): any {
-  return fetch(url, options, config)
-    .then(checkStatus)
-    .then(handelData)
-    .catch(handleError);
-}
+// 增加拦截器
+axios.interceptors.request.use(
+  config => {
+    return config;
+  },
+  err => {
+    message.error("请求超时!");
+    return Promise.resolve(err);
+  }
+);
+
+axios.interceptors.response.use(
+  result => {
+    return result;
+  },
+  err => {
+    if (err && err.response) {
+      const {
+        response: { data, status, statusText }
+      } = err;
+      notification.error({
+        message: `${status}:${statusText}`,
+        description: data
+      });
+      return Promise.resolve(err);
+    }
+  }
+);
