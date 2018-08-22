@@ -14,5 +14,3 @@ function buildConfig(env) {
 // 获取运行环境
 const env = process.argv.slice(-1)[0];
 module.exports = buildConfig(env);
-
-module.exports = buildConfig(env);
