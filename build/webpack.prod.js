@@ -13,6 +13,7 @@ const commonConfig = require('./webpack.base.js');
 
 module.exports = function (env) {
   return merge(commonConfig, {
+    mode: 'production',
     cache: false,
     devtool: false,
     entry: {

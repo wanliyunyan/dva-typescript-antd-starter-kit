@@ -23,6 +23,7 @@ function getIPAddress() {
 
 module.exports = function (env) {
   return merge(commonConfig, {
+    mode: 'development',
     cache: true,
     devtool: 'cheap-module-eval-source-map',
     entry: {

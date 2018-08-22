@@ -104,7 +104,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|woff|woff2|ttf|eot)$/,
+        test: /\.(png|jpe?g|gif|eot|otf|ttf|woff|woff2)$/,
         loader: env === 'development' ? devUrlLoader : prodUrlLoader,
       },
       {
