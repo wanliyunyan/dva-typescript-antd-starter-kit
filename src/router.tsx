@@ -1,15 +1,17 @@
+import { Route, routerRedux, Switch } from "dva/router";
 import * as React from "react";
-import { Route, Router, Switch } from "react-router";
 import BasicLayout from "./layouts/BasicLayout";
 import UserLayout from "./layouts/UserLayout";
 
+const { ConnectedRouter } = routerRedux;
+
 export default function({ history }) {
   return (
-    <Router history={history}>
+    <ConnectedRouter history={history}>
       <Switch>
         <Route path="/user" exact={true} component={UserLayout} />
         <Route path="/" component={BasicLayout} />
       </Switch>
-    </Router>
+    </ConnectedRouter>
   );
 }

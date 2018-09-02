@@ -37,9 +37,7 @@ module.exports = function (env) {
       lib: ['antd'],
     },
     output: {
-      path: path.join(__dirname, '/../dist/assets'),
       filename: '[name].js',
-      publicPath: '/assets/',
       sourceMapFilename: '[name].map',
     },
     devServer: {
@@ -49,7 +47,6 @@ module.exports = function (env) {
       open: true,
       stats: 'normal',
       contentBase: './src/',
-      publicPath: '/assets/',
       compress: true,
       // host: getIPAddress(),
       port: 8000,

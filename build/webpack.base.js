@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const lessToJs = require('less-vars-to-js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.argv.slice(-1)[0];
 
@@ -129,6 +130,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
       chunkFilename: 'style.css',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'wanliyunyan',
+      favicon: 'src/favicon.ico',
+      template: 'src/index.ejs',
+      filename: 'index.html',
     }),
   ],
   resolve: {

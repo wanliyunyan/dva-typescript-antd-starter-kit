@@ -1,11 +1,10 @@
 import { Divider, Icon, Layout, Menu } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
+import { Link, Redirect, Route, Switch } from "dva/router";
 import { groupBy } from "lodash";
 import React from "react";
 import { ContainerQuery } from "react-container-query";
-import { Redirect, Route, Switch } from "react-router";
-import { Link } from "react-router-dom";
 import { getNavData } from "../common/nav";
 import GlobalFooter from "../components/GlobalFooter";
 import HeaderSearch from "../components/HeaderSearch";
@@ -116,7 +115,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
         return null;
       }
       let itemPath;
-      ``;
+
       item.path.indexOf("http") === 0
         ? (itemPath = item.path)
         : (itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/"));
@@ -175,7 +174,6 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
   public render() {
     const { collapsed } = this.props;
 
-    // Don't show popup menu when it is been collapsed
     const menuProps = collapsed
       ? {}
       : {

@@ -5,7 +5,6 @@
  */
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.base.js');
@@ -28,11 +27,6 @@ module.exports = function (env) {
       sourceMapFilename: '[name].map',
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        favicon: 'src/favicon.ico',
-        template: 'src/assets/index.html',
-        filename: 'index.html',
-      }),
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),

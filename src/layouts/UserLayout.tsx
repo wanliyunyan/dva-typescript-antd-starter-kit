@@ -1,10 +1,8 @@
 import { Icon } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "dva/router";
 import GlobalFooter from "../components/GlobalFooter";
 import * as styles from "./UserLayout.less";
-
-// import { getRouteData } from "../utils/utils";
 
 const links = [
   {
@@ -43,7 +41,6 @@ class UserLayout extends React.PureComponent {
             </Link>
           </div>
           <p className={""}>Ant Design 是西湖区最具影响力的 Web 设计规范</p>
-          {}
           <GlobalFooter className={""} links={links} copyright={copyright} />
         </div>
       </div>
