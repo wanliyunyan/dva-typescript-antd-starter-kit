@@ -26,6 +26,7 @@
     "mockjs": "^1.0.1-beta3",
     "moment": "^2.22.2",
     "query-string": "^6.1.0",
+    "rc-form": "^2.2.1",
     "react": "^16.4.2",
     "react-container-query": "^0.11.0",
     "react-dom": "^16.4.2"
