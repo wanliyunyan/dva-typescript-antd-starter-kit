@@ -139,13 +139,11 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
           </SubMenu>
         );
       }
-      const icon = <Icon type={item.icon} />;
 
       return (
         <Menu.Item key={item.key || item.path}>
           {/^https?:\/\//.test(itemPath) ? (
             <a href={itemPath} target={item.target}>
-              {icon}
               <span>{item.name}</span>
             </a>
           ) : (
@@ -154,7 +152,6 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
               target={item.target}
               replace={itemPath === location.pathname}
             >
-              {icon}
               <span>{item.name}</span>
             </Link>
           )}
