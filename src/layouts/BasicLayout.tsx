@@ -7,7 +7,6 @@ import React from "react";
 import { ContainerQuery } from "react-container-query";
 import { getNavData } from "../common/nav";
 import GlobalFooter from "../components/GlobalFooter";
-import HeaderSearch from "../components/HeaderSearch";
 import { getRouteData } from "../utils/utils";
 
 import styles from "./BasicLayout.less";
@@ -217,20 +216,6 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
             />
 
             <Divider dashed={true} type="vertical" style={{ height: "50px" }} />
-
-            <div className={styles.right}>
-              <HeaderSearch
-                className={`${styles.action} ${styles.search}`}
-                placeholder={"站内搜索"}
-                dataSource={["搜索提示一", "搜索提示二", "搜索提示三"]}
-                onSearch={value => {
-                  console.log("input", value);
-                }}
-                onPressEnter={value => {
-                  console.log("enter", value);
-                }}
-              />
-            </div>
           </Header>
           <Content style={{ margin: "24px 24px 0", height: "100%" }}>
             <Switch>
