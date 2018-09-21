@@ -25,6 +25,9 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            },
           },
           {
             loader: 'ts-loader',
@@ -35,11 +38,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
           },
-        ],
+        },
       },
       {
         test: /\.(sa|sc|c)ss$/,
