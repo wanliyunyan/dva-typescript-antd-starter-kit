@@ -4,6 +4,9 @@ A admin dashboard application demo based on antd
 Now it is not perfect, then I will continue to improve the project. 
 If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm intall, You can use it directly.
 
+## Babel
+已经更新至babel7
+
 ## Demo
 https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist/index.html
 
