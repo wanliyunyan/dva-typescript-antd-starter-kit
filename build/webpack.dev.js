@@ -23,18 +23,11 @@ function getIPAddress() {
 
 module.exports = function (env) {
   return merge(commonConfig, {
-    mode: 'development',
+    mode: env,
     cache: true,
     devtool: 'cheap-module-eval-source-map',
     entry: {
-      bundle: [
-        'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:8000',
-        'webpack/hot/only-dev-server',
-        './src/index.tsx',
-      ],
-      vendor: ['react', 'react-dom'],
-      lib: ['antd'],
+      bundle: './src/index.tsx',
     },
     output: {
       filename: '[name].js',

@@ -121,8 +121,10 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        styles: {
-          test: /\.(less|css|sass|scss)$/,
+        vendor: {
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
         },
       },
     },
@@ -132,8 +134,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
-      chunkFilename: 'style.css',
+      filename: '[name].[chunkhash:8].css',
+      chunkFilename: '[id].css',
     }),
     new HtmlWebpackPlugin({
       title: 'wanliyunyan',

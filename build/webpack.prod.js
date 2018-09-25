@@ -17,8 +17,6 @@ module.exports = function (env) {
     devtool: false,
     entry: {
       bundle: './src/index.tsx',
-      vendor: ['react', 'react-dom'],
-      lib: ['antd'],
     },
     output: {
       path: path.join(__dirname, '/../dist/'),

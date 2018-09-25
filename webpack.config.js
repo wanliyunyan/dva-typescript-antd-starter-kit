@@ -3,12 +3,12 @@
 */
 
 const webpackConfig = {
-  development: require('./build/webpack.dev'),
-  production: require('./build/webpack.prod'),
+  development: require("./build/webpack.dev"),
+  production: require("./build/webpack.prod")
 };
 
 function buildConfig(env) {
-  return webpackConfig[env]({ env });
+  return webpackConfig[env](env);
 }
 
 // 获取运行环境
