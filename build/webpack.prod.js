@@ -10,9 +10,12 @@ const merge = require('webpack-merge');
 const commonConfig = require('./webpack.base.js');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const targetPath = path.join(__dirname, '../');
+const targetFolder = 'dist';
+
 module.exports = function (env) {
   return merge(commonConfig, {
-    mode: 'production',
+    mode: env,
     cache: false,
     devtool: false,
     entry: {
@@ -21,14 +24,14 @@ module.exports = function (env) {
     output: {
       path: path.join(__dirname, '/../dist/'),
       filename: 'assets/js/[name].js',
-      publicPath: '',
-      sourceMapFilename: '[name].map',
     },
     plugins: [
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),
-      new CleanWebpackPlugin(['dist']),
+      new CleanWebpackPlugin([targetFolder], {
+        root: `${targetPath}`,
+      }),
       /* new CopyWebpackPlugin([
         {
           from: '',

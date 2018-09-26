@@ -6,9 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.argv.slice(-1)[0];
 
-const devUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]';
-const prodUrlLoader = 'url-loader?limit=8192&name=[hash:8].[name].[ext]&outputPath=assets/images/&publicPath=assets/images';
-
 // 获取自己定义的要覆盖antd默认样式的文件
 const themeVariables = lessToJs(
   fs.readFileSync(
@@ -26,7 +23,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
             },
           },
           {
@@ -41,7 +38,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
           },
         },
       },
@@ -110,7 +107,8 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|eot|otf|ttf|woff|woff2)$/,
-        loader: env === 'development' ? devUrlLoader : prodUrlLoader,
+        loader:
+          'url-loader?limit=8192&name=[hash:8].[name].[ext]&outputPath=assets/images/&publicPath=assets/images/',
       },
       {
         test: /\.svg$/,
@@ -135,7 +133,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash:8].css',
-      chunkFilename: '[id].css',
+      chunkFilename: '[name].[chunkhash:8].css',
     }),
     new HtmlWebpackPlugin({
       title: 'wanliyunyan',

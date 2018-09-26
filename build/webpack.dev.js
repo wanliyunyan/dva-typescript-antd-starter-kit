@@ -3,7 +3,7 @@
  * @ github  https://github.com/wanliyunyan
  * @ use 开发环境webpack构建
  */
-const path = require('path');
+// const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.base.js');
@@ -30,7 +30,7 @@ module.exports = function (env) {
       bundle: './src/index.tsx',
     },
     output: {
-      filename: '[name].js',
+      filename: 'assets/js/[name].js',
       sourceMapFilename: '[name].map',
     },
     devServer: {
