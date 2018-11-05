@@ -17,7 +17,6 @@ module.exports = function (env) {
   return merge(commonConfig, {
     mode: env,
     cache: false,
-    devtool: false,
     entry: {
       bundle: './src/index.tsx',
     },
