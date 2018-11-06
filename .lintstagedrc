@@ -1,0 +1,7 @@
+{
+  "lint-staged": {
+    "src/**/*.ts": [
+       "prettier --write"
+     ]
+  }
+}

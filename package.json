@@ -90,12 +90,9 @@
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
   },
-  "lint-staged": {
-    "linters": {
-      "src/**/*.{ts,tsx,js,jsx,less,css,json}": [
-        "prettier --write",
-        "git add"
-      ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   }
 }

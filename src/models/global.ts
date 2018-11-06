@@ -3,8 +3,7 @@ import { Model } from "dva";
 export default {
   namespace: "global",
   state: {
-    collapsed: false,
-    notices: [],
+    collapsed: false, notices: [],
     fetchingNotices: false
   },
   effects: {},
