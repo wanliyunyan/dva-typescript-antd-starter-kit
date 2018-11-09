@@ -3,6 +3,8 @@ const fs = require('fs');
 const lessToJs = require('less-vars-to-js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const os = require('os');
 
 const env = process.argv.slice(-1)[0];
 
@@ -33,7 +35,7 @@ module.exports = {
         include: [path.join(__dirname, '../src')],
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -129,6 +131,17 @@ module.exports = {
     runtimeChunk: {
       name: 'manifest',
     },
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: os.cpus().length,
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({

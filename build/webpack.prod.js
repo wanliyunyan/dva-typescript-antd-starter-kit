@@ -16,7 +16,6 @@ const targetFolder = 'dist';
 module.exports = function (env) {
   return merge(commonConfig, {
     mode: env,
-    cache: false,
     entry: {
       bundle: './src/index.tsx',
     },

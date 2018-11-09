@@ -3,6 +3,7 @@ import BlankLayout from "../layouts/BlankLayout";
 import UserLayout from "../layouts/UserLayout";
 import IndexPage from "../routes/IndexPage/IndexPage";
 import TableList from "../routes/List/TableList";
+import Login from "../routes/User/Login";
 
 const data = [
   {
@@ -172,7 +173,7 @@ const data = [
           {
             name: "登录",
             path: "login",
-            component: null
+            component: Login
           },
           {
             name: "注册",

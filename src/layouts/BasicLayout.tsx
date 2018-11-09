@@ -1,7 +1,7 @@
-import { Divider, Icon, Layout, Menu } from "antd";
+import { Divider, Icon, Layout, Menu, Button } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
-import { Link, Redirect, Route, Switch } from "dva/router";
+import { Link, Redirect, Route, Switch, routerRedux } from "dva/router";
 import { groupBy } from "lodash";
 import React from "react";
 import { ContainerQuery } from "react-container-query";
@@ -216,6 +216,18 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
             />
 
             <Divider dashed={true} type="vertical" style={{ height: "50px" }} />
+            <Button
+              onClick={() => {
+                this.props.dispatch(
+                  routerRedux.push({
+                    pathname: "/user/login",
+                    search: ""
+                  })
+                );
+              }}
+            >
+              退出
+            </Button>
           </Header>
           <Content style={{ margin: "24px 24px 0", height: "100%" }}>
             <Switch>
@@ -227,7 +239,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
                   component={item.component}
                 />
               ))}
-              <Redirect exact={true} from="/" to="/dashboard/analysis" />
+              <Redirect exact={true} from="/" to="/user/login" />
             </Switch>
 
             <GlobalFooter

@@ -75,10 +75,22 @@ axios.interceptors.response.use(
       const {
         response: { data, status, statusText }
       } = err;
-      notification.error({
-        message: `${status}:${statusText}`,
-        description: data
-      });
+      if (process.env.NODE_ENV === "development") {
+        notification.error({
+          message: `${status}:${statusText}`,
+          description: data
+        });
+      } else if (process.env.NODE_ENV === "production") {
+        notification.error({
+          message: "系统消息",
+          description: "系统繁忙，无法正确获取接口的返回值，请稍后再试！"
+        });
+      } else {
+        notification.error({
+          message: "系统消息",
+          description: "process.env.NODE_ENV 不应该为空"
+        });
+      }
       return Promise.resolve(err);
     }
   }

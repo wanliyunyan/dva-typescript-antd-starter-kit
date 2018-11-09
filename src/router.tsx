@@ -9,7 +9,7 @@ export default function({ history }) {
   return (
     <ConnectedRouter history={history}>
       <Switch>
-        <Route path="/user" exact={true} component={UserLayout} />
+        <Route path="/user" component={UserLayout} />
         <Route path="/" component={BasicLayout} />
       </Switch>
     </ConnectedRouter>
