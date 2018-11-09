@@ -101,7 +101,7 @@ class Login extends Component<IProps & FormComponentProps, any> {
             {getFieldDecorator("remember", {
               valuePropName: "checked",
               initialValue: true
-            })(<Checkbox className={styles.autoLogin}>自动登录</Checkbox>)}
+            })(<Checkbox>自动登录</Checkbox>)}
             <a className={styles.forgot} href="">
               忘记密码
             </a>
@@ -133,7 +133,6 @@ export default connect(state => ({
     },
     mapPropsToFields(props) {
       const { user } = props;
-      console.log(user);
       return {
         username: Form.createFormField({
           ...user.loginData.username,
