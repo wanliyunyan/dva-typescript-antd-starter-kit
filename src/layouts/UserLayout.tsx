@@ -3,7 +3,7 @@ import { Link, Route } from "dva/router";
 import React from "react";
 import GlobalFooter from "../components/GlobalFooter";
 import { getRouteData } from "../utils/utils";
-import * as styles from "./UserLayout.less";
+import styles from "./UserLayout.less";
 
 const links = [
   {
