@@ -1,12 +1,13 @@
 import "@babel/polyfill";
 import dva from "dva";
 import createLoading from "dva-loading";
+import { hot } from "react-hot-loader";
 import "./index.less";
 import models from "./models";
 import router from "./router";
 
 // 1. Initialize
-const app = dva();
+const app = hot(module)(dva());
 
 // 2. Plugins
 app.use(createLoading());
