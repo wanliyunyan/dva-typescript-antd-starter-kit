@@ -25,10 +25,7 @@ module.exports = function (env) {
   return merge(commonConfig, {
     mode: env,
     entry: {
-      bundle: [
-        'react-hot-loader/patch',
-        './src/index.tsx',
-      ],
+      bundle: './src/index.tsx',
     },
     output: {
       filename: 'assets/js/[name].js',

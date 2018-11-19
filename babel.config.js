@@ -12,12 +12,22 @@ module.exports = function (api) {
   ];
   const plugins = [
     'react-hot-loader/babel',
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-transform-runtime',
-    ['import', { libraryName: 'antd', libraryDirectory: 'lib', style: true }, 'ant'],
+    [
+      'import',
+      { libraryName: 'antd', libraryDirectory: 'lib', style: true },
+      'ant',
+    ],
     [
       'import',
       {
-        libraryName: 'ant-design-pro', libraryDirectory: 'lib', style: true, camel2DashComponentName: false,
+        libraryName: 'ant-design-pro',
+        libraryDirectory: 'lib',
+        style: true,
+        camel2DashComponentName: false,
       },
       'ant-design-pro',
     ],
