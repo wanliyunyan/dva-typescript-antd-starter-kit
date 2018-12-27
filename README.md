@@ -8,7 +8,7 @@ If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm 
 已经更新至babel7
 
 ## Demo
-https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist/index.html
+https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
 
 ## About
 项目的主要结构模仿的[ant-design-pro](https://github.com/ant-design/ant-design-pro)，但是没有使用dva的默认配置，使用了webpack4。项目的中的package都使用最新版本，支持最新的chrome浏览器。如果想使用最基础的dva+ts，请点击[dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
