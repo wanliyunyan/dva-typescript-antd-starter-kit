@@ -1,12 +1,12 @@
 import dva from "dva";
 import createLoading from "dva-loading";
-import { hot } from "react-hot-loader";
+import { hot } from "react-hot-loader/root";
 import "./index.less";
 import models from "./models";
 import router from "./router";
 
 // 1. Initialize
-const app = hot(module)(dva());
+const app = process.env.NODE_ENV === "development" ? hot(dva()) : dva();
 
 // 2. Plugins
 app.use(createLoading());

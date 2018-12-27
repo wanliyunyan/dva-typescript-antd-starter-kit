@@ -1,17 +1,17 @@
 module.exports = function (api) {
   api.cache(true);
+  const mode = process.argv.slice(-1)[0];
   const presets = [
     '@babel/preset-env',
     [
       '@babel/preset-react',
       {
-        development: process.argv.slice(-1)[0] === 'development',
+        development: mode === 'development',
       },
     ],
     '@babel/preset-typescript',
   ];
   const plugins = [
-    'react-hot-loader/babel',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     '@babel/plugin-syntax-dynamic-import',
@@ -32,6 +32,10 @@ module.exports = function (api) {
       'ant-design-pro',
     ],
   ];
+
+  if(mode === 'development'){
+    plugins.unshift("react-hot-loader/babel")
+  }
 
   return {
     presets,
