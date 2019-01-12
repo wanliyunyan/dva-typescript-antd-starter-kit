@@ -5,13 +5,13 @@ Now it is not perfect, then I will continue to improve the project.
 If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm intall, You can use it directly.
 
 ## Babel
-已经更新至babel7
+update to babel7
 
 ## Demo
 https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
 
 ## About
-项目的主要结构模仿的[ant-design-pro](https://github.com/ant-design/ant-design-pro)，但是没有使用dva的默认配置，使用了webpack4。项目的中的package都使用最新版本，支持最新的chrome浏览器。如果想使用最基础的dva+ts，请点击[dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
+The structure of the project imitates [ant-design-pro](https://github.com/ant-design/ant-design-pro),but without using the default configuration of dva, manually configure webpack4. The package in the project uses the latest version. Support for the latest chrome browser. If you want to use the most basic dva+ts, please click [dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
 
 ## Installation
 
@@ -32,50 +32,53 @@ npm run build
 ```
 
 ## Mock
-点击mockjs，启动mock数据，可以在“列表页-查询表格”中看到mock数据的效果。
+click mockjs，start mock data, You can see the effect of the mock data in the "列表页-查询表格".
 
 ## Linter
-tslint:fix 可以自动修复一部分代码   
+tslint:fix Can automatically repair a part of the code  
 
-styleint 可以检测过不合格的style  
+styleint detect style 
 
-prettier 可以格化式代码
+prettier format code
 
-## 项目目录
+## Contents
 
 ```bash
-├── /build/            # webpack配置
-├── /mock/             # 模拟数据
-├── /dist/             # 项目输出目录
-├── /src/              # 项目源码目录
-│ ├── /assets/         # 公共文件，编译时copy至dist目录
-│ │ └── /images/       # 图片
-│ │ └── /style/        # 样式
-│ │ └── /svg/          # svg文件
-│ ├── /common/         # 公共文件
-│ ├── /components/     # UI组件及UI相关方法
-│ ├── /layouts/        # 布局
-│ ├── /models/         # 数据模型
-│ ├── /routes/         # 路由
-│ ├── /services/       # 数据接口
-│ ├── /utils/          # 工具函数
-│ │ └── request.js     # 异步请求函数
-│ ├── favicon.ico      # 图标
-│ ├── index.html       # 入口html
-│ ├── index.less       # 全局样式
-│ ├── index.less.d.ts  # 声明文件
-│ ├── index.tsx        # 入口文件
-│ └── route.tsx        # 路由配置
-├── .babelrc           # babel配置
-├── .editorconfig      # idea配置
-├── .eslintrc          # esint配置
-├── .gitignore         # 忽略配置
-├── .stylelintrc       # stylelint配置
-├── package.json       # 项目信息
-├── postcss.config.js  # postcss配置
-├── tsconfig.json      # TypeScript配置
-├── tslint.json        # TSlint配置
-└── webpack.config.js  # webpack配置
+├── /build/                   
+├── /dist/     
+├── /mock/      
+├── /src/              
+│ ├── /assets/        
+│ │ └── /images/       
+│ │ └── /style/        
+│ │ └── /svg/          
+│ ├── /common/        
+│ ├── /components/     
+│ ├── /layouts/        
+│ ├── /models/         
+│ ├── /routes/         
+│ ├── /services/       
+│ ├── /utils/          
+│ │ └── request.js     
+│ │ └── utils.js 
+│ ├── favicon.ico      
+│ ├── index.html       
+│ ├── index.less       
+│ ├── index.tsx        
+│ └── route.tsx 
+├── .browserslistrc      
+├── .editorconfig     
+├── .eslintrc          
+├── .gitignore  
+├── .lintstagedrc     
+├── .stylelintrc       
+├── babel.config.js  
+├── package.json       
+├── postcss.config.js  
+├── README.md  
+├── tsconfig.json      
+├── tslint.json        
+└── webpack.config.js  
 ```
 
 ## Package
