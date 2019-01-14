@@ -7,15 +7,15 @@ import styles from "./UserLayout.less";
 
 const links = [
   {
-    title: "帮助",
+    title: "help",
     href: ""
   },
   {
-    title: "隐私",
+    title: "privacy",
     href: ""
   },
   {
-    title: "条款",
+    title: "term",
     href: ""
   }
 ];
@@ -31,7 +31,7 @@ class UserLayout extends React.PureComponent {
     return (
       <div className={styles.container}>
         <div className={styles.top}>
-          <div className={""}>
+          <div>
             <Link to="/">
               <img
                 alt=""

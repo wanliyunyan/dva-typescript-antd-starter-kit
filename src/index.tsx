@@ -13,7 +13,7 @@ app.use(createLoading());
 
 // 3. Model
 models.forEach(m => {
-  app.model(m.default); // ts 导出格式包含default
+  app.model(m.default);
 });
 
 // 4. Router

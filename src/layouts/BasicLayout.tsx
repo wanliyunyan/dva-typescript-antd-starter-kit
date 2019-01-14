@@ -1,7 +1,7 @@
-import { Divider, Icon, Layout, Menu, Button } from "antd";
+import { Button, Divider, Icon, Layout, Menu } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
-import { Link, Redirect, Route, Switch, routerRedux } from "dva/router";
+import { Link, Redirect, Route, routerRedux, Switch } from "dva/router";
 import { groupBy } from "lodash";
 import React from "react";
 import { ContainerQuery } from "react-container-query";
@@ -217,6 +217,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
 
             <Divider dashed={true} type="vertical" style={{ height: "50px" }} />
             <Button
+              htmlType={"button"}
               onClick={() => {
                 this.props.dispatch(
                   routerRedux.push({
@@ -226,7 +227,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
                 );
               }}
             >
-              退出
+              logout
             </Button>
           </Header>
           <Content style={{ margin: "24px 24px 0", height: "100%" }}>

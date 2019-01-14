@@ -59,11 +59,11 @@ const handleData = (result: any): any => {
   return { success: false };
 };
 
-// 增加拦截器
+// interceptors
 axios.interceptors.request.use(
   config => config,
   err => {
-    message.error("请求超时!");
+    message.error("request timed out");
     return Promise.resolve(err);
   }
 );
@@ -82,13 +82,14 @@ axios.interceptors.response.use(
         });
       } else if (process.env.NODE_ENV === "production") {
         notification.error({
-          message: "系统消息",
-          description: "系统繁忙，无法正确获取接口的返回值，请稍后再试！"
+          message: "system information",
+          description:
+            "The system is busy and cannot get the return value of the interface correctly. Please try again later!"
         });
       } else {
         notification.error({
-          message: "系统消息",
-          description: "process.env.NODE_ENV 不应该为空"
+          message: "system information",
+          description: "process.env.NODE_ENV should not be empty"
         });
       }
       return Promise.resolve(err);

@@ -33,6 +33,7 @@ module.exports = function (api) {
     ],
   ];
 
+  //development environment need react-hot-loader/babel
   if(mode === 'development'){
     plugins.unshift("react-hot-loader/babel")
   }

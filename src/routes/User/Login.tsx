@@ -1,22 +1,10 @@
-import {
-  Alert,
-  Button,
-  Checkbox,
-  Col,
-  Form,
-  Icon,
-  Input,
-  Row,
-  Tabs
-} from "antd";
-import { connect } from "dva";
+import { Button, Checkbox, Form, Icon, Input } from "antd";
 import { FormComponentProps } from "antd/lib/form";
-import { Link, routerRedux } from "dva/router";
+import { connect } from "dva";
 import React, { Component } from "react";
 import styles from "./Login.less";
 
 const FormItem = Form.Item;
-const { TabPane } = Tabs;
 
 interface IProps {
   dispatch?: any;
@@ -68,7 +56,7 @@ class Login extends Component<IProps & FormComponentProps, any> {
               rules: [
                 {
                   required: true,
-                  message: "请输入账户名！"
+                  message: "please enter your username"
                 }
               ]
             })(
@@ -84,7 +72,7 @@ class Login extends Component<IProps & FormComponentProps, any> {
               rules: [
                 {
                   required: true,
-                  message: "请输入密码！"
+                  message: "please enter your password"
                 }
               ]
             })(
@@ -101,9 +89,9 @@ class Login extends Component<IProps & FormComponentProps, any> {
             {getFieldDecorator("remember", {
               valuePropName: "checked",
               initialValue: true
-            })(<Checkbox>自动登录</Checkbox>)}
+            })(<Checkbox>Remember me</Checkbox>)}
             <a className={styles.forgot} href="">
-              忘记密码
+              forget password
             </a>
             <Button
               size="large"
@@ -112,7 +100,7 @@ class Login extends Component<IProps & FormComponentProps, any> {
               type="primary"
               htmlType="submit"
             >
-              登录
+              login
             </Button>
           </FormItem>
         </Form>

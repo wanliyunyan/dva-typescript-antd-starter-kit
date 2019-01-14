@@ -44,7 +44,7 @@ export default class Index extends Component<IProps, any> {
         dataIndex: "images",
         key: "images",
         render: text => (
-          <img src={text} style={{ height: "30px", width: "auto" }} />
+          <img src={text} style={{ height: "30px", width: "auto" }} alt="" />
         )
       },
       {
@@ -58,12 +58,12 @@ export default class Index extends Component<IProps, any> {
                   type: "list/update",
                   payload: {
                     ...row,
-                    title: "title被修改了"
+                    title: "title has changed"
                   }
                 });
               }}
             >
-              修改
+              update
             </a>
             <Divider type="vertical" />
             <a
@@ -74,7 +74,7 @@ export default class Index extends Component<IProps, any> {
                 });
               }}
             >
-              删除
+              delete
             </a>
           </span>
         )
@@ -88,22 +88,24 @@ export default class Index extends Component<IProps, any> {
             <Col span={2}>
               <Button
                 type="primary"
+                htmlType={"button"}
                 block={true}
                 onClick={() => {
                   dispatch({
                     type: "list/create",
                     payload: {
-                      title: "这是新增的"
+                      title: "this is new"
                     }
                   });
                 }}
               >
-                增
+                add
               </Button>
             </Col>
             <Col span={1} />
             <Col span={3}>
               <Button
+                htmlType={"button"}
                 onClick={() => {
                   dispatch({ type: "list/query" });
                 }}

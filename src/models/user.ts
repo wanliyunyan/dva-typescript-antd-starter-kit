@@ -17,7 +17,6 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => {
         if (pathname === "/user/login") {
-          // 做你想做的事情
         }
       });
     }

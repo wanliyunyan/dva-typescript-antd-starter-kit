@@ -23,7 +23,7 @@ export default class Index extends PureComponent<IProps, IState> {
           <h1>{this.state.error.toString()}</h1>
         </Fragment>
       ) : (
-        <h1>由于未知的错误，页面崩溃了~~~~</h1>
+        <h1>The page crashed due to an unknown error~~~~</h1>
       );
     }
     return this.props.children;
