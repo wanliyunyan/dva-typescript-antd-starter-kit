@@ -1,13 +1,13 @@
 /*
  * @ author wanliyunyan
  * @ github  https://github.com/wanliyunyan
- * @ use 开发环境webpack构建
+ * @ use development
  */
-// const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.base.js');
 
+// Get the local ip
 function getIPAddress() {
   const interfaces = require('os').networkInterfaces();
   for (const devName in interfaces) {
@@ -39,7 +39,7 @@ module.exports = function (env) {
       stats: 'normal',
       contentBase: './src/',
       compress: true,
-      // host: getIPAddress(),
+      // host: getIPAddress(), // if you need IP
       port: 8000,
       proxy: {
         '/api/*': {

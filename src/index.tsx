@@ -1,12 +1,21 @@
 import dva from "dva";
 import createLoading from "dva-loading";
-import { hot } from "react-hot-loader/root";
 import "./index.less";
 import models from "./models";
 import router from "./router";
 
+// https://github.com/nitin42/react-perf-devtool/issues/61
+// now it does not work
+const { registerObserver } = require("react-perf-devtool");
+registerObserver({ timeout: 30000 });
+
 // 1. Initialize
-const app = process.env.NODE_ENV === "development" ? hot(dva()) : dva();
+let app = dva();
+if (process.env.NODE_ENV === "development") {
+  import("react-hot-loader/root").then(({ hot }) => {
+    app = hot(dva());
+  });
+}
 
 // 2. Plugins
 app.use(createLoading());

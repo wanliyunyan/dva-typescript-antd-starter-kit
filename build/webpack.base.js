@@ -8,7 +8,7 @@ const os = require('os');
 
 const env = process.argv.slice(-1)[0];
 
-// 获取自己定义的要覆盖antd默认样式的文件
+// Override the default theme of antd
 const themeVariables = lessToJs(
   fs.readFileSync(
     path.join(__dirname, '../src/assets/style/theme.less'),
