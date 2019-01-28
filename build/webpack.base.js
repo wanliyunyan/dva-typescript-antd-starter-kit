@@ -121,9 +121,29 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          chunks: 'all',
+          name: "vendor",
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
+          chunks: "all",
+          priority: 10,
+          enforce: true,
+        },
+        react: {
+          name: 'react',
+          test: (module) => {
+            return /react|redux/.test(module.context);
+          },
+          chunks: 'initial',
+          priority: 11,
+          enforce: true,
+        },
+        lodash: {
+          name: 'lodash',
+          test: (module) => {
+            return /lodash/.test(module.context);
+          },
+          chunks: 'initial',
+          priority: 12,
+          enforce: true,
         },
       },
     },
