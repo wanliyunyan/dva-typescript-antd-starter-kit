@@ -4,14 +4,11 @@ A admin dashboard application demo based on antd
 Now it is not perfect, then I will continue to improve the project. 
 If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm intall, You can use it directly.
 
-## Babel
-update to babel7
+## About
+The structure of the project imitates [ant-design-pro](https://github.com/ant-design/ant-design-pro),but without using the default configuration of dva, manually configure webpack4. The package in the project uses the latest version. Support for the latest chrome browser. If you want to use the most basic dva+ts, please click [dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
 
 ## Demo
 https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
-
-## About
-The structure of the project imitates [ant-design-pro](https://github.com/ant-design/ant-design-pro),but without using the default configuration of dva, manually configure webpack4. The package in the project uses the latest version. Support for the latest chrome browser. If you want to use the most basic dva+ts, please click [dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
 
 ## Installation
 
@@ -40,6 +37,12 @@ tslint:fix Can automatically repair a part of the code
 styleint detect style 
 
 prettier format code
+
+## Babel
+update to babel7
+
+## react-hot-loader
+dynamic import react-hot-loader in development mode
 
 ## Contents
 
