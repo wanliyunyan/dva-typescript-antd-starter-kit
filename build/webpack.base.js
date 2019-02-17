@@ -16,6 +16,23 @@ const themeVariables = lessToJs(
   ),
 );
 
+const postcssOption = {
+  config: {
+    ctx: {
+      'postcss-preset-env': {
+        stage: 0, // experimental
+        autoprefixer: env === 'production',
+      },
+      cssnano:
+        env === 'production'
+          ? {
+            preset: 'advanced',
+          }
+          : false,
+    },
+  },
+};
+
 module.exports = {
   module: {
     rules: [
@@ -71,6 +88,7 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
+            options: postcssOption,
           },
           {
             loader: 'less-loader',
@@ -96,6 +114,7 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
+            options: postcssOption,
           },
           {
             loader: 'less-loader',
@@ -121,26 +140,22 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          name: "vendor",
+          name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
-          chunks: "all",
+          chunks: 'all',
           priority: 10,
           enforce: true,
         },
         react: {
           name: 'react',
-          test: (module) => {
-            return /react|redux/.test(module.context);
-          },
+          test: module => /react|redux/.test(module.context),
           chunks: 'initial',
           priority: 11,
           enforce: true,
         },
         lodash: {
           name: 'lodash',
-          test: (module) => {
-            return /lodash/.test(module.context);
-          },
+          test: module => /lodash/.test(module.context),
           chunks: 'initial',
           priority: 12,
           enforce: true,
@@ -164,14 +179,15 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[chunkhash:8].css',
-      chunkFilename: '[name].[chunkhash:8].css',
+      filename: '[name].css',
+      chunkFilename: '[name].css',
     }),
     new HtmlWebpackPlugin({
       title: 'wanliyunyan',
       favicon: 'src/favicon.ico',
       template: 'src/index.ejs',
       filename: 'index.html',
+      hash: true,
     }),
   ],
   resolve: {
