@@ -8,25 +8,23 @@ export default class UserLayout extends React.PureComponent {
     return (
       <div className={styles.container}>
         <div className={styles.top}>
-          <div>
-            <Link to="/">
-              <img
-                alt=""
-                src="https://gw.alipayobjects.com/zos/rmsportal/NGCCBOENpgTXpBWUIPnI.svg"
-              />
-              <span>Ant Design</span>
-            </Link>
-          </div>
-
-          {getRouteData("UserLayout").map(item => (
-            <Route
-              exact={item.exact}
-              key={item.path}
-              path={item.path}
-              component={item.component}
+          <Link to="/">
+            <img
+              alt=""
+              src="https://gw.alipayobjects.com/zos/rmsportal/NGCCBOENpgTXpBWUIPnI.svg"
             />
-          ))}
+            <span>Ant Design</span>
+          </Link>
         </div>
+
+        {getRouteData("UserLayout").map(item => (
+          <Route
+            exact={item.exact}
+            key={item.path}
+            path={item.path}
+            component={item.component}
+          />
+        ))}
       </div>
     );
   }
