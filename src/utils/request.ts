@@ -54,6 +54,9 @@ const fetch = (url: string, options: any, config: any) => {
 const handleData = (result: any): any => {
   if (result) {
     const { status, data } = result;
+    if (!status) {
+      return { success: false };
+    }
     return { data, success: status >= 200 && status < 300 };
   }
   return { success: false };
@@ -78,7 +81,7 @@ axios.interceptors.response.use(
       if (process.env.NODE_ENV === "development") {
         notification.error({
           message: `${status}:${statusText}`,
-          description: data
+          description: "your description"
         });
       } else if (process.env.NODE_ENV === "production") {
         notification.error({

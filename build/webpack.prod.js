@@ -9,9 +9,6 @@ const merge = require('webpack-merge');
 const commonConfig = require('./webpack.base.js');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const targetPath = path.join(__dirname, '../');
-const targetFolder = 'dist';
-
 module.exports = function (env) {
   return merge(commonConfig, {
     mode: env,
@@ -23,9 +20,7 @@ module.exports = function (env) {
       filename: 'assets/js/[name].js',
     },
     plugins: [
-      new CleanWebpackPlugin([targetFolder], {
-        root: `${targetPath}`,
-      }),
+      new CleanWebpackPlugin(),
       /* new CopyWebpackPlugin([
         {
           from: '',
