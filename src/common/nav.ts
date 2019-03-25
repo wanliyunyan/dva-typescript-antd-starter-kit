@@ -1,9 +1,35 @@
-import BasicLayout from "../layouts/BasicLayout";
-import BlankLayout from "../layouts/BlankLayout";
-import UserLayout from "../layouts/UserLayout";
-import IndexPage from "../routes/IndexPage/IndexPage";
-import TableList from "../routes/List/TableList";
-import Login from "../routes/User/Login";
+import Loadable from "react-loadable";
+import { MyLoadingComponent } from "../components/Load";
+
+const BlankLayout = Loadable({
+  loader: () => import("../layouts/BlankLayout"),
+  loading: MyLoadingComponent
+});
+
+const BasicLayout = Loadable({
+  loader: () => import("../layouts/BasicLayout"),
+  loading: MyLoadingComponent
+});
+
+const UserLayout = Loadable({
+  loader: () => import("../layouts/UserLayout"),
+  loading: MyLoadingComponent
+});
+
+const IndexPage = Loadable({
+  loader: () => import("../routes/IndexPage/IndexPage"),
+  loading: MyLoadingComponent
+});
+
+const TableList = Loadable({
+  loader: () => import("../routes/List/TableList"),
+  loading: MyLoadingComponent
+});
+
+const Login = Loadable({
+  loader: () => import("../routes/User/Login"),
+  loading: MyLoadingComponent
+});
 
 const data = [
   {
