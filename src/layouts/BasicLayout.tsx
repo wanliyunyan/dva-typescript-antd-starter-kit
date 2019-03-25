@@ -176,7 +176,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
         };
 
     const layout = (
-      <Layout tagName={"main"}>
+      <Layout>
         <Sider
           trigger={null}
           collapsible={true}
@@ -206,14 +206,13 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
             {this.getNavMenuItems(this.menus)}
           </Menu>
         </Sider>
-        <Layout tagName={"main"}>
-          <Header className={styles.header} tagName={"header"}>
+        <Layout>
+          <Header className={styles.header}>
             <Icon
               className={styles.trigger}
               type={collapsed ? "menu-unfold" : "menu-fold"}
               onClick={this.toggle}
             />
-
             <Divider dashed={true} type="vertical" style={{ height: "50px" }} />
             <Button
               htmlType={"button"}
@@ -229,10 +228,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
               logout
             </Button>
           </Header>
-          <Content
-            style={{ margin: "24px 24px 0", height: "100%" }}
-            tagName={"main"}
-          >
+          <Content style={{ margin: "24px 24px 0", height: "100%" }}>
             <Switch>
               {getRouteData("BasicLayout").map(item => (
                 <Route
