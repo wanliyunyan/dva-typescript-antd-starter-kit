@@ -12,6 +12,12 @@ If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm 
 ## About
 The structure of the project imitates [ant-design-pro](https://github.com/ant-design/ant-design-pro),but without using the default configuration of dva, manually configure webpack4. The package in the project uses the latest version. Support for the latest chrome browser. If you want to use the most basic dva+ts, please click [dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
 
+## Browser Support
+
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
+--- | --- | --- | --- | --- | --- |
+Latest ✔ | No | No | No | No | No |
+
 ## Demo
 https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
 
