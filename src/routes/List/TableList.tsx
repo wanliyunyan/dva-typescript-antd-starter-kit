@@ -76,6 +76,17 @@ export default class Index extends Component<IProps, any> {
             >
               delete
             </a>
+            <Divider type="vertical" />
+            <a
+              onClick={() => {
+                dispatch({
+                  type: "list/load",
+                  payload: row.id
+                });
+              }}
+            >
+              view
+            </a>
           </span>
         )
       }

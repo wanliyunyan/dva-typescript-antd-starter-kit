@@ -1,39 +1,8 @@
-import Loadable from "react-loadable";
-import { MyLoadingComponent } from "../components/Load";
-
-const BlankLayout = Loadable({
-  loader: () => import("../layouts/BlankLayout"),
-  loading: MyLoadingComponent
-});
-
-const BasicLayout = Loadable({
-  loader: () => import("../layouts/BasicLayout"),
-  loading: MyLoadingComponent
-});
-
-const UserLayout = Loadable({
-  loader: () => import("../layouts/UserLayout"),
-  loading: MyLoadingComponent
-});
-
-const IndexPage = Loadable({
-  loader: () => import("../routes/IndexPage/IndexPage"),
-  loading: MyLoadingComponent
-});
-
-const TableList = Loadable({
-  loader: () => import("../routes/List/TableList"),
-  loading: MyLoadingComponent
-});
-
-const Login = Loadable({
-  loader: () => import("../routes/User/Login"),
-  loading: MyLoadingComponent
-});
+import { lazy } from "react";
 
 const data = [
   {
-    component: BasicLayout,
+    component: lazy(() => import("../layouts/BasicLayout")),
     layout: "BasicLayout",
     name: "首页",
     path: "",
@@ -46,7 +15,7 @@ const data = [
           {
             name: "分析页",
             path: "analysis",
-            component: IndexPage
+            component: lazy(() => import("../routes/IndexPage/IndexPage"))
           },
           {
             name: "监控页",
@@ -100,7 +69,7 @@ const data = [
           {
             name: "查询表格",
             path: "table-list",
-            component: TableList
+            component: lazy(() => import("../routes/List/TableList"))
           },
           {
             name: "标准列表",
@@ -188,7 +157,7 @@ const data = [
     ]
   },
   {
-    component: UserLayout,
+    component: lazy(() => import("../layouts/UserLayout")),
     layout: "UserLayout",
     children: [
       {
@@ -199,7 +168,7 @@ const data = [
           {
             name: "登录",
             path: "login",
-            component: Login
+            component: lazy(() => import("../routes/User/Login"))
           },
           {
             name: "注册",
@@ -216,7 +185,7 @@ const data = [
     ]
   },
   {
-    component: BlankLayout,
+    component: lazy(() => import("../layouts/BlankLayout")),
     layout: "BlankLayout",
     children: {
       name: "使用文档",

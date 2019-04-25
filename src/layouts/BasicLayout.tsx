@@ -2,8 +2,7 @@ import { Button, Divider, Icon, Layout, Menu } from "antd";
 import classNames from "classnames";
 import { connect } from "dva";
 import { Link, Redirect, Route, routerRedux, Switch } from "dva/router";
-import { groupBy } from "lodash";
-import React from "react";
+import React, { Suspense } from "react";
 import { ContainerQuery } from "react-container-query";
 import { getNavData } from "../common/nav";
 import { getRouteData } from "../utils/utils";
@@ -229,17 +228,30 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
             </Button>
           </Header>
           <Content style={{ margin: "24px 24px 0", height: "100%" }}>
-            <Switch>
-              {getRouteData("BasicLayout").map(item => (
-                <Route
-                  exact={item.exact}
-                  key={item.path}
-                  path={item.path}
-                  component={item.component}
-                />
-              ))}
-              <Redirect exact={true} from="/" to="/user/login" />
-            </Switch>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                {getRouteData("BasicLayout").map(item => {
+                  const Component = item.component;
+
+                  return Component ? (
+                    <Route
+                      exact={item.exact}
+                      key={item.path}
+                      path={item.path}
+                      render={props => <Component />}
+                    />
+                  ) : (
+                    <Route
+                      exact={item.exact}
+                      key={item.path}
+                      path={item.path}
+                      component={item.component}
+                    />
+                  );
+                })}
+                <Redirect exact={true} from="/" to="/user/login" />
+              </Switch>
+            </Suspense>
           </Content>
         </Layout>
       </Layout>

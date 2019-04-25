@@ -26,7 +26,7 @@ const postcssOption = {
       cssnano:
         env === 'production'
           ? {
-            preset: 'advanced',
+            preset: 'default',
           }
           : false,
     },
@@ -140,24 +140,37 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          name: 'vendor',
+          name: "vendor",
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
+          chunks: "all",
           priority: 10,
           enforce: true,
         },
-        react: {
-          name: 'react',
-          test: module => /react|redux/.test(module.context),
+        antd: {
+          name: 'antd',
+          test: (module) => {
+            return /ant|rc-/.test(module.context);
+          },
           chunks: 'initial',
           priority: 11,
           enforce: true,
         },
-        lodash: {
-          name: 'lodash',
-          test: module => /lodash/.test(module.context),
-          chunks: 'initial',
+        util: {
+          name: 'util',
+          test: (module) => {
+            return /lodash|moment/.test(module.context);
+          },
+          chunks: 'all',
           priority: 12,
+          enforce: true,
+        },
+        react: {
+          name: 'react',
+          test: (module) => {
+            return /react|redux/.test(module.context);
+          },
+          chunks: 'all',
+          priority: 13,
           enforce: true,
         },
       },
@@ -187,6 +200,7 @@ module.exports = {
       favicon: 'src/favicon.ico',
       template: 'src/index.ejs',
       filename: 'index.html',
+      chunksSortMode: 'none', // Error: Cyclic dependency
       hash: true,
     }),
   ],

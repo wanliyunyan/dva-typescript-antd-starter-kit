@@ -6,7 +6,7 @@ import styles from "./Login.less";
 
 const FormItem = Form.Item;
 
-interface IProps {
+interface IProps extends FormComponentProps {
   dispatch?: any;
   user: {
     loading?: boolean;
@@ -17,7 +17,7 @@ interface IProps {
   };
 }
 
-class Login extends Component<IProps & FormComponentProps, any> {
+class Login extends Component<IProps, any> {
   public interval;
 
   constructor(props) {

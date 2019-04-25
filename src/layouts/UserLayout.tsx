@@ -1,5 +1,5 @@
 import { Link, Route } from "dva/router";
-import React from "react";
+import React, { Suspense } from "react";
 import { getRouteData } from "../utils/utils";
 import styles from "./UserLayout.less";
 

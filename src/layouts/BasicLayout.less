@@ -1,34 +1,34 @@
 @import "~antd/lib/style/themes/default.less";
 
 .header {
-  padding: 0 12px 0 0;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   position: relative;
+  padding: 0 12px 0 0 !important;
+  background: @white !important;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 }
 
 .logo {
-  height: 64px;
   position: relative;
-  line-height: 64px;
+  height: 64px;
   padding-left: 24px;
-  transition: all 0.3s;
-  background: #002140;
   overflow: hidden;
+  line-height: 64px;
+  background: #002140;
+  transition: all 0.3s;
 
   img {
     display: inline-block;
-    vertical-align: middle;
     height: 32px;
+    vertical-align: middle;
   }
   h1 {
-    color: #fff;
     display: inline-block;
-    vertical-align: middle;
-    font-size: 20px;
     margin-left: 12px;
-    font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: @white;
     font-weight: 600;
+    font-size: 20px;
+    font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    vertical-align: middle;
   }
 }
 
@@ -40,11 +40,11 @@
 }
 
 .trigger {
+  padding: 0 24px;
   font-size: 20px;
   line-height: 64px;
   cursor: pointer;
   transition: all 0.3s;
-  padding: 0 24px;
   &:hover {
     background: @primary-1;
   }
@@ -60,11 +60,11 @@
   float: right;
   height: 100%;
   .action {
-    cursor: pointer;
-    padding: 0 12px;
     display: inline-block;
-    transition: all 0.3s;
     height: 100%;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
     > i {
       font-size: 16px;
       vertical-align: middle;
@@ -75,8 +75,8 @@
     }
   }
   .search {
-    padding: 0;
     margin: 0 12px;
+    padding: 0;
     &:hover {
       background: transparent;
     }
@@ -85,8 +85,8 @@
     .avatar {
       margin: 20px 8px 20px 0;
       color: @primary-color;
-      background: rgba(255, 255, 255, 0.85);
       vertical-align: middle;
+      background: rgba(255, 255, 255, 0.85);
     }
   }
 }
@@ -107,8 +107,8 @@
 }
 
 .sider {
-  min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   position: relative;
   z-index: 10;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 }

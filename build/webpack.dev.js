@@ -7,20 +7,6 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.base.js');
 
-// Get the local ip
-function getIPAddress() {
-  const interfaces = require('os').networkInterfaces();
-  for (const devName in interfaces) {
-    const iface = interfaces[devName];
-    for (let i = 0; i < iface.length; i += 1) {
-      const alias = iface[i];
-      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-        return alias.address;
-      }
-    }
-  }
-}
-
 module.exports = function (env) {
   return merge(commonConfig, {
     mode: env,
@@ -39,7 +25,7 @@ module.exports = function (env) {
       stats: 'normal',
       contentBase: './src/',
       compress: true,
-      // host: getIPAddress(), // if you need IP
+      // host: require('ip').address(),
       port: 8000,
       proxy: {
         '/api/*': {

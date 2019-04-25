@@ -1,9 +1,12 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-prettier"
+    "stylelint-config-prettier",
+    "stylelint-config-rational-order"
   ],
+  "plugins": ["stylelint-order", "stylelint-declaration-block-no-ignored-properties"],
   "rules": {
+    "plugin/declaration-block-no-ignored-properties": true,
     "selector-pseudo-class-no-unknown": [true, {
       "ignorePseudoClasses": ["global"]
     }]

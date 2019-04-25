@@ -1,5 +1,5 @@
 import { Model } from "dva";
-import { create, query, remove, update } from "../services/list";
+import { create, load, query, remove, update } from "../services/list";
 
 const list: Model = {
   namespace: "list",
@@ -77,6 +77,21 @@ const list: Model = {
           yield put({
             type: "listSave",
             payload: data
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+      }
+    },
+    *load({ payload }, { call, put }) {
+      try {
+        const { data, success } = yield call(load, payload);
+
+        if (success) {
+          yield put({
+            type: "listSave",
+            payload: [data]
           });
         }
       } catch (e) {
