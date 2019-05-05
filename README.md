@@ -12,7 +12,7 @@ Now it is not perfect, then I will continue to improve the project.
 If you don’t understand Chinese, it doesn’t matter. Clone this repo and npm intall, You can use it directly.
 
 ## About
-The structure of the project imitates [ant-design-pro](https://github.com/ant-design/ant-design-pro),but without using the default configuration of dva, manually configure webpack4. The package in the project uses the latest version. Support for the latest chrome browser. If you want to use the most basic dva+ts, please click [dva-typescript-starter-kit](https://github.com/wanliyunyan/dva-typescript-starter-kit)
+The structure of the project imitates [ant-design-pro](https://github.com/ant-design/ant-design-pro),but without using the default configuration of dva, manually configure webpack4. The package in the project uses the latest version. 
 
 ## Browser Support
 
