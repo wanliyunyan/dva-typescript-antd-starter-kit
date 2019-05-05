@@ -1,5 +1,5 @@
 import { Link, Route } from "dva/router";
-import React, { Suspense } from "react";
+import React from "react";
 import { getRouteData } from "../utils/utils";
 import styles from "./UserLayout.less";
 
@@ -16,15 +16,25 @@ export default class UserLayout extends React.PureComponent {
             <span>Ant Design</span>
           </Link>
         </div>
+        {getRouteData("UserLayout").map(item => {
+          const Component = item.component;
 
-        {getRouteData("UserLayout").map(item => (
-          <Route
-            exact={item.exact}
-            key={item.path}
-            path={item.path}
-            component={item.component}
-          />
-        ))}
+          return Component ? (
+            <Route
+              exact={item.exact}
+              key={item.path}
+              path={item.path}
+              render={props => <Component />}
+            />
+          ) : (
+            <Route
+              exact={item.exact}
+              key={item.path}
+              path={item.path}
+              component={item.component}
+            />
+          );
+        })}
       </div>
     );
   }

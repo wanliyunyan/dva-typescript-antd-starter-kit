@@ -1,8 +1,8 @@
 import { Route, routerRedux, Switch } from "dva/router";
+import React, { Suspense } from "react";
 import Error from "src/components/Error/index";
 import BasicLayout from "./layouts/BasicLayout";
 import UserLayout from "./layouts/UserLayout";
-import React, { Suspense } from "react";
 
 const { ConnectedRouter } = routerRedux;
 
