@@ -3,9 +3,9 @@ const os = require("os");
 const path = require("path");
 const lessToJs = require("less-vars-to-js");
 const merge = require("webpack-merge");
-const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HappyPack = require('happypack');
 
 const devConfig = require("./webpack.dev");
 const prodConfig = require("./webpack.prod");
@@ -50,10 +50,7 @@ module.exports = function() {
           test: /\.tsx?$/,
           use: [
             {
-              loader: "babel-loader"
-            },
-            {
-              loader: "ts-loader"
+              loader: 'happypack/loader?id=babel',
             }
           ],
           include: [path.join(__dirname, "../src")]
@@ -63,7 +60,7 @@ module.exports = function() {
           exclude: /node_modules/,
           use: [
             {
-              loader: "babel-loader"
+              loader: 'happypack/loader?id=babel',
             }
           ]
         },
@@ -192,19 +189,13 @@ module.exports = function() {
       runtimeChunk: {
         name: "manifest"
       },
-      minimizer: [
-        new TerserPlugin({
-          cache: true,
-          parallel: os.cpus().length,
-          terserOptions: {
-            output: {
-              comments: false
-            }
-          }
-        })
-      ]
     },
     plugins: [
+      new HappyPack({
+        id: 'babel',
+        threads: os.cpus().length,
+        loaders: [ 'babel-loader' ]
+      }),
       new MiniCssExtractPlugin({
         filename: "[name].css",
         chunkFilename: "[name].css"
