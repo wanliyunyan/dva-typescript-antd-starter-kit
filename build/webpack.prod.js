@@ -14,6 +14,15 @@ module.exports = {
     path: path.join(__dirname, "/../dist/"),
     filename: "assets/js/[name].js"
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    /* new CopyWebpackPlugin([
+        {
+          from: '',
+          to: 'assets/',
+        },
+      ]), */
+  ],
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -26,14 +35,5 @@ module.exports = {
         }
       })
     ]
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    /* new CopyWebpackPlugin([
-        {
-          from: '',
-          to: 'assets/',
-        },
-      ]), */
-  ]
+  }
 };

@@ -1,11 +1,11 @@
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const HappyPack = require('happypack');
 const lessToJs = require("less-vars-to-js");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HappyPack = require('happypack');
 
 const devConfig = require("./webpack.dev");
 const prodConfig = require("./webpack.prod");
@@ -47,22 +47,13 @@ module.exports = function() {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
+          test: /\.([tj])sx?$/,
           use: [
             {
               loader: 'happypack/loader?id=babel',
             }
           ],
           include: [path.join(__dirname, "../src")]
-        },
-        {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'happypack/loader?id=babel',
-            }
-          ]
         },
         {
           test: /\.(sa|sc|c)ss$/,
