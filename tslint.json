@@ -5,9 +5,7 @@
       "tslint-react",
       "tslint-config-prettier"
     ],
-    "jsRules": {},
     "rules": {
       "object-literal-sort-keys": false
-    },
-    "rulesDirectory": []
+    }
 }
