@@ -197,7 +197,8 @@ module.exports = function() {
         template: "src/index.ejs",
         filename: "index.html",
         chunksSortMode: "none", // Error: Cyclic dependency
-        hash: true
+        hash: true,
+        minify:true
       })
     ],
     resolve: {
