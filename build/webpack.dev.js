@@ -4,6 +4,7 @@
  * @ use development
  */
 const webpack = require("webpack");
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
   output: {
@@ -30,6 +31,7 @@ module.exports = {
     },
   },
   plugins: [
+    new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
 };
