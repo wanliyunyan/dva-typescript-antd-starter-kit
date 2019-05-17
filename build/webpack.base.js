@@ -1,7 +1,7 @@
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
-const HappyPack = require('happypack');
+const HappyPack = require("happypack");
 const lessToJs = require("less-vars-to-js");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -128,9 +128,55 @@ module.exports = function() {
           ]
         },
         {
-          test: /\.(pdf|png|jpe?g|gif|eot|otf|ttf|woff|woff2)$/,
-          loader:
-            "url-loader?limit=8192&name=[hash:8].[name].[ext]&outputPath=assets/images/&publicPath=assets/images"
+          test: /\.(pdf|eot|otf|ttf|woff|woff2)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+                name:"[hash:8].[name].[ext]",
+                outputPath:"assets/images/",
+                publicPath:"assets/images"
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+                name:"[hash:8].[name].[ext]",
+                outputPath:"assets/images/",
+                publicPath:"assets/images"
+              }
+            },
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                mozjpeg: {
+                  progressive: true,
+                  quality: 65
+                },
+                optipng: {
+                  enabled: true,
+                },
+                pngquant: {
+                  quality: '65-90',
+                  speed: 4
+                },
+                gifsicle: {
+                  interlaced: false,
+                },
+                webp: {
+                  quality: 75
+                }
+              },
+            },
+          ]
+
         },
         {
           test: /\.svg$/,
@@ -153,7 +199,7 @@ module.exports = function() {
             test: module => {
               return /ant|rc-/.test(module.context);
             },
-            chunks: "initial",
+            chunks: "all",
             priority: 11,
             enforce: true
           },
