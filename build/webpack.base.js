@@ -176,7 +176,6 @@ module.exports = function() {
               },
             },
           ]
-
         },
         {
           test: /\.svg$/,
