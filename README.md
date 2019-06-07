@@ -41,6 +41,9 @@ npm run dev
 npm run build
 ```
 
+## cnpm
+如果你使用webstorm和阿里的cnpm那么，直接双击左下角npm中的cnpm即可
+
 ## Mock
 click mockjs，start mock data, You can see the effect of the mock data in the "列表页-查询表格".
 
@@ -171,7 +174,6 @@ devDependencies
 -   [stylelint-order](https://github.com/hudochenkov/stylelint-order) A plugin pack of order related linting rules for stylelint.
 -   [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) Webpack loader for creating SVG sprites.
 -   [terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin) Terser Plugin.
--   [ts-loader](https://github.com/TypeStrong/ts-loader) TypeScript loader for webpack.
 -   [tslint](https://github.com/palantir/tslint) An extensible linter for the TypeScript language.
 -   [tslint-config-prettier](https://github.com/alexjoverm/tslint-config-prettier) Use tslint with prettier without any conflict.
 -   [tslint-react](https://github.com/palantir/tslint-react) Lint rules related to React & JSX for TSLint.
