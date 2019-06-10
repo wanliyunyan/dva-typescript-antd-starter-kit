@@ -149,7 +149,10 @@ devDependencies
 -   [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) React specific linting rules for ESLint.
 -   [expect](https://github.com/facebook/jest) 
 -   [file-loader](https://github.com/webpack-contrib/file-loader) File Loader.
+-   [happypack](https://github.com/amireh/happypack) Happiness in the form of faster webpack build times.
+-   [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
 -   [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) Simplifies creation of HTML files to serve your webpack bundles.
+-   [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) Image loader module for webpack.
 -   [husky](https://github.com/typicode/husky) Git hooks made easy.
 -   [json-server](https://github.com/typicode/json-server) Get a full fake REST API with zero coding in less than 30 seconds (seriously).
 -   [ip](https://github.com/indutny/node-ip) IP address tools for node.js.
@@ -162,7 +165,6 @@ devDependencies
 -   [postcss-loader](https://github.com/postcss/postcss-loader) PostCSS loader for webpack.
 -   [postcss-preset-env](https://github.com/csstools/postcss-preset-env) Convert modern CSS into something browsers understand.
 -   [prettier](https://github.com/prettier/prettier) Prettier is an opinionated code formatter.
--   [react-hot-loader](https://github.com/gaearon/react-hot-loader) Tweak React components in real time.
 -   [sass-loader](https://github.com/webpack-contrib/sass-loader) Compiles Sass to CSS.
 -   [source-map-loader](https://github.com/webpack-contrib/source-map-loader) extract sourceMappingURL comments from modules and offer it to webpack.
 -   [style-loader](https://github.com/webpack-contrib/style-loader) Style Loader.
