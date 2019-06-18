@@ -83,9 +83,10 @@ module.exports = function() {
               loader: "css-loader",
               options: {
                 importLoaders: 2,
-                modules: true,
-                camelCase: true,
-                localIdentName: "[path][name]__[local]--[hash:base64:5]"
+                localsConvention: "camelCase",
+                modules: {
+                  localIdentName: "[path][name]__[local]--[hash:base64:5]"
+                }
               }
             },
             {
@@ -128,7 +129,7 @@ module.exports = function() {
           ]
         },
         {
-          test: /\.(pdf|eot|otf|ttf|woff|woff2)$/,
+          test: /\.(ico|pdf|eot|otf|ttf|woff|woff2)$/,
           use: [
             {
               loader: 'url-loader',
