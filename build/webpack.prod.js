@@ -6,9 +6,9 @@
 const os = require("os");
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   output: {
@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CompressionPlugin(),
+    new CompressionPlugin()
     /* new CopyWebpackPlugin([
         {
           from: '',

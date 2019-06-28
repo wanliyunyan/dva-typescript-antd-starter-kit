@@ -4,10 +4,10 @@ import { connect } from "dva";
 import React, { Component } from "react";
 import styles from "./Login.less";
 
-const FormItem = Form.Item;
+const { Item } = Form;
 
-interface IProps extends FormComponentProps {
-  dispatch?: any;
+interface Props extends FormComponentProps {
+  dispatch?: (obj) => void;
   user: {
     loading?: boolean;
     loginData: {
@@ -17,23 +17,20 @@ interface IProps extends FormComponentProps {
   };
 }
 
-class Login extends Component<IProps, any> {
+class Login extends Component<Props, any> {
   public interval;
 
-  constructor(props) {
-    super(props);
-  }
-
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     clearInterval(this.interval);
   }
 
-  public handleSubmit = e => {
+  public handleSubmit = (e): void => {
+    const { dispatch, form } = this.props;
     e.preventDefault();
 
-    this.props.form.validateFields({ force: true }, (err, values) => {
+    form.validateFields({ force: true }, (err, values): void => {
       if (!err) {
-        this.props.dispatch({
+        dispatch({
           type: "user/login",
           payload: values
         });
@@ -41,7 +38,7 @@ class Login extends Component<IProps, any> {
     });
   };
 
-  public render() {
+  public render(): React.ReactNode {
     const {
       form,
       user: { loading }
@@ -51,7 +48,7 @@ class Login extends Component<IProps, any> {
     return (
       <div className={styles.main}>
         <Form onSubmit={this.handleSubmit}>
-          <FormItem>
+          <Item>
             {getFieldDecorator("username", {
               rules: [
                 {
@@ -66,8 +63,8 @@ class Login extends Component<IProps, any> {
                 placeholder="any"
               />
             )}
-          </FormItem>
-          <FormItem>
+          </Item>
+          <Item>
             {getFieldDecorator("password", {
               rules: [
                 {
@@ -83,16 +80,16 @@ class Login extends Component<IProps, any> {
                 placeholder="any"
               />
             )}
-          </FormItem>
+          </Item>
 
-          <FormItem className={styles.additional}>
+          <Item className={styles.additional}>
             {getFieldDecorator("remember", {
               valuePropName: "checked",
               initialValue: true
             })(<Checkbox>Remember me</Checkbox>)}
-            <a className={styles.forgot} href="">
+            <Button type="link" className={styles.forgot}>
               forget password
-            </a>
+            </Button>
             <Button
               size="large"
               loading={loading}
@@ -102,7 +99,7 @@ class Login extends Component<IProps, any> {
             >
               login
             </Button>
-          </FormItem>
+          </Item>
         </Form>
       </div>
     );
@@ -112,7 +109,7 @@ class Login extends Component<IProps, any> {
 export default connect(state => ({
   user: state.user
 }))(
-  Form.create<IProps>({
+  Form.create<Props>({
     onFieldsChange(props, changedFields) {
       props.dispatch({
         type: "user/save",

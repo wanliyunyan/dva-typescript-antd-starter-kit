@@ -1,37 +1,7 @@
 import { message, notification } from "antd";
 import axios from "axios";
 
-export const get = async <T = any>(
-  url: string,
-  options?: any,
-  config?: any
-): Promise<T> => request(url, { ...options, method: "get" }, config);
-
-export const post = async <T = any>(
-  url: string,
-  options?: any,
-  config?: any
-): Promise<T> => request(url, { ...options, method: "post" }, config);
-
-export const put = async <T = any>(
-  url: string,
-  options?: any,
-  config?: any
-): Promise<T> => request(url, { ...options, method: "put" }, config);
-
-export const del = async <T = any>(
-  url: string,
-  options?: any,
-  config?: any
-): Promise<T> => request(url, { ...options, method: "delete" }, config);
-
-const request = async <T = any>(
-  url: string,
-  options: any,
-  config: any
-): Promise<T> => handleData(await fetch(url, options, config));
-
-const fetch = (url: string, options: any, config: any) => {
+const fetch = (url: string, options, config) => {
   const { method = "get", param } = options;
   switch (method.toLowerCase()) {
     case "get":
@@ -51,7 +21,7 @@ const fetch = (url: string, options: any, config: any) => {
   }
 };
 
-const handleData = (result: any): any => {
+const handleData = (result): any => {
   if (result) {
     const { status, data } = result;
     if (!status) {
@@ -61,6 +31,21 @@ const handleData = (result: any): any => {
   }
   return { success: false };
 };
+
+const request = async <T>(url: string, options, config): Promise<T> =>
+  handleData(await fetch(url, options, config));
+
+export const get = async <T>(url: string, options?, config?): Promise<T> =>
+  request(url, { ...options, method: "get" }, config);
+
+export const post = async <T>(url: string, options?, config?): Promise<T> =>
+  request(url, { ...options, method: "post" }, config);
+
+export const put = async <T>(url: string, options?, config?): Promise<T> =>
+  request(url, { ...options, method: "put" }, config);
+
+export const del = async <T>(url: string, options?, config?): Promise<T> =>
+  request(url, { ...options, method: "delete" }, config);
 
 // interceptors
 axios.interceptors.request.use(
@@ -97,5 +82,6 @@ axios.interceptors.response.use(
       }
       return Promise.resolve(err);
     }
+    return null;
   }
 );

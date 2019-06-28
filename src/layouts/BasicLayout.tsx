@@ -33,26 +33,25 @@ const query = {
   }
 };
 
-interface IProps {
-  dispatch?: any;
-  currentUser?: any;
-  collapsed?: any;
-  fetchingNotices?: any;
-  location?: any;
-  notices?: any;
+interface Props {
+  dispatch?: (obj) => void;
+  collapsed?: boolean;
+  location?: {
+    pathname: string;
+  };
 }
 
-interface IState {
-  openKeys?: any;
+interface State {
+  openKeys?: string[];
 }
 
 @connect(state => ({
   collapsed: state.global.collapsed
 }))
-export default class BasicLayout extends React.PureComponent<IProps, IState> {
-  public menus: any;
+export default class BasicLayout extends React.PureComponent<Props, State> {
+  public menus;
 
-  constructor(props) {
+  public constructor(props) {
     super(props);
     this.menus = getNavData().reduce(
       (arr, current) => arr.concat(current.children),
@@ -65,13 +64,14 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
 
   // 折叠
   public onCollapse = collapsed => {
-    this.props.dispatch({
+    const { dispatch } = this.props;
+    dispatch({
       type: "global/changeLayoutCollapsed",
       payload: collapsed
     });
   };
 
-  public getCurrentMenuSelectedKeys = (props?) => {
+  public getCurrentMenuSelectedKeys = (props?): [string] => {
     const {
       location: { pathname }
     } = props || this.props;
@@ -113,9 +113,11 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
       }
       let itemPath;
 
-      item.path.indexOf("http") === 0
-        ? (itemPath = item.path)
-        : (itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/"));
+      if (item.path.indexOf("http") === 0) {
+        itemPath = item.path;
+      } else {
+        itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/");
+      }
 
       if (item.children && item.children.some(child => child.name)) {
         return (
@@ -158,27 +160,28 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
   };
 
   public toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
+    const { collapsed, dispatch } = this.props;
+    dispatch({
       type: "global/changeLayoutCollapsed",
       payload: !collapsed
     });
   };
 
   public render() {
-    const { collapsed } = this.props;
+    const { collapsed, dispatch } = this.props;
+    const { openKeys } = this.state;
 
     const menuProps = collapsed
       ? {}
       : {
-          openKeys: this.state.openKeys
+          openKeys
         };
 
     const layout = (
       <Layout>
         <Sider
           trigger={null}
-          collapsible={true}
+          collapsible
           collapsed={collapsed}
           breakpoint="md"
           onCollapse={this.onCollapse}
@@ -186,7 +189,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
           className={styles.sider}
         >
           <div className={styles.logo}>
-            <Link to={"/"}>
+            <Link to="/">
               <img
                 src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg"
                 alt="logo"
@@ -195,8 +198,8 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
             </Link>
           </div>
           <Menu
-            theme={"dark"}
-            mode={"inline"}
+            theme="dark"
+            mode="inline"
             {...menuProps}
             onOpenChange={this.handleOpenChange}
             selectedKeys={this.getCurrentMenuSelectedKeys()}
@@ -212,11 +215,11 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
               type={collapsed ? "menu-unfold" : "menu-fold"}
               onClick={this.toggle}
             />
-            <Divider dashed={true} type="vertical" style={{ height: "50px" }} />
+            <Divider dashed type="vertical" style={{ height: "50px" }} />
             <Button
-              htmlType={"button"}
+              htmlType="button"
               onClick={() => {
-                this.props.dispatch(
+                dispatch(
                   routerRedux.push({
                     pathname: "/user/login",
                     search: ""
@@ -249,7 +252,7 @@ export default class BasicLayout extends React.PureComponent<IProps, IState> {
                     />
                   );
                 })}
-                <Redirect exact={true} from="/" to="/user/login" />
+                <Redirect exact from="/" to="/user/login" />
               </Switch>
             </Suspense>
           </Content>

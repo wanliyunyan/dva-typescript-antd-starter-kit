@@ -17,12 +17,13 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => {
         if (pathname === "/user/login") {
+          // empty
         }
       });
     }
   },
   effects: {
-    *login({ payload }, { call, put }) {
+    *login({ payload }, { put }) {
       try {
         yield put({
           type: "querySuccess",

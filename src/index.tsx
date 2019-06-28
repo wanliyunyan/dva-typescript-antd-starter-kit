@@ -7,6 +7,7 @@ import router from "./router";
 // https://github.com/nitin42/react-perf-devtool/issues/61
 // now it does not work
 const { registerObserver } = require("react-perf-devtool");
+
 registerObserver({ timeout: 30000 });
 
 // 1. Initialize
@@ -21,7 +22,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(createLoading());
 
 // 3. Model
-models.forEach(m => {
+models.forEach((m): void => {
   app.model(m.default);
 });
 

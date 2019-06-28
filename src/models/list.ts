@@ -7,7 +7,7 @@ const list: Model = {
     list: []
   },
   reducers: {
-    listSave(state: any, { payload }: any) {
+    listSave(state, { payload }) {
       return {
         ...state,
         list: payload
@@ -39,6 +39,7 @@ const list: Model = {
       } catch (e) {
         console.log(e);
       } finally {
+        // empty
       }
     },
     *delete({ payload }, { call, put }) {
@@ -53,11 +54,12 @@ const list: Model = {
       } catch (e) {
         console.log(e);
       } finally {
+        // empty
       }
     },
     *update({ payload }, { call, put }) {
       try {
-        const { data, success } = yield call(update, payload);
+        const { success } = yield call(update, payload);
 
         if (success) {
           yield put({
@@ -67,6 +69,7 @@ const list: Model = {
       } catch (e) {
         console.log(e);
       } finally {
+        // empty
       }
     },
     *query({ payload }, { call, put }) {
@@ -82,6 +85,7 @@ const list: Model = {
       } catch (e) {
         console.log(e);
       } finally {
+        // empty
       }
     },
     *load({ payload }, { call, put }) {
@@ -97,6 +101,7 @@ const list: Model = {
       } catch (e) {
         console.log(e);
       } finally {
+        // empty
       }
     }
   }

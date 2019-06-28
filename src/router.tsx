@@ -6,7 +6,7 @@ import UserLayout from "./layouts/UserLayout";
 
 const { ConnectedRouter } = routerRedux;
 
-export default function({ history }) {
+export default function({ history }: any): React.ReactNode {
   return (
     <Error>
       <ConnectedRouter history={history}>

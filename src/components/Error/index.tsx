@@ -1,31 +1,34 @@
 import React, { Fragment, PureComponent } from "react";
 
-interface IProps {}
-
-interface IState {
+interface State {
   error: boolean;
   info: any;
 }
 
-export default class Index extends PureComponent<IProps, IState> {
-  constructor(props) {
+export default class Index extends PureComponent<any, State> {
+  public constructor(props) {
     super(props);
     this.state = { error: false, info: "" };
   }
+
   public componentDidCatch(error, info) {
     this.setState({ error, info });
   }
 
   public render() {
-    if (this.state.error) {
+    const { children } = this.props;
+    const { error, info } = this.state;
+
+    if (error) {
       return process.env.NODE_ENV === "development" ? (
         <Fragment>
-          <h1>{this.state.error.toString()}</h1>
+          <h1>{error.toString()}</h1>
+          <p>{info.toString()}</p>
         </Fragment>
       ) : (
         <h1>The page crashed due to an unknown error~~~~</h1>
       );
     }
-    return this.props.children;
+    return children;
   }
 }

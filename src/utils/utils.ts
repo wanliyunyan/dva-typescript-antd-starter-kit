@@ -27,6 +27,5 @@ export function getRouteData(path) {
     return null;
   }
   const dataList = cloneDeep(navData.filter(item => item.layout === path)[0]);
-  const nodeList = getPlainNode(dataList.children);
-  return nodeList;
+  return getPlainNode(dataList.children);
 }

@@ -4,8 +4,8 @@ import React, { Component } from "react";
 
 import styles from "./TableList.less";
 
-interface IProps {
-  dispatch?: any;
+interface Props {
+  dispatch?: (obj) => void;
   list?: object[];
   loading: any;
 }
@@ -14,7 +14,7 @@ interface IProps {
   ...state.list,
   loading: state.loading.effects
 }))
-export default class Index extends Component<IProps, any> {
+export default class Index extends Component<Props, any> {
   public render() {
     const { list, dispatch, loading } = this.props;
 
@@ -43,17 +43,18 @@ export default class Index extends Component<IProps, any> {
         title: "images",
         dataIndex: "images",
         key: "images",
-        render: text => (
+        render: (text): React.ReactNode => (
           <img src={text} style={{ height: "30px", width: "auto" }} alt="" />
         )
       },
       {
         title: "Action",
         key: "action",
-        render: (text, row) => (
+        render: (text, row): React.ReactNode => (
           <span>
-            <a
-              onClick={() => {
+            <Button
+              type="link"
+              onClick={(): void => {
                 dispatch({
                   type: "list/update",
                   payload: {
@@ -64,10 +65,11 @@ export default class Index extends Component<IProps, any> {
               }}
             >
               update
-            </a>
+            </Button>
             <Divider type="vertical" />
-            <a
-              onClick={() => {
+            <Button
+              type="link"
+              onClick={(): void => {
                 dispatch({
                   type: "list/delete",
                   payload: row.id
@@ -75,10 +77,11 @@ export default class Index extends Component<IProps, any> {
               }}
             >
               delete
-            </a>
+            </Button>
             <Divider type="vertical" />
-            <a
-              onClick={() => {
+            <Button
+              type="link"
+              onClick={(): void => {
                 dispatch({
                   type: "list/load",
                   payload: row.id
@@ -86,7 +89,7 @@ export default class Index extends Component<IProps, any> {
               }}
             >
               view
-            </a>
+            </Button>
           </span>
         )
       }
@@ -99,9 +102,9 @@ export default class Index extends Component<IProps, any> {
             <Col span={2}>
               <Button
                 type="primary"
-                htmlType={"button"}
-                block={true}
-                onClick={() => {
+                htmlType="button"
+                block
+                onClick={(): void => {
                   dispatch({
                     type: "list/create",
                     payload: {
@@ -116,8 +119,8 @@ export default class Index extends Component<IProps, any> {
             <Col span={1} />
             <Col span={3}>
               <Button
-                htmlType={"button"}
-                onClick={() => {
+                htmlType="button"
+                onClick={(): void => {
                   dispatch({ type: "list/query" });
                 }}
               >
@@ -128,7 +131,7 @@ export default class Index extends Component<IProps, any> {
           <Table
             columns={columns}
             dataSource={list}
-            rowKey={"id"}
+            rowKey="id"
             loading={loading["list/query"]}
           />
         </Card>

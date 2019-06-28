@@ -32,8 +32,8 @@ module.exports = function() {
         },
         cssnano: prod
           ? {
-            preset: "default"
-          }
+              preset: "default"
+            }
           : false
       }
     }
@@ -50,7 +50,7 @@ module.exports = function() {
           test: /\.([tj])sx?$/,
           use: [
             {
-              loader: 'happypack/loader?id=babel',
+              loader: "happypack/loader?id=babel"
             }
           ],
           include: [path.join(__dirname, "../src")]
@@ -132,12 +132,12 @@ module.exports = function() {
           test: /\.(ico|pdf|eot|otf|ttf|woff|woff2)$/,
           use: [
             {
-              loader: 'url-loader',
+              loader: "url-loader",
               options: {
                 limit: 8192,
-                name:"[hash:8].[name].[ext]",
-                outputPath:"assets/images/",
-                publicPath:"assets/images"
+                name: "[hash:8].[name].[ext]",
+                outputPath: "assets/images/",
+                publicPath: "assets/images"
               }
             }
           ]
@@ -146,36 +146,36 @@ module.exports = function() {
           test: /\.(png|jpe?g|gif)$/,
           use: [
             {
-              loader: 'url-loader',
+              loader: "url-loader",
               options: {
                 limit: 8192,
-                name:"[hash:8].[name].[ext]",
-                outputPath:"assets/images/",
-                publicPath:"assets/images"
+                name: "[hash:8].[name].[ext]",
+                outputPath: "assets/images/",
+                publicPath: "assets/images"
               }
             },
             {
-              loader: 'image-webpack-loader',
+              loader: "image-webpack-loader",
               options: {
                 mozjpeg: {
                   progressive: true,
                   quality: 65
                 },
                 optipng: {
-                  enabled: true,
+                  enabled: true
                 },
                 pngquant: {
-                  quality: '65-90',
+                  quality: "65-90",
                   speed: 4
                 },
                 gifsicle: {
-                  interlaced: false,
+                  interlaced: false
                 },
                 webp: {
                   quality: 75
                 }
-              },
-            },
+              }
+            }
           ]
         },
         {
@@ -225,13 +225,13 @@ module.exports = function() {
       },
       runtimeChunk: {
         name: "manifest"
-      },
+      }
     },
     plugins: [
       new HappyPack({
-        id: 'babel',
+        id: "babel",
         threads: os.cpus().length,
-        loaders: [ 'babel-loader' ]
+        loaders: ["babel-loader"]
       }),
       new MiniCssExtractPlugin({
         filename: "[name].css",
@@ -244,7 +244,7 @@ module.exports = function() {
         filename: "index.html",
         chunksSortMode: "none", // Error: Cyclic dependency
         hash: true,
-        minify:true
+        minify: true
       })
     ],
     resolve: {
