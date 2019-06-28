@@ -48,7 +48,7 @@ npm run build
 click mockjs，start mock data, You can see the effect of the mock data in the "列表页-查询表格".
 
 ## Linter
-tslint:fix Can automatically repair a part of the code  
+eslint:fix Can automatically repair a part of the code  
 
 styleint detect style 
 
@@ -133,19 +133,24 @@ devDependencies
 -   [@types/react-dom](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react-dom.
 -   [@types/webpack](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for webpack.
 -   [@types/webpack-env](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for webpack-env.
+-   [@typescript-eslint/eslint-plugin](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for typescript-eslint/eslint-plugin.
+-   [@types/typescript-eslint/parser](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for typescript-eslint/parser.
 -   [autoprefixer](https://github.com/postcss/autoprefixer) Parse CSS and add vendor prefixes to rules by Can I Use.
--   [babel-eslint](https://github.com/babel/babel-eslint) A wrapper for Babel's parser used for ESLint.
 -   [babel-loader](https://github.com/babel/babel-loader) Webpack plugin for Babel.
 -   [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) Modularly import plugin for babel.
 -   [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin) A webpack plugin to remove your build folder(s) before building.
+-   [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin) Prepare compressed versions of assets to serve them with Content-Encoding.
 -   [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) Copy files and directories with webpack.
 -   [css-loader](https://github.com/webpack-contrib/css-loader) CSS Loader.
 -   [cssnano](https://github.com/ben-eb/cssnano) A modular minifier, built on top of the PostCSS ecosystem. 
 -   [cssnano-preset-advanced](https://github.com/ben-eb/cssnano) A modular minifier, built on top of the PostCSS ecosystem. 
 -   [eslint](https://github.com/eslint/eslint) A fully pluggable tool for identifying and reporting on patterns in JavaScript.
 -   [eslint-config-airbnb](https://github.com/airbnb/javascript) A mostly reasonable approach to JavaScript.
+-   [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) Turns off all rules that are unnecessary or might conflict with Prettier.
+-   [eslint-import-resolver-webpack](https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers/webpack) 
 -   [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import) ESLint plugin with rules that help validate proper imports.
 -   [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) Static AST checker for a11y rules on JSX elements.
+-   [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) ESLint plugin for Prettier formatting.
 -   [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) React specific linting rules for ESLint.
 -   [expect](https://github.com/facebook/jest) 
 -   [file-loader](https://github.com/webpack-contrib/file-loader) File Loader.
@@ -176,9 +181,6 @@ devDependencies
 -   [stylelint-order](https://github.com/hudochenkov/stylelint-order) A plugin pack of order related linting rules for stylelint.
 -   [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) Webpack loader for creating SVG sprites.
 -   [terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin) Terser Plugin.
--   [tslint](https://github.com/palantir/tslint) An extensible linter for the TypeScript language.
--   [tslint-config-prettier](https://github.com/alexjoverm/tslint-config-prettier) Use tslint with prettier without any conflict.
--   [tslint-react](https://github.com/palantir/tslint-react) Lint rules related to React & JSX for TSLint.
 -   [typescript](https://github.com/Microsoft/TypeScript) TypeScript is a superset of JavaScript that compiles to clean JavaScript output. 
 -   [url-loader](https://github.com/webpack-contrib/url-loader) URL Loader.
 -   [webpack](https://github.com/webpack/webpack) A bundler for javascript and friends. Packs many modules into a few bundled assets. Code Splitting allows to load parts for the application on demand. Through "loaders," modules can be CommonJs, AMD, ES6 modules, CSS, Images, JSON, Coffeescript, LESS, ... and your custom stuff.
