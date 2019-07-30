@@ -1,7 +1,6 @@
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
-const HappyPack = require("happypack");
 const lessToJs = require("less-vars-to-js");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -50,7 +49,7 @@ module.exports = function() {
           test: /\.([tj])sx?$/,
           use: [
             {
-              loader: "happypack/loader?id=babel"
+              loader: "babel-loader"
             }
           ],
           include: [path.join(__dirname, "../src")]
@@ -228,11 +227,6 @@ module.exports = function() {
       }
     },
     plugins: [
-      new HappyPack({
-        id: "babel",
-        threads: os.cpus().length,
-        loaders: ["babel-loader"]
-      }),
       new MiniCssExtractPlugin({
         filename: "[name].css",
         chunkFilename: "[name].css"
