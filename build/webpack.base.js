@@ -1,5 +1,4 @@
 const fs = require("fs");
-const os = require("os");
 const path = require("path");
 const lessToJs = require("less-vars-to-js");
 const merge = require("webpack-merge");
