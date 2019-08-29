@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { PureComponent } from "react";
 
 interface State {
   error: boolean;
@@ -21,10 +21,10 @@ export default class Index extends PureComponent<any, State> {
 
     if (error) {
       return process.env.NODE_ENV === "development" ? (
-        <Fragment>
+        <>
           <h1>{error.toString()}</h1>
           <p>{info.toString()}</p>
-        </Fragment>
+        </>
       ) : (
         <h1>The page crashed due to an unknown error~~~~</h1>
       );

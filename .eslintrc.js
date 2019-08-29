@@ -2,9 +2,9 @@ module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   // If you want to use rules which require type information, you will need to specify a path to your tsconfig.json file in the "project" property of "parserOptions"
-  parserOptions: {
+  /*parserOptions: {
     project: "./tsconfig.json"
-  },
+  },*/
   env: {
     browser: true,
     es6: true,
