@@ -4,7 +4,11 @@
     "stylelint-config-prettier",
     "stylelint-config-rational-order"
   ],
-  "plugins": ["stylelint-order", "stylelint-declaration-block-no-ignored-properties"],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin",
+    "stylelint-declaration-block-no-ignored-properties"
+  ],
   "rules": {
     "plugin/declaration-block-no-ignored-properties": true,
     "selector-pseudo-class-no-unknown": [true, {
