@@ -35,10 +35,6 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HardSourceWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
