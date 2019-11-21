@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const webpack = require("webpack");
 const lessToJs = require("less-vars-to-js");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -237,6 +238,10 @@ module.exports = function() {
         filename: "index.html",
         hash: true,
         minify: true
+      }),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/
       })
     ],
     resolve: {
