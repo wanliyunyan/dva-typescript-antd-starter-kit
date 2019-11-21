@@ -12,7 +12,6 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: false,
     hot: true,
     open: true,
     stats: "normal",
@@ -36,6 +35,10 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HardSourceWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
+    })
   ]
 };

@@ -6,9 +6,8 @@ import router from "./router";
 
 // https://github.com/nitin42/react-perf-devtool/issues/61
 // now it does not work
-const { registerObserver } = require("react-perf-devtool");
-
-registerObserver({ timeout: 30000 });
+// const { registerObserver } = require("react-perf-devtool");
+// registerObserver({ timeout: 30000 });
 
 // 1. Initialize
 let app = dva();

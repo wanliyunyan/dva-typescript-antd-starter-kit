@@ -235,7 +235,6 @@ module.exports = function() {
         favicon: "src/favicon.ico",
         template: "src/index.ejs",
         filename: "index.html",
-        chunksSortMode: "none", // Error: Cyclic dependency
         hash: true,
         minify: true
       })

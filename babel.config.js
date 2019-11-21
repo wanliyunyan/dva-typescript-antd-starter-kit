@@ -1,45 +1,45 @@
-module.exports = function (api) {
+module.exports = function(api) {
   api.cache(true);
   const mode = process.argv.slice(-1)[0];
   const presets = [
-    '@babel/preset-env',
+    "@babel/preset-env",
     [
-      '@babel/preset-react',
+      "@babel/preset-react",
       {
-        development: mode === 'development',
-      },
+        development: mode === "development"
+      }
     ],
-    '@babel/preset-typescript',
+    "@babel/preset-typescript"
   ];
   const plugins = [
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-transform-runtime',
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
     [
-      'import',
-      { libraryName: 'antd', libraryDirectory: 'lib', style: true },
-      'ant',
+      "import",
+      { libraryName: "antd", libraryDirectory: "lib", style: true },
+      "ant"
     ],
     [
-      'import',
+      "import",
       {
-        libraryName: 'ant-design-pro',
-        libraryDirectory: 'lib',
+        libraryName: "ant-design-pro",
+        libraryDirectory: "lib",
         style: true,
-        camel2DashComponentName: false,
+        camel2DashComponentName: false
       },
-      'ant-design-pro',
-    ],
+      "ant-design-pro"
+    ]
   ];
 
-  //development environment need react-hot-loader/babel
-  if(mode === 'development'){
-    plugins.unshift("react-hot-loader/babel")
+  // development environment need react-hot-loader/babel
+  if (mode === "development") {
+    plugins.unshift("react-hot-loader/babel");
   }
 
   return {
     presets,
-    plugins,
+    plugins
   };
 };
