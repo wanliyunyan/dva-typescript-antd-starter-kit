@@ -34,7 +34,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new HardSourceWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new HardSourceWebpackPlugin()
+    // new webpack.HotModuleReplacementPlugin()
   ]
 };

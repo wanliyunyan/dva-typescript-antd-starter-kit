@@ -1,9 +1,8 @@
-import { Button, Divider, Icon, Layout, Menu } from "antd";
-import classNames from "classnames";
+import { Button, Divider, ConfigProvider, Icon, Layout, Menu } from "antd";
+import zhCN from "antd/es/locale/zh_CN";
 import { connect } from "dva";
 import { Link, Redirect, Route, routerRedux, Switch } from "dva/router";
 import React, { Suspense } from "react";
-import { ContainerQuery } from "react-container-query";
 import { getNavData } from "../common/nav";
 import { getRouteData } from "../utils/utils";
 
@@ -11,27 +10,6 @@ import styles from "./BasicLayout.less";
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-const query = {
-  "screen-xs": {
-    maxWidth: 575
-  },
-  "screen-sm": {
-    maxWidth: 767,
-    minWidth: 576
-  },
-  "screen-md": {
-    maxWidth: 991,
-    minWidth: 768
-  },
-  "screen-lg": {
-    maxWidth: 1199,
-    minWidth: 992
-  },
-  "screen-xl": {
-    minWidth: 1200
-  }
-};
 
 interface Props {
   dispatch?: (obj) => void;
@@ -260,10 +238,6 @@ export default class BasicLayout extends React.PureComponent<Props, State> {
       </Layout>
     );
 
-    return (
-      <ContainerQuery query={query}>
-        {params => <div className={classNames(params)}>{layout}</div>}
-      </ContainerQuery>
-    );
+    return <ConfigProvider locale={zhCN}>{layout}</ConfigProvider>;
   }
 }
