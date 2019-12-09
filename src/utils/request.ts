@@ -52,7 +52,7 @@ axios.interceptors.request.use(
   config => config,
   err => {
     message.error("request timed out");
-    return Promise.resolve(err);
+    return Promise.reject(err);
   }
 );
 
@@ -80,7 +80,7 @@ axios.interceptors.response.use(
           description: "process.env.NODE_ENV should not be empty"
         });
       }
-      return Promise.resolve(err);
+      return Promise.reject(err);
     }
     return null;
   }
