@@ -1,8 +1,21 @@
 import { lazy } from "react";
 
+// const BasicLayout = lazy(async () => ((await import("../layouts/BasicLayout")) as any).default);
+const BasicLayout = lazy(() => import("../layouts/BasicLayout"));
+// const analysis = lazy(async () => (import("../routes/IndexPage/IndexPage") as any).default);
+const analysis = lazy(() => import("../routes/IndexPage/IndexPage"));
+// const tableList = lazy(async () => (import("../routes/List/TableList") as any).default);
+const tableList = lazy(() => import("../routes/List/TableList"));
+// const login = lazy(async () => (import("../routes/User/Login") as any).default);
+const login = lazy(() => import("../routes/User/Login"));
+// const blankLayout = lazy(async () => ((await import("../layouts/BlankLayout")) as any).default);
+const blankLayout = lazy(() => import("../layouts/BlankLayout"));
+// const userLayout = lazy(async () => (import("../layouts/UserLayout") as any).default);
+const userLayout = lazy(() => import("../layouts/UserLayout"));
+
 const data = [
   {
-    component: lazy(() => import("../layouts/BasicLayout")),
+    component: BasicLayout,
     layout: "BasicLayout",
     name: "首页",
     path: "",
@@ -15,21 +28,11 @@ const data = [
           {
             name: "分析页",
             path: "analysis",
-            component: lazy(() => import("../routes/IndexPage/IndexPage"))
-          },
-          {
-            name: "监控页",
-            path: "monitor",
-            component: null
-          },
-          {
-            name: "工作台",
-            path: "workplace",
-            component: null
+            component: analysis
           }
         ]
       },
-      {
+      /* {
         name: "表单页",
         path: "form",
         icon: "form",
@@ -60,7 +63,7 @@ const data = [
             component: null
           }
         ]
-      },
+      }, */
       {
         name: "列表页",
         path: "list",
@@ -69,95 +72,14 @@ const data = [
           {
             name: "查询表格",
             path: "table-list",
-            component: lazy(() => import("../routes/List/TableList"))
-          },
-          {
-            name: "标准列表",
-            path: "basic-list",
-            component: null
-          },
-          {
-            name: "卡片列表",
-            path: "card-list",
-            component: null
-          },
-          {
-            name: "搜索列表（项目）",
-            path: "cover-card-list",
-            component: null
-          },
-          {
-            name: "搜索列表（应用）",
-            path: "filter-card-list",
-            component: null
-          },
-          {
-            name: "搜索列表（文章）",
-            path: "search",
-            component: null
-          }
-        ]
-      },
-      {
-        name: "详情页",
-        path: "profile",
-        icon: "profile",
-        children: [
-          {
-            name: "基础详情页",
-            path: "basic",
-            component: null
-          },
-          {
-            name: "高级详情页",
-            path: "advanced",
-            component: null
-          }
-        ]
-      },
-      {
-        name: "结果",
-        path: "result",
-        icon: "check-circle-o",
-        children: [
-          {
-            name: "成功",
-            path: "success",
-            component: null
-          },
-          {
-            name: "失败",
-            path: "fail",
-            component: null
-          }
-        ]
-      },
-      {
-        name: "异常",
-        path: "exception",
-        icon: "warning",
-        children: [
-          {
-            name: "403",
-            path: "403",
-            component: null
-          },
-          {
-            name: "404",
-            path: "404",
-            component: null
-          },
-          {
-            name: "500",
-            path: "500",
-            component: null
+            component: tableList
           }
         ]
       }
     ]
   },
   {
-    component: lazy(() => import("../layouts/UserLayout")),
+    component: userLayout,
     layout: "UserLayout",
     children: [
       {
@@ -168,24 +90,14 @@ const data = [
           {
             name: "登录",
             path: "login",
-            component: lazy(() => import("../routes/User/Login"))
-          },
-          {
-            name: "注册",
-            path: "register",
-            component: null
-          },
-          {
-            name: "注册结果",
-            path: "register-result",
-            component: null
+            component: login
           }
         ]
       }
     ]
   },
   {
-    component: lazy(() => import("../layouts/BlankLayout")),
+    component: blankLayout,
     layout: "BlankLayout",
     children: {
       name: "使用文档",

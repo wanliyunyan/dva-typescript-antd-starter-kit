@@ -1,12 +1,13 @@
-import { Button, Checkbox, Form, Icon, Input } from "antd";
-import { FormComponentProps } from "antd/lib/form";
+import { Button, Checkbox, Form, Input } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { connect } from "dva";
-import React, { Component } from "react";
+import React from "react";
+import { GlobalStateProps } from "src/common/interface";
 import styles from "./Login.less";
 
 const { Item } = Form;
 
-interface Props extends FormComponentProps {
+interface Props {
   dispatch?: (obj) => void;
   user: {
     loading?: boolean;
@@ -17,117 +18,83 @@ interface Props extends FormComponentProps {
   };
 }
 
-class Login extends Component<Props, any> {
-  public interval;
+const Index = (props: Props) => {
+  const [form] = Form.useForm();
+  const {
+    user: { loading }
+  } = props;
 
-  public componentWillUnmount(): void {
-    clearInterval(this.interval);
-  }
-
-  public handleSubmit = (e): void => {
-    const { dispatch, form } = this.props;
-    e.preventDefault();
-
-    form.validateFields({ force: true }, (err, values): void => {
-      if (!err) {
-        dispatch({
-          type: "user/login",
-          payload: values
-        });
-      }
+  const onFinish = values => {
+    const { dispatch } = props;
+    dispatch({
+      type: "user/login",
+      payload: values
     });
   };
 
-  public render(): React.ReactNode {
-    const {
-      form,
-      user: { loading }
-    } = this.props;
-    const { getFieldDecorator } = form;
+  const onFinishFailed = ({ errorFields }) => {
+    form.scrollToField(errorFields[0].name);
+  };
 
-    return (
-      <div className={styles.main}>
-        <Form onSubmit={this.handleSubmit}>
-          <Item>
-            {getFieldDecorator("username", {
-              rules: [
-                {
-                  required: true,
-                  message: "please enter your username"
-                }
-              ]
-            })(
-              <Input
-                size="large"
-                prefix={<Icon type="user" className={styles.prefixIcon} />}
-                placeholder="any"
-              />
-            )}
-          </Item>
-          <Item>
-            {getFieldDecorator("password", {
-              rules: [
-                {
-                  required: true,
-                  message: "please enter your password"
-                }
-              ]
-            })(
-              <Input
-                size="large"
-                prefix={<Icon type="lock" className={styles.prefixIcon} />}
-                type="password"
-                placeholder="any"
-              />
-            )}
+  return (
+    <div className={styles.main}>
+      <Form
+        form={form}
+        name="control-hooks"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Item
+          name="username"
+          rules={[{ required: true, message: "Please input your Username!" }]}
+        >
+          <Input
+            size="large"
+            prefix={<UserOutlined className={styles.prefixIcon} />}
+            placeholder="any"
+          />
+        </Item>
+
+        <Item
+          name="password"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
+          <Input
+            size="large"
+            prefix={<LockOutlined className={styles.prefixIcon} />}
+            type="password"
+            placeholder="any"
+          />
+        </Item>
+
+        <Item>
+          <Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
           </Item>
 
-          <Item className={styles.additional}>
-            {getFieldDecorator("remember", {
-              valuePropName: "checked",
-              initialValue: true
-            })(<Checkbox>Remember me</Checkbox>)}
-            <Button type="link" className={styles.forgot}>
-              forget password
-            </Button>
-            <Button
-              size="large"
-              loading={loading}
-              className={styles.submit}
-              type="primary"
-              htmlType="submit"
-            >
-              login
-            </Button>
-          </Item>
-        </Form>
-      </div>
-    );
-  }
-}
+          <Button className={styles.forgot} type="link">
+            Forgot password
+          </Button>
+        </Item>
 
-export default connect(state => ({
+        <Item>
+          {}
+          <Button
+            htmlType="submit"
+            className={styles.submit}
+            size="large"
+            loading={loading}
+            type="primary"
+          >
+            login
+          </Button>
+          Or <Button type="link">register now!</Button>
+        </Item>
+      </Form>
+    </div>
+  );
+};
+
+export default connect((state: GlobalStateProps) => ({
   user: state.user
-}))(
-  Form.create<Props>({
-    onFieldsChange(props, changedFields) {
-      props.dispatch({
-        type: "user/save",
-        payload: changedFields
-      });
-    },
-    mapPropsToFields(props) {
-      const { user } = props;
-      return {
-        username: Form.createFormField({
-          ...user.loginData.username,
-          value: user.loginData.username.value
-        }),
-        password: Form.createFormField({
-          ...user.loginData.password,
-          value: user.loginData.password.value
-        })
-      };
-    }
-  })(Login)
-);
+}))(Index);

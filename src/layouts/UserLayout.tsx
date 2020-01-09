@@ -3,39 +3,29 @@ import React from "react";
 import { getRouteData } from "../utils/utils";
 import styles from "./UserLayout.less";
 
-export default class UserLayout extends React.PureComponent {
-  public render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.top}>
-          <Link to="/">
-            <img
-              alt=""
-              src="https://gw.alipayobjects.com/zos/rmsportal/NGCCBOENpgTXpBWUIPnI.svg"
-            />
-            <span>Ant Design</span>
-          </Link>
-        </div>
-        {getRouteData("UserLayout").map(item => {
-          const Component = item.component;
-
-          return Component ? (
-            <Route
-              exact={item.exact}
-              key={item.path}
-              path={item.path}
-              render={props => <Component />}
-            />
-          ) : (
-            <Route
-              exact={item.exact}
-              key={item.path}
-              path={item.path}
-              component={item.component}
-            />
-          );
-        })}
+export default () => {
+  return (
+    <div className={styles.main}>
+      <div className={styles.top}>
+        <Link to="/">
+          <img
+            alt=""
+            src="https://gw.alipayobjects.com/zos/rmsportal/NGCCBOENpgTXpBWUIPnI.svg"
+          />
+          <span>Ant Design</span>
+        </Link>
       </div>
-    );
-  }
-}
+      {getRouteData("UserLayout").map(item => {
+        const Component = item.component;
+        return (
+          <Route
+            exact={item.exact}
+            key={item.path}
+            path={item.path}
+            render={() => <Component />}
+          />
+        );
+      })}
+    </div>
+  );
+};

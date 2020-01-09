@@ -1,7 +1,6 @@
-import { Model } from "dva";
 import { create, load, query, remove, update } from "../services/list";
 
-const list: Model = {
+export default {
   namespace: "list",
   state: {
     list: []
@@ -106,5 +105,3 @@ const list: Model = {
     }
   }
 };
-
-export default list;

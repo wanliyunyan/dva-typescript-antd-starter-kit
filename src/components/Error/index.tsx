@@ -26,7 +26,7 @@ export default class Index extends PureComponent<any, State> {
           <p>{info.toString()}</p>
         </>
       ) : (
-        <h1>The page crashed due to an unknown error~~~~</h1>
+        <h1>The page crashed due to unknown errors~~~~</h1>
       );
     }
     return children;
