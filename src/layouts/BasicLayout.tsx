@@ -1,10 +1,10 @@
 import { Button, Divider, ConfigProvider, Layout, Menu } from "antd";
 import Icon, { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import zhCN from "antd/es/locale/zh_CN";
-import { connect } from "dva";
+import { useSelector, useDispatch } from "dva";
 import { Link, Redirect, Route, routerRedux, Switch } from "dva/router";
 import React, { Suspense, useState } from "react";
-import { DispatchProps, GlobalStateProps } from "src/common/interface";
+import { GlobalStateProps } from "src/common/interface";
 import { getNavData } from "../common/nav";
 import { getRouteData } from "../utils/utils";
 import styles from "./BasicLayout.less";
@@ -12,15 +12,12 @@ import styles from "./BasicLayout.less";
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
-interface Props extends DispatchProps {
-  collapsed?: boolean;
-  location?: {
-    pathname: string;
-  };
-}
+const Index = () => {
+  const dispatch = useDispatch();
+  const store = useSelector((state: GlobalStateProps) => state);
+  const { location } = store.router;
+  const { collapsed } = store.global;
 
-const Index = (props: Props) => {
-  const { dispatch, collapsed, location } = props;
   const [menus] = useState(
     getNavData().reduce((arr, current) => arr.concat(current.children), [])
   );
@@ -210,6 +207,4 @@ const Index = (props: Props) => {
   return <ConfigProvider locale={zhCN}>{layout}</ConfigProvider>;
 };
 
-export default connect((state: GlobalStateProps) => ({
-  collapsed: state.global.collapsed
-}))(Index);
+export default Index;

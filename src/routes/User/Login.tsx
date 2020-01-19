@@ -1,31 +1,19 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { connect } from "dva";
+import { useSelector, useDispatch } from "dva";
 import React from "react";
 import { GlobalStateProps } from "src/common/interface";
 import styles from "./Login.less";
 
 const { Item } = Form;
 
-interface Props {
-  dispatch?: (obj) => void;
-  user: {
-    loading?: boolean;
-    loginData: {
-      username: any;
-      password: any;
-    };
-  };
-}
-
-const Index = (props: Props) => {
+const Index = () => {
   const [form] = Form.useForm();
-  const {
-    user: { loading }
-  } = props;
+  const dispatch = useDispatch();
+  const store = useSelector((state: GlobalStateProps) => state);
+  const { loading } = store.user;
 
   const onFinish = values => {
-    const { dispatch } = props;
     dispatch({
       type: "user/login",
       payload: values
@@ -95,6 +83,4 @@ const Index = (props: Props) => {
   );
 };
 
-export default connect((state: GlobalStateProps) => ({
-  user: state.user
-}))(Index);
+export default Index;

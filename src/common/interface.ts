@@ -1,11 +1,3 @@
-export interface DispatchProps {
-  dispatch?: (obj) => void;
-}
-
-export interface CommonProps extends DispatchProps {
-  loading: any;
-}
-
 export interface LoadingProps {
   global: boolean;
   models: any;
@@ -13,7 +5,11 @@ export interface LoadingProps {
 }
 
 export interface GlobalStateProps {
-  router: any;
+  router: {
+    location: {
+      pathname: string;
+    };
+  };
   global: {
     collapsed: boolean;
   };

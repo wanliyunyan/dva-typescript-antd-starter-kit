@@ -1,16 +1,17 @@
 import { Button, Card, Col, Divider, Row, Table } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
-import { connect } from "dva";
+import { useSelector, useDispatch } from "dva";
 import React from "react";
-import { GlobalStateProps, CommonProps } from "src/common/interface";
+import { GlobalStateProps } from "src/common/interface";
 import styles from "./TableList.less";
 
-interface Props extends CommonProps {
-  list?: object[];
-}
-
-const Index = (props: Props) => {
-  const { list, dispatch, loading } = props;
+export default () => {
+  const dispatch = useDispatch();
+  const store = useSelector((state: GlobalStateProps) => state);
+  const { list } = store.list;
+  const {
+    loading: { effects }
+  } = store;
   const columns = [
     {
       title: "title",
@@ -125,14 +126,9 @@ const Index = (props: Props) => {
           columns={columns}
           dataSource={list}
           rowKey="id"
-          loading={loading["list/query"]}
+          loading={effects["list/query"]}
         />
       </Card>
     </div>
   );
 };
-
-export default connect((state: GlobalStateProps) => ({
-  ...state.list,
-  loading: state.loading.effects
-}))(Index);
