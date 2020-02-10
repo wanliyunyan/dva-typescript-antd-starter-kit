@@ -6,7 +6,7 @@ import { Link, Redirect, Route, routerRedux, Switch } from "dva/router";
 import React, { Suspense, useState } from "react";
 import { GlobalStateProps } from "src/common/interface";
 import { getNavData } from "../common/nav";
-import { getRouteData } from "../utils/utils";
+import { getRouteData, getLocation } from "../utils/utils";
 import styles from "./BasicLayout.less";
 
 const { Header, Sider, Content } = Layout;
@@ -15,7 +15,7 @@ const { SubMenu } = Menu;
 const Index = () => {
   const dispatch = useDispatch();
   const store = useSelector((state: GlobalStateProps) => state);
-  const { location } = store.router;
+  const location = getLocation();
   const { collapsed } = store.global;
 
   const [menus] = useState(

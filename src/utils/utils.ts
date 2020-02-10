@@ -1,5 +1,15 @@
 import { cloneDeep } from "lodash";
+import { useSelector } from "dva";
 import navData from "../common/nav";
+import { GlobalStateProps } from "../common/interface";
+
+export function getLoading() {
+  return useSelector((state: GlobalStateProps) => state.loading.effects);
+}
+
+export function getLocation() {
+  return useSelector((state: GlobalStateProps) => state.router.location);
+}
 
 function getPlainNode(nodeList, parentPath = "") {
   const arr = [];
