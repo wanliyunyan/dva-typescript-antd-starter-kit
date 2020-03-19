@@ -2,8 +2,8 @@ import { lazy } from "react";
 
 // const BasicLayout = lazy(async () => ((await import("../layouts/BasicLayout")) as any).default);
 const BasicLayout = lazy(() => import("../layouts/BasicLayout"));
-// const analysis = lazy(async () => (import("../routes/IndexPage/IndexPage") as any).default);
-const analysis = lazy(() => import("../routes/IndexPage/IndexPage"));
+// const welcome = lazy(async () => (import("../routes/IndexPage/IndexPage") as any).default);
+const welcome = lazy(() => import("../routes/IndexPage/IndexPage"));
 // const tableList = lazy(async () => (import("../routes/List/TableList") as any).default);
 const tableList = lazy(() => import("../routes/List/TableList"));
 // const login = lazy(async () => (import("../routes/User/Login") as any).default);
@@ -26,9 +26,9 @@ const data = [
         path: "dashboard",
         children: [
           {
-            name: "分析页",
-            path: "analysis",
-            component: analysis
+            name: "welcome",
+            path: "welcome",
+            component: welcome
           }
         ]
       },
@@ -83,12 +83,12 @@ const data = [
     layout: "UserLayout",
     children: [
       {
-        name: "帐户",
+        name: "帐户user",
         icon: "user",
         path: "user",
         children: [
           {
-            name: "登录",
+            name: "登录login",
             path: "login",
             component: login
           }
@@ -100,7 +100,7 @@ const data = [
     component: blankLayout,
     layout: "BlankLayout",
     children: {
-      name: "使用文档",
+      name: "document",
       path: "http://pro.ant.design/docs/getting-started",
       target: "_blank",
       icon: "book"

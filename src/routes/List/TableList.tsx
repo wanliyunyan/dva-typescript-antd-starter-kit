@@ -1,17 +1,16 @@
 import { Button, Card, Col, Divider, Row, Table } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
-import { useSelector, useDispatch } from "dva";
+import { useDispatch } from "dva";
 import React from "react";
-import { GlobalStateProps } from "src/common/interface";
 import styles from "./TableList.less";
+import useSWR, { trigger, mutate } from "swr";
+import { get } from "src/utils/request";
 
 export default () => {
+  const { data, error } = useSWR("/api/list", get);
+
   const dispatch = useDispatch();
-  const store = useSelector((state: GlobalStateProps) => state);
-  const { list } = store.list;
-  const {
-    loading: { effects }
-  } = store;
+
   const columns = [
     {
       title: "title",
@@ -99,12 +98,21 @@ export default () => {
               htmlType="button"
               block
               onClick={(): void => {
+                // send a request to the API to update the data
                 dispatch({
                   type: "list/create",
                   payload: {
                     title: "this is new"
                   }
                 });
+                // update the local data immediately and revalidate (refetch)
+                // mutate("/api/list", { ...data, title: "this is new" });
+                // not work
+                /*mutate("/api/list", async users => {
+                  console.log(users)
+                  const list = await get("/api/list");
+                  return [];
+                });*/
               }}
             >
               add
@@ -115,7 +123,7 @@ export default () => {
             <Button
               htmlType="button"
               onClick={(): void => {
-                dispatch({ type: "list/query" });
+                trigger("/api/list");
               }}
             >
               <ReloadOutlined />
@@ -124,9 +132,9 @@ export default () => {
         </Row>
         <Table
           columns={columns}
-          dataSource={list}
+          dataSource={(data as any)?.data}
           rowKey="id"
-          loading={effects["list/query"]}
+          loading={!data}
         />
       </Card>
     </div>

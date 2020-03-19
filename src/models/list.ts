@@ -17,9 +17,9 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => {
         if (pathname === "/list/table-list") {
-          dispatch({
+          /*dispatch({
             type: "query"
-          });
+          });*/
         }
       });
     }
