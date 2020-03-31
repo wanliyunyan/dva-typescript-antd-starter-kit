@@ -1,10 +1,11 @@
 import { Button, Card, Col, Divider, Row, Table } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
 import { useDispatch } from "dva";
+import { merge } from "lodash";
 import React from "react";
-import styles from "./TableList.less";
 import useSWR, { trigger, mutate } from "swr";
 import { get } from "src/utils/request";
+import styles from "./TableList.less";
 
 export default () => {
   const { data, error } = useSWR("/api/list", get);
@@ -15,22 +16,22 @@ export default () => {
     {
       title: "title",
       dataIndex: "title",
-      key: "title"
+      key: "title",
     },
     {
       title: "desc",
       dataIndex: "desc",
-      key: "desc"
+      key: "desc",
     },
     {
       title: "tag",
       dataIndex: "tag",
-      key: "tag"
+      key: "tag",
     },
     {
       title: "views",
       dataIndex: "views",
-      key: "views"
+      key: "views",
     },
     {
       title: "images",
@@ -38,7 +39,7 @@ export default () => {
       key: "images",
       render: (text): React.ReactNode => (
         <img src={text} style={{ height: "30px", width: "auto" }} alt="" />
-      )
+      ),
     },
     {
       title: "Action",
@@ -52,8 +53,23 @@ export default () => {
                 type: "list/update",
                 payload: {
                   ...row,
-                  title: "title has changed"
-                }
+                  title: "title has changed",
+                },
+              });
+
+              mutate("/api/list", async (users) => {
+                return {
+                  ...users,
+                  data: users.data.map((obj) => {
+                    if (obj.id === row.id) {
+                      return merge(obj, {
+                        ...row,
+                        title: "title has changed",
+                      });
+                    }
+                    return obj;
+                  }),
+                };
               });
             }}
           >
@@ -65,7 +81,7 @@ export default () => {
             onClick={(): void => {
               dispatch({
                 type: "list/delete",
-                payload: row.id
+                payload: row.id,
               });
             }}
           >
@@ -77,15 +93,15 @@ export default () => {
             onClick={(): void => {
               dispatch({
                 type: "list/load",
-                payload: row.id
+                payload: row.id,
               });
             }}
           >
             view
           </Button>
         </span>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -98,21 +114,12 @@ export default () => {
               htmlType="button"
               block
               onClick={(): void => {
-                // send a request to the API to update the data
                 dispatch({
                   type: "list/create",
                   payload: {
-                    title: "this is new"
-                  }
+                    title: "this is new",
+                  },
                 });
-                // update the local data immediately and revalidate (refetch)
-                // mutate("/api/list", { ...data, title: "this is new" });
-                // not work
-                /*mutate("/api/list", async users => {
-                  console.log(users)
-                  const list = await get("/api/list");
-                  return [];
-                });*/
               }}
             >
               add

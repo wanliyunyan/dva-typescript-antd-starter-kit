@@ -17,7 +17,7 @@ const themeVariables = lessToJs(
   )
 );
 
-module.exports = function() {
+module.exports = function () {
   const env = process.argv.slice(-1)[0];
   const dev = env === "development";
   const prod = env === "production";
@@ -27,32 +27,30 @@ module.exports = function() {
       ctx: {
         "postcss-preset-env": {
           stage: 0, // experimental
-          autoprefixer: prod
+          autoprefixer: prod,
         },
         cssnano: prod
           ? {
-              preset: "default"
+              preset: "default",
             }
-          : false
-      }
-    }
+          : false,
+      },
+    },
   };
 
   return merge(dev ? devConfig : prodConfig, {
     mode: env,
-    entry: {
-      bundle: "./src/index.tsx"
-    },
+    entry: ["react-hot-loader/patch", "./src"],
     module: {
       rules: [
         {
           test: /\.([tj])sx?$/,
           use: [
             {
-              loader: "babel-loader"
-            }
+              loader: "babel-loader",
+            },
           ],
-          include: [path.join(__dirname, "../src")]
+          include: [path.join(__dirname, "../src")],
         },
         {
           test: /\.(sa|sc|c)ss$/,
@@ -60,13 +58,13 @@ module.exports = function() {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: dev
-              }
+                hmr: dev,
+              },
             },
             "css-loader",
             "postcss-loader",
-            "sass-loader"
-          ]
+            "sass-loader",
+          ],
         },
         {
           test: /\.less$/,
@@ -75,8 +73,8 @@ module.exports = function() {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                hmr: dev
-              }
+                hmr: dev,
+              },
             },
             {
               loader: "css-loader",
@@ -84,48 +82,48 @@ module.exports = function() {
                 importLoaders: 2,
                 localsConvention: "camelCase",
                 modules: {
-                  localIdentName: "[path][name]__[local]--[hash:base64:5]"
-                }
-              }
+                  localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                },
+              },
             },
             {
               loader: "postcss-loader",
-              options: postcssOption
+              options: postcssOption,
             },
             {
               loader: "less-loader",
               options: {
                 javascriptEnabled: true,
-                modifyVars: themeVariables
-              }
-            }
-          ]
+                modifyVars: themeVariables,
+              },
+            },
+          ],
         },
         {
           test: /\.less$/,
           exclude: /src/,
           use: [
             {
-              loader: MiniCssExtractPlugin.loader
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: "css-loader",
               options: {
-                importLoaders: 2
-              }
+                importLoaders: 2,
+              },
             },
             {
               loader: "postcss-loader",
-              options: postcssOption
+              options: postcssOption,
             },
             {
               loader: "less-loader",
               options: {
                 javascriptEnabled: true,
-                modifyVars: themeVariables
-              }
-            }
-          ]
+                modifyVars: themeVariables,
+              },
+            },
+          ],
         },
         {
           test: /\.(ico|pdf|eot|otf|ttf|woff|woff2)$/,
@@ -136,10 +134,10 @@ module.exports = function() {
                 limit: 8192,
                 name: "[hash:8].[name].[ext]",
                 outputPath: "assets/images/",
-                publicPath: "assets/images"
-              }
-            }
-          ]
+                publicPath: "assets/images",
+              },
+            },
+          ],
         },
         {
           test: /\.(png|jpe?g|gif|webp)$/,
@@ -150,38 +148,38 @@ module.exports = function() {
                 limit: 8192,
                 name: "[hash:8].[name].[ext]",
                 outputPath: "assets/images/",
-                publicPath: "assets/images"
-              }
+                publicPath: "assets/images",
+              },
             },
             {
               loader: "image-webpack-loader",
               options: {
                 mozjpeg: {
                   progressive: true,
-                  quality: 65
+                  quality: 65,
                 },
                 optipng: {
-                  enabled: true
+                  enabled: true,
                 },
                 pngquant: {
                   quality: [0.65, 0.9],
-                  speed: 4
+                  speed: 4,
                 },
                 gifsicle: {
-                  interlaced: false
+                  interlaced: false,
                 },
                 webp: {
-                  quality: 75
-                }
-              }
-            }
-          ]
+                  quality: 75,
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.svg$/,
-          loader: "svg-sprite-loader"
-        }
-      ]
+          loader: "svg-sprite-loader",
+        },
+      ],
     },
     optimization: {
       splitChunks: {
@@ -191,45 +189,45 @@ module.exports = function() {
             test: /[\\/]node_modules[\\/]/,
             chunks: "all",
             priority: 10,
-            enforce: true
+            enforce: true,
           },
           antd: {
             name: "antd",
-            test: module => {
+            test: (module) => {
               return /ant|rc-/.test(module.context);
             },
             chunks: "all",
             priority: 11,
-            enforce: true
+            enforce: true,
           },
           util: {
             name: "util",
-            test: module => {
+            test: (module) => {
               return /lodash|moment/.test(module.context);
             },
             chunks: "all",
             priority: 12,
-            enforce: true
+            enforce: true,
           },
           react: {
             name: "react",
-            test: module => {
+            test: (module) => {
               return /react|redux/.test(module.context);
             },
             chunks: "all",
             priority: 13,
-            enforce: true
-          }
-        }
+            enforce: true,
+          },
+        },
       },
       runtimeChunk: {
-        name: "manifest"
-      }
+        name: "manifest",
+      },
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: "[name].css",
-        chunkFilename: "[name].css"
+        chunkFilename: "[name].css",
       }),
       new HtmlWebpackPlugin({
         title: "wanliyunyan",
@@ -237,19 +235,19 @@ module.exports = function() {
         template: "src/index.ejs",
         filename: "index.html",
         hash: true,
-        minify: true
+        minify: true,
       }),
       new webpack.IgnorePlugin({
         resourceRegExp: /^\.\/locale$/,
-        contextRegExp: /moment$/
-      })
+        contextRegExp: /moment$/,
+      }),
     ],
     resolve: {
       alias: {
-        src: path.resolve(__dirname, "../src/")
+        src: path.resolve(__dirname, "../src/"),
       },
       extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-      modules: [path.resolve(__dirname), "node_modules"]
-    }
+      modules: [path.resolve(__dirname), "node_modules"],
+    },
   });
 };

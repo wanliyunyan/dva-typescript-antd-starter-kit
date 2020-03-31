@@ -1,19 +1,9 @@
 import { cloneDeep } from "lodash";
-import { useSelector } from "dva";
 import navData from "../common/nav";
-import { GlobalStateProps } from "../common/interface";
-
-export function getLoading() {
-  return useSelector((state: GlobalStateProps) => state.loading.effects);
-}
-
-export function getLocation() {
-  return useSelector((state: GlobalStateProps) => state.router.location);
-}
 
 function getPlainNode(nodeList, parentPath = "") {
   const arr = [];
-  nodeList.forEach(node => {
+  nodeList.forEach((node) => {
     const item = node;
     item.path = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/");
     item.exact = true;
@@ -31,11 +21,11 @@ function getPlainNode(nodeList, parentPath = "") {
 
 export function getRouteData(path) {
   if (
-    !navData.some(item => item.layout === path) ||
-    !navData.filter(item => item.layout === path)[0].children
+    !navData.some((item) => item.layout === path) ||
+    !navData.filter((item) => item.layout === path)[0].children
   ) {
     return null;
   }
-  const dataList = cloneDeep(navData.filter(item => item.layout === path)[0]);
+  const dataList = cloneDeep(navData.filter((item) => item.layout === path)[0]);
   return getPlainNode(dataList.children);
 }

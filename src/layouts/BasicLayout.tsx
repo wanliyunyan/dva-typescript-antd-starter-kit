@@ -2,11 +2,18 @@ import { Button, Divider, ConfigProvider, Layout, Menu } from "antd";
 import Icon, { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import zhCN from "antd/es/locale/zh_CN";
 import { useSelector, useDispatch } from "dva";
-import { Link, Redirect, Route, routerRedux, Switch } from "dva/router";
+import {
+  Link,
+  Redirect,
+  Route,
+  routerRedux,
+  Switch,
+  useLocation,
+} from "dva/router";
 import React, { Suspense, useState } from "react";
 import { GlobalStateProps } from "src/common/interface";
 import { getNavData } from "../common/nav";
-import { getRouteData, getLocation } from "../utils/utils";
+import { getRouteData } from "../utils/utils";
 import styles from "./BasicLayout.less";
 
 const { Header, Sider, Content } = Layout;
@@ -14,9 +21,9 @@ const { SubMenu } = Menu;
 
 const Index = () => {
   const dispatch = useDispatch();
-  const store = useSelector((state: GlobalStateProps) => state);
-  const location = getLocation();
-  const { collapsed } = store.global;
+  const global = useSelector((state: GlobalStateProps) => state.global);
+  const location = useLocation();
+  const { collapsed } = global;
 
   const [menus] = useState(
     getNavData().reduce((arr, current) => arr.concat(current.children), [])
@@ -43,17 +50,17 @@ const Index = () => {
   const [openKeys, setOpenKeys] = useState(getDefaultCollapsedSubMenus());
 
   // 折叠
-  const onCollapse = collapsedParam => {
+  const onCollapse = (collapsedParam) => {
     dispatch({
       type: "global/changeLayoutCollapsed",
-      payload: collapsedParam
+      payload: collapsedParam,
     });
   };
 
-  const handleOpenChange = openKeysParam => {
+  const handleOpenChange = (openKeysParam) => {
     const lastOpenKey = openKeysParam[openKeysParam.length - 1];
     const isMainMenu = menus.some(
-      item => item.key === lastOpenKey || item.path === lastOpenKey
+      (item) => item.key === lastOpenKey || item.path === lastOpenKey
     );
 
     setOpenKeys(isMainMenu ? [lastOpenKey] : [...openKeysParam]);
@@ -63,7 +70,7 @@ const Index = () => {
     if (!menusData) {
       return [];
     }
-    return menusData.map(item => {
+    return menusData.map((item) => {
       if (!item.name) {
         return null;
       }
@@ -75,7 +82,7 @@ const Index = () => {
         itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/");
       }
 
-      if (item.children && item.children.some(child => child.name)) {
+      if (item.children && item.children.some((child) => child.name)) {
         return (
           <SubMenu
             title={
@@ -118,14 +125,14 @@ const Index = () => {
   const toggle = () => {
     dispatch({
       type: "global/changeLayoutCollapsed",
-      payload: !collapsed
+      payload: !collapsed,
     });
   };
 
   const menuProps = collapsed
     ? {}
     : {
-        openKeys
+        openKeys,
       };
 
   const layout = (
@@ -174,7 +181,7 @@ const Index = () => {
               dispatch(
                 routerRedux.push({
                   pathname: "/user/login",
-                  search: ""
+                  search: "",
                 })
               );
             }}
@@ -185,7 +192,7 @@ const Index = () => {
         <Content style={{ margin: "24px 24px 0", height: "100%" }}>
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
-              {getRouteData("BasicLayout").map(item => {
+              {getRouteData("BasicLayout").map((item) => {
                 const Component = item.component;
                 return (
                   <Route

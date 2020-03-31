@@ -3,26 +3,18 @@ import { create, load, query, remove, update } from "../services/list";
 export default {
   namespace: "list",
   state: {
-    list: []
+    list: [],
   },
   reducers: {
     listSave(state, { payload }) {
       return {
         ...state,
-        list: payload
+        list: payload,
       };
-    }
+    },
   },
   subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
-        if (pathname === "/list/table-list") {
-          /*dispatch({
-            type: "query"
-          });*/
-        }
-      });
-    }
+    setup() {},
   },
 
   effects: {
@@ -32,7 +24,7 @@ export default {
 
         if (success) {
           yield put({
-            type: "query"
+            type: "query",
           });
         }
       } catch (e) {
@@ -47,7 +39,7 @@ export default {
 
         if (success) {
           yield put({
-            type: "query"
+            type: "query",
           });
         }
       } catch (e) {
@@ -62,7 +54,7 @@ export default {
 
         if (success) {
           yield put({
-            type: "query"
+            type: "query",
           });
         }
       } catch (e) {
@@ -78,7 +70,7 @@ export default {
         if (success) {
           yield put({
             type: "listSave",
-            payload: data
+            payload: data,
           });
         }
       } catch (e) {
@@ -94,7 +86,7 @@ export default {
         if (success) {
           yield put({
             type: "listSave",
-            payload: [data]
+            payload: [data],
           });
         }
       } catch (e) {
@@ -102,6 +94,6 @@ export default {
       } finally {
         // empty
       }
-    }
-  }
+    },
+  },
 };

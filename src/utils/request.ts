@@ -49,35 +49,35 @@ export const del = async <T>(url: string, options?, config?): Promise<T> =>
 
 // interceptors
 axios.interceptors.request.use(
-  config => config,
-  err => {
+  (config) => config,
+  (err) => {
     message.error("request timed out");
     return Promise.reject(err);
   }
 );
 
 axios.interceptors.response.use(
-  result => result,
-  err => {
+  (result) => result,
+  (err) => {
     if (err && err.response) {
       const {
-        response: { data, status, statusText }
+        response: { data, status, statusText },
       } = err;
       if (process.env.NODE_ENV === "development") {
         notification.error({
           message: `${status}:${statusText}`,
-          description: "your description"
+          description: "your description",
         });
       } else if (process.env.NODE_ENV === "production") {
         notification.error({
           message: "system information",
           description:
-            "The system is busy and cannot get the return value of the interface correctly. Please try again later!"
+            "The system is busy and cannot get the return value of the interface correctly. Please try again later!",
         });
       } else {
         notification.error({
           message: "system information",
-          description: "process.env.NODE_ENV should not be empty"
+          description: "process.env.NODE_ENV should not be empty",
         });
       }
       return Promise.reject(err);

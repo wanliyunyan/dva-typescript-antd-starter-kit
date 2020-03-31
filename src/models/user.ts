@@ -6,12 +6,12 @@ export default {
     loading: false,
     loginData: {
       username: {
-        value: ""
+        value: "",
       },
       password: {
-        value: ""
-      }
-    }
+        value: "",
+      },
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -20,23 +20,23 @@ export default {
           // empty
         }
       });
-    }
+    },
   },
   effects: {
     *login({ payload }, { put }) {
       try {
         yield put({
           type: "querySuccess",
-          payload: { loading: true }
+          payload: { loading: true },
         });
         yield put(routerRedux.push("/dashboard/welcome"));
       } finally {
         yield put({
           type: "querySuccess",
-          payload: { loading: false }
+          payload: { loading: false },
         });
       }
-    }
+    },
   },
   reducers: {
     save(state, { payload }) {
@@ -44,12 +44,12 @@ export default {
         ...state,
         loginData: {
           ...state.loginData,
-          ...payload
-        }
+          ...payload,
+        },
       };
     },
     querySuccess(state, action) {
       return { ...state, ...action.payload };
-    }
-  }
+    },
+  },
 };

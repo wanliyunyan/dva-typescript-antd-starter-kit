@@ -10,13 +10,13 @@ const { Item } = Form;
 const Index = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const store = useSelector((state: GlobalStateProps) => state);
-  const { loading } = store.user;
+  const user = useSelector((state: GlobalStateProps) => state.user);
+  const { loading } = user;
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     dispatch({
       type: "user/login",
-      payload: values
+      payload: values,
     });
   };
 

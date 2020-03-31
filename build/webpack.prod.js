@@ -13,11 +13,11 @@ const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = {
   output: {
     path: path.join(__dirname, "/../dist/"),
-    filename: "assets/js/[name].js"
+    filename: "assets/js/[name].js",
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CompressionPlugin()
+    new CompressionPlugin(),
     /* new CopyWebpackPlugin([
         {
           from: '',
@@ -32,10 +32,10 @@ module.exports = {
         parallel: os.cpus().length,
         terserOptions: {
           output: {
-            comments: false
-          }
-        }
-      })
-    ]
-  }
+            comments: false,
+          },
+        },
+      }),
+    ],
+  },
 };

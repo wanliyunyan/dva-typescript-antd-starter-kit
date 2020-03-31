@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   const mode = process.argv.slice(-1)[0];
   const presets = [
@@ -6,10 +6,10 @@ module.exports = function(api) {
     [
       "@babel/preset-react",
       {
-        development: mode === "development"
-      }
+        development: mode === "development",
+      },
     ],
-    "@babel/preset-typescript"
+    "@babel/preset-typescript",
   ];
   const plugins = [
     ["@babel/plugin-proposal-decorators", { legacy: true }],
@@ -21,7 +21,7 @@ module.exports = function(api) {
     [
       "import",
       { libraryName: "antd", libraryDirectory: "lib", style: true },
-      "ant"
+      "ant",
     ],
     [
       "import",
@@ -29,10 +29,10 @@ module.exports = function(api) {
         libraryName: "ant-design-pro",
         libraryDirectory: "lib",
         style: true,
-        camel2DashComponentName: false
+        camel2DashComponentName: false,
       },
-      "ant-design-pro"
-    ]
+      "ant-design-pro",
+    ],
   ];
 
   // development environment need react-hot-loader/babel
@@ -42,6 +42,6 @@ module.exports = function(api) {
 
   return {
     presets,
-    plugins
+    plugins,
   };
 };

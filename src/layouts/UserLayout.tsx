@@ -15,7 +15,7 @@ export default () => {
           <span>Ant Design</span>
         </Link>
       </div>
-      {getRouteData("UserLayout").map(item => {
+      {getRouteData("UserLayout").map((item) => {
         const Component = item.component;
         return (
           <Route

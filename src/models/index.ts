@@ -3,6 +3,6 @@
 const context = require.context("./", false, /\.ts$/);
 const keys = context.keys().filter((item): boolean => item !== "./index.ts");
 
-const models = keys.map(key => context(key));
+const models = keys.map((key) => context(key));
 
 export default models;

@@ -8,7 +8,7 @@ const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = {
   output: {
-    filename: "assets/js/[name].js"
+    filename: "assets/js/[name].js",
   },
   devServer: {
     historyApiFallback: true,
@@ -22,19 +22,19 @@ module.exports = {
     disableHostCheck: true,
     overlay: {
       errors: true,
-      warnings: false
+      warnings: false,
     },
     proxy: {
       "/api/*": {
         target: "http://localhost:9090",
         secure: false,
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin(),
     // new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
 };

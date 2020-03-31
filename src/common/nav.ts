@@ -28,9 +28,9 @@ const data = [
           {
             name: "welcome",
             path: "welcome",
-            component: welcome
-          }
-        ]
+            component: welcome,
+          },
+        ],
       },
       /* {
         name: "表单页",
@@ -72,11 +72,11 @@ const data = [
           {
             name: "查询表格",
             path: "table-list",
-            component: tableList
-          }
-        ]
-      }
-    ]
+            component: tableList,
+          },
+        ],
+      },
+    ],
   },
   {
     component: userLayout,
@@ -90,11 +90,11 @@ const data = [
           {
             name: "登录login",
             path: "login",
-            component: login
-          }
-        ]
-      }
-    ]
+            component: login,
+          },
+        ],
+      },
+    ],
   },
   {
     component: blankLayout,
@@ -103,9 +103,9 @@ const data = [
       name: "document",
       path: "http://pro.ant.design/docs/getting-started",
       target: "_blank",
-      icon: "book"
-    }
-  }
+      icon: "book",
+    },
+  },
 ];
 
 export function getNavData() {
