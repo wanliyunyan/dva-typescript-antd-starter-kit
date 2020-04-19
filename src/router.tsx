@@ -10,8 +10,9 @@ const { ConnectedRouter } = routerRedux;
 
 export default function ({ history }: any): React.ReactNode {
   return (
-    <Error>
-      <SWRDevtools cache={cache} mutate={mutate}>
+    <>
+      <SWRDevtools cache={cache} mutate={mutate} />
+      <Error>
         <ConnectedRouter history={history}>
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
@@ -24,7 +25,7 @@ export default function ({ history }: any): React.ReactNode {
             </Switch>
           </Suspense>
         </ConnectedRouter>
-      </SWRDevtools>
-    </Error>
+      </Error>
+    </>
   );
 }
