@@ -102,6 +102,7 @@ dynamic import react-hot-loader in development mode
 
 ## Package
 dependencies
+-   [@jjordy/swr-devtools](https://github.com/jjordy/swr-devtools) Devtools for SWR.
 -   [antd](https://github.com/ant-design/ant-design) A UI Design Language.
 -   [axios](https://github.com/axios/axios) Promise based HTTP client for the browser and node.js.
 -   [classnames](https://github.com/JedWatson/classnames) A simple javascript utility for conditionally joining classNames together.
@@ -115,12 +116,15 @@ dependencies
 -   [react-container-query](https://github.com/d6u/react-container-query) Parse CSS and add vendor prefixes to rules by Can I Use.
 -   [react-dom](https://github.com/facebook/react) This package serves as the entry point of the DOM-related rendering paths. It is intended to be paired with the isomorphic React, which will be shipped as react to npm.
 -   [react-hot-loader](https://github.com/gaearon/react-hot-loader) Tweak React components in real time.
--   [react-perf-devtool](https://github.com/nitin42/react-perf-devtool) A browser developer tool extension to inspect performance of React components.
+-   [swr](https://github.com/zeit/swr) React Hooks library for remote data fetching.
 
 devDependencies
 -   [@babel/core](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-proposal-class-properties](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-proposal-decorators](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
+-   [@babel/plugin-syntax-dynamic-import](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
+-   [@babel/plugin-proposal-nullish-coalescing-operator](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
+-   [@babel/plugin-proposal-optional-chaining](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-syntax-dynamic-import](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-transform-runtime](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/preset-env](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
@@ -152,15 +156,15 @@ devDependencies
 -   [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) Static AST checker for a11y rules on JSX elements.
 -   [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) ESLint plugin for Prettier formatting.
 -   [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) React specific linting rules for ESLint.
+-   [eslint-plugin-react-hooks](https://github.com/facebook/react) This ESLint plugin enforces the Rules of Hooks.
 -   [expect](https://github.com/facebook/jest) 
 -   [file-loader](https://github.com/webpack-contrib/file-loader) File Loader.
--   [happypack](https://github.com/amireh/happypack) Happiness in the form of faster webpack build times.
 -   [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
 -   [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) Simplifies creation of HTML files to serve your webpack bundles.
--   [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) Image loader module for webpack.
 -   [husky](https://github.com/typicode/husky) Git hooks made easy.
--   [json-server](https://github.com/typicode/json-server) Get a full fake REST API with zero coding in less than 30 seconds (seriously).
+-   [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) Image loader module for webpack.
 -   [ip](https://github.com/indutny/node-ip) IP address tools for node.js.
+-   [json-server](https://github.com/typicode/json-server) Get a full fake REST API with zero coding in less than 30 seconds (seriously).
 -   [less](https://github.com/less/less.js) Less. The dynamic stylesheet language.
 -   [less-loader](https://github.com/webpack-contrib/less-loader) Compiles Less to CSS.
 -   [less-vars-to-js](https://github.com/michaeltaranto/less-vars-to-js) Read LESS variables from the contents of a file and returning them as a javascript object.
