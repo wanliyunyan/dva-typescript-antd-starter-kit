@@ -93,8 +93,11 @@ module.exports = function () {
             {
               loader: "less-loader",
               options: {
-                javascriptEnabled: true,
-                modifyVars: themeVariables,
+                lessOptions: {
+                  // https://github.com/ant-design/ant-motion/issues/44
+                  javascriptEnabled: true,
+                  modifyVars: themeVariables,
+                },
               },
             },
           ],
@@ -119,8 +122,11 @@ module.exports = function () {
             {
               loader: "less-loader",
               options: {
-                javascriptEnabled: true,
-                modifyVars: themeVariables,
+                lessOptions: {
+                  // https://github.com/ant-design/ant-motion/issues/44
+                  javascriptEnabled: true,
+                  modifyVars: themeVariables,
+                },
               },
             },
           ],

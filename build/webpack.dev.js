@@ -4,7 +4,6 @@
  * @ use development
  */
 const webpack = require("webpack");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = {
   output: {
@@ -18,7 +17,7 @@ module.exports = {
     contentBase: "./src/",
     compress: true,
     // host: require('ip').address(),
-    port: 8001,
+    port: 8005,
     disableHostCheck: true,
     overlay: {
       errors: true,
@@ -34,7 +33,6 @@ module.exports = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new HardSourceWebpackPlugin(),
     // new webpack.HotModuleReplacementPlugin()
   ],
 };
