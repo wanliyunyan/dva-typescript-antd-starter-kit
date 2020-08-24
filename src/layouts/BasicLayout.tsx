@@ -1,5 +1,6 @@
 import { Button, Divider, ConfigProvider, Layout, Menu } from "antd";
-import Icon, { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
+import * as Icon from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import zhCN from "antd/es/locale/zh_CN";
 import { useSelector, useDispatch } from "dva";
 import {
@@ -81,14 +82,13 @@ const Index = () => {
       } else {
         itemPath = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/");
       }
-
       if (item.children && item.children.some((child) => child.name)) {
         return (
           <SubMenu
             title={
               item.icon ? (
                 <span>
-                  {/* <Icon type={item.icon} /> */}
+                  {React.createElement(Icon[item.icon])}
                   <span>{item.name}</span>
                 </span>
               ) : (
@@ -106,6 +106,7 @@ const Index = () => {
         <Menu.Item key={item.key || item.path}>
           {/^https?:\/\//.test(itemPath) ? (
             <a href={itemPath} target={item.target}>
+              {/*{item.icon ? React.createElement(Icon[item.icon]) : null}*/}
               <span>{item.name}</span>
             </a>
           ) : (
@@ -114,6 +115,7 @@ const Index = () => {
               target={item.target}
               replace={itemPath === location.pathname}
             >
+              {/*{item.icon ? React.createElement(Icon[item.icon]) : null}*/}
               <span>{item.name}</span>
             </Link>
           )}

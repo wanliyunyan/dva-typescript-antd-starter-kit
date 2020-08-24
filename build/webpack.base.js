@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const lessToJs = require("less-vars-to-js");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -80,9 +80,9 @@ module.exports = function () {
               loader: "css-loader",
               options: {
                 importLoaders: 2,
-                localsConvention: "camelCase",
                 modules: {
                   localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                  exportLocalsConvention: "camelCase",
                 },
               },
             },

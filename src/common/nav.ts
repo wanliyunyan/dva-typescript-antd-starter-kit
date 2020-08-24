@@ -22,7 +22,7 @@ const data = [
     children: [
       {
         name: "Dashboard",
-        icon: "dashboard",
+        icon: "DashboardOutlined",
         path: "dashboard",
         children: [
           {
@@ -67,7 +67,7 @@ const data = [
       {
         name: "列表页",
         path: "list",
-        icon: "table",
+        icon: "TableOutlined",
         children: [
           {
             name: "查询表格",
@@ -84,7 +84,7 @@ const data = [
     children: [
       {
         name: "帐户user",
-        icon: "user",
+        icon: "UserOutlined",
         path: "user",
         children: [
           {
@@ -103,7 +103,7 @@ const data = [
       name: "document",
       path: "http://pro.ant.design/docs/getting-started",
       target: "_blank",
-      icon: "book",
+      icon: "BookOutlined",
     },
   },
 ];
