@@ -19,7 +19,7 @@ function getPlainNode(nodeList, parentPath = "") {
   return arr;
 }
 
-export function getRouteData(path) {
+export function getRouteData(path: string) {
   if (
     !navData.some((item) => item.layout === path) ||
     !navData.filter((item) => item.layout === path)[0].children

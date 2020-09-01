@@ -106,7 +106,6 @@ const Index = () => {
         <Menu.Item key={item.key || item.path}>
           {/^https?:\/\//.test(itemPath) ? (
             <a href={itemPath} target={item.target}>
-              {/*{item.icon ? React.createElement(Icon[item.icon]) : null}*/}
               <span>{item.name}</span>
             </a>
           ) : (
@@ -115,7 +114,6 @@ const Index = () => {
               target={item.target}
               replace={itemPath === location.pathname}
             >
-              {/*{item.icon ? React.createElement(Icon[item.icon]) : null}*/}
               <span>{item.name}</span>
             </Link>
           )}

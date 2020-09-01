@@ -8,7 +8,7 @@ import { get } from "src/utils/request";
 import styles from "./TableList.less";
 
 export default () => {
-  const { data, error } = useSWR("/api/list", get);
+  const { data, error, revalidate } = useSWR("/api/list", get);
 
   const dispatch = useDispatch();
 
@@ -78,11 +78,12 @@ export default () => {
           <Divider type="vertical" />
           <Button
             type="link"
-            onClick={(): void => {
-              dispatch({
+            onClick={async () => {
+              await dispatch({
                 type: "list/delete",
                 payload: row.id,
               });
+              revalidate();
             }}
           >
             delete
@@ -90,8 +91,8 @@ export default () => {
           <Divider type="vertical" />
           <Button
             type="link"
-            onClick={(): void => {
-              dispatch({
+            onClick={async () => {
+              await dispatch({
                 type: "list/load",
                 payload: row.id,
               });
