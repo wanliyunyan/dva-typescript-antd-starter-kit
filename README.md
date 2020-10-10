@@ -69,8 +69,7 @@ dynamic import react-hot-loader in development mode
 ├── /src/              
 │ ├── /assets/        
 │ │ └── /images/       
-│ │ └── /style/        
-│ │ └── /svg/          
+│ │ └── /style/               
 │ ├── /common/        
 │ ├── /components/     
 │ ├── /layouts/        
@@ -95,22 +94,21 @@ dynamic import react-hot-loader in development mode
 ├── package.json       
 ├── postcss.config.js  
 ├── README.md  
-├── tsconfig.json      
-├── tslint.json        
+├── tsconfig.json       
 └── webpack.config.js  
 ```
 
 ## Package
 dependencies
--   [@jjordy/swr-devtools](https://github.com/jjordy/swr-devtools) Devtools for SWR.
+-   [@ant-design/icons](https://github.com/ant-design/ant-design) A UI Design Language..
 -   [antd](https://github.com/ant-design/ant-design) A UI Design Language.
 -   [axios](https://github.com/axios/axios) Promise based HTTP client for the browser and node.js.
 -   [classnames](https://github.com/JedWatson/classnames) A simple javascript utility for conditionally joining classNames together.
+-   [dayjs](https://github.com/iamkun/dayjs) Day.js 2KB immutable date-time library alternative to Moment.js with the same modern API.
 -   [dva](https://github.com/dvajs/dva) Lightweight front-end framework based on redux, redux-saga and react-router.
 -   [dva-loading](https://github.com/dvajs/dva/tree/master/packages/dva-loading) Auto loading plugin for dva. 👏 You don't need to write showLoading and hideLoading any more.
 -   [lodash](https://github.com/lodash/lodash) A modern JavaScript utility library delivering modularity, performance, & extras.
 -   [mockjs](https://github.com/nuysoft/Mock) A simulation data generator.
--   [moment](https://github.com/moment/moment) A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
 -   [query-string](https://github.com/sindresorhus/query-string) Parse and stringify URL query strings.
 -   [react](https://github.com/facebook/react) A declarative, efficient, and flexible JavaScript library for building user interfaces.
 -   [react-container-query](https://github.com/d6u/react-container-query) Parse CSS and add vendor prefixes to rules by Can I Use.
@@ -120,12 +118,8 @@ dependencies
 
 devDependencies
 -   [@babel/core](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
--   [@babel/plugin-proposal-class-properties](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
--   [@babel/plugin-proposal-decorators](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
--   [@babel/plugin-syntax-dynamic-import](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-proposal-nullish-coalescing-operator](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-proposal-optional-chaining](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
--   [@babel/plugin-syntax-dynamic-import](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/plugin-transform-runtime](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/preset-env](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/preset-react](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
@@ -159,7 +153,6 @@ devDependencies
 -   [eslint-plugin-react-hooks](https://github.com/facebook/react) This ESLint plugin enforces the Rules of Hooks.
 -   [expect](https://github.com/facebook/jest) 
 -   [file-loader](https://github.com/webpack-contrib/file-loader) File Loader.
--   [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
 -   [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) Simplifies creation of HTML files to serve your webpack bundles.
 -   [husky](https://github.com/typicode/husky) Git hooks made easy.
 -   [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) Image loader module for webpack.
@@ -170,13 +163,13 @@ devDependencies
 -   [less-vars-to-js](https://github.com/michaeltaranto/less-vars-to-js) Read LESS variables from the contents of a file and returning them as a javascript object.
 -   [lint-staged](https://github.com/okonet/lint-staged) Run linters on git staged files.
 -   [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) Lightweight CSS extraction plugin.
+-   [postcss](https://github.com/postcss/postcss) Transforming styles with JS plugins.
 -   [postcss-import](https://github.com/postcss/postcss-import) PostCSS plugin to inline @import rules content.
 -   [postcss-loader](https://github.com/postcss/postcss-loader) PostCSS loader for webpack.
 -   [postcss-preset-env](https://github.com/csstools/postcss-preset-env) Convert modern CSS into something browsers understand.
 -   [prettier](https://github.com/prettier/prettier) Prettier is an opinionated code formatter.
 -   [sass-loader](https://github.com/webpack-contrib/sass-loader) Compiles Sass to CSS.
 -   [source-map-loader](https://github.com/webpack-contrib/source-map-loader) extract sourceMappingURL comments from modules and offer it to webpack.
--   [style-loader](https://github.com/webpack-contrib/style-loader) Style Loader.
 -   [stylelint](https://github.com/stylelint/stylelint) A mighty, modern CSS linter.
 -   [stylelint-config-prettier](https://github.com/shannonmoeller/stylelint-config-prettier) Turns off all rules that are unnecessary or might conflict with prettier.
 -   [stylelint-config-rational-order](https://github.com/constverum/stylelint-config-rational-order) Stylelint config that sorts related property declarations by grouping together in the rational order 🚦.
