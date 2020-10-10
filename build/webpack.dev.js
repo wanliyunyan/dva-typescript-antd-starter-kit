@@ -18,7 +18,6 @@ module.exports = {
     compress: true,
     // host: require('ip').address(),
     port: 8005,
-    disableHostCheck: true,
     overlay: {
       errors: true,
       warnings: false,

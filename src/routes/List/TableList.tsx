@@ -5,7 +5,6 @@ import { merge } from "lodash";
 import React from "react";
 import useSWR, { trigger, mutate } from "swr";
 import { get } from "src/utils/request";
-import styles from "./TableList.less";
 
 export default () => {
   const { data, error, revalidate } = useSWR("/api/list", get);
@@ -106,45 +105,43 @@ export default () => {
   ];
 
   return (
-    <div className={styles.main}>
-      <Card bordered={false}>
-        <Row>
-          <Col span={2}>
-            <Button
-              type="primary"
-              htmlType="button"
-              block
-              onClick={(): void => {
-                dispatch({
-                  type: "list/create",
-                  payload: {
-                    title: "this is new",
-                  },
-                });
-              }}
-            >
-              add
-            </Button>
-          </Col>
-          <Col span={1} />
-          <Col span={3}>
-            <Button
-              htmlType="button"
-              onClick={(): void => {
-                trigger("/api/list");
-              }}
-            >
-              <ReloadOutlined />
-            </Button>
-          </Col>
-        </Row>
-        <Table
-          columns={columns}
-          dataSource={(data as any)?.data}
-          rowKey="id"
-          loading={!data}
-        />
-      </Card>
-    </div>
+    <Card bordered={false}>
+      <Row>
+        <Col span={2}>
+          <Button
+            type="primary"
+            htmlType="button"
+            block
+            onClick={(): void => {
+              dispatch({
+                type: "list/create",
+                payload: {
+                  title: "this is new",
+                },
+              });
+            }}
+          >
+            add
+          </Button>
+        </Col>
+        <Col span={1} />
+        <Col span={3}>
+          <Button
+            htmlType="button"
+            onClick={(): void => {
+              trigger("/api/list");
+            }}
+          >
+            <ReloadOutlined />
+          </Button>
+        </Col>
+      </Row>
+      <Table
+        columns={columns}
+        dataSource={(data as any)?.data}
+        rowKey="id"
+        loading={!data}
+      />
+    </Card>
   );
 };

@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const webpack = require("webpack");
 const lessToJs = require("less-vars-to-js");
 const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -9,57 +8,41 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devConfig = require("./webpack.dev");
 const prodConfig = require("./webpack.prod");
 
-// Override the default theme of antd
-const themeVariables = lessToJs(
-  fs.readFileSync(
-    path.join(__dirname, "../src/assets/style/theme.less"),
-    "utf8"
-  )
-);
+module.exports = function (env) {
+  // Override the default theme of antd
+  const themeVariables = lessToJs(
+    fs.readFileSync(
+      path.join(__dirname, "../src/assets/style/theme.less"),
+      "utf8"
+    )
+  );
 
-module.exports = function () {
-  const env = process.argv.slice(-1)[0];
-  const dev = env === "development";
-  const prod = env === "production";
-
-  const postcssOption = {
-    config: {
-      ctx: {
-        "postcss-preset-env": {
-          stage: 0, // experimental
-          autoprefixer: prod,
-        },
-        cssnano: prod
-          ? {
-              preset: "default",
-            }
-          : false,
-      },
-    },
+  const urlLoaderOption = {
+    limit: 8192,
+    name: "[hash:8].[name].[ext]",
+    outputPath: "assets/images",
+    publicPath: "assets/images",
   };
 
-  return merge(dev ? devConfig : prodConfig, {
+  return merge(env === "development" ? devConfig : prodConfig, {
     mode: env,
     entry: ["react-hot-loader/patch", "./src"],
     module: {
       rules: [
         {
-          test: /\.([tj])sx?$/,
+          test: /\.([tj]s)x?$/,
+          include: [path.join(__dirname, "../src")],
           use: [
             {
               loader: "babel-loader",
             },
           ],
-          include: [path.join(__dirname, "../src")],
         },
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: dev,
-              },
             },
             "css-loader",
             "postcss-loader",
@@ -72,9 +55,6 @@ module.exports = function () {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                hmr: dev,
-              },
             },
             {
               loader: "css-loader",
@@ -88,7 +68,6 @@ module.exports = function () {
             },
             {
               loader: "postcss-loader",
-              options: postcssOption,
             },
             {
               loader: "less-loader",
@@ -117,7 +96,6 @@ module.exports = function () {
             },
             {
               loader: "postcss-loader",
-              options: postcssOption,
             },
             {
               loader: "less-loader",
@@ -125,7 +103,6 @@ module.exports = function () {
                 lessOptions: {
                   // https://github.com/ant-design/ant-motion/issues/44
                   javascriptEnabled: true,
-                  modifyVars: themeVariables,
                 },
               },
             },
@@ -136,12 +113,7 @@ module.exports = function () {
           use: [
             {
               loader: "url-loader",
-              options: {
-                limit: 8192,
-                name: "[hash:8].[name].[ext]",
-                outputPath: "assets/images/",
-                publicPath: "assets/images",
-              },
+              options: urlLoaderOption,
             },
           ],
         },
@@ -150,12 +122,7 @@ module.exports = function () {
           use: [
             {
               loader: "url-loader",
-              options: {
-                limit: 8192,
-                name: "[hash:8].[name].[ext]",
-                outputPath: "assets/images/",
-                publicPath: "assets/images",
-              },
+              options: urlLoaderOption,
             },
             {
               loader: "image-webpack-loader",
@@ -172,7 +139,7 @@ module.exports = function () {
                   speed: 4,
                 },
                 gifsicle: {
-                  interlaced: false,
+                  interlaced: true,
                 },
                 webp: {
                   quality: 75,
@@ -209,7 +176,7 @@ module.exports = function () {
           util: {
             name: "util",
             test: (module) => {
-              return /lodash|moment/.test(module.context);
+              return /lodash|dayjs/.test(module.context);
             },
             chunks: "all",
             priority: 12,
@@ -233,19 +200,12 @@ module.exports = function () {
     plugins: [
       new MiniCssExtractPlugin({
         filename: "[name].css",
-        chunkFilename: "[name].css",
       }),
       new HtmlWebpackPlugin({
         title: "wanliyunyan",
         favicon: "src/favicon.ico",
-        template: "src/index.ejs",
-        filename: "index.html",
         hash: true,
         minify: true,
-      }),
-      new webpack.IgnorePlugin({
-        resourceRegExp: /^\.\/locale$/,
-        contextRegExp: /moment$/,
       }),
     ],
     resolve: {

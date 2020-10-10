@@ -10,9 +10,6 @@ export interface GlobalStateProps {
       pathname: string;
     };
   };
-  global: {
-    collapsed: boolean;
-  };
   list: any;
   user: any;
   loading: LoadingProps;

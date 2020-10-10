@@ -2,7 +2,7 @@ import { Button, Divider, ConfigProvider, Layout, Menu } from "antd";
 import * as Icon from "@ant-design/icons";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import zhCN from "antd/es/locale/zh_CN";
-import { useSelector, useDispatch } from "dva";
+import { useDispatch } from "dva";
 import {
   Link,
   Redirect,
@@ -12,7 +12,6 @@ import {
   useLocation,
 } from "dva/router";
 import React, { Suspense, useState } from "react";
-import { GlobalStateProps } from "src/common/interface";
 import { getNavData } from "../common/nav";
 import { getRouteData } from "../utils/utils";
 import styles from "./BasicLayout.less";
@@ -22,16 +21,15 @@ const { SubMenu } = Menu;
 
 const Index = () => {
   const dispatch = useDispatch();
-  const global = useSelector((state: GlobalStateProps) => state.global);
   const location = useLocation();
-  const { collapsed } = global;
+  const { pathname } = location;
+  const [collapsed, setCollapsed] = useState(false);
 
   const [menus] = useState(
     getNavData().reduce((arr, current) => arr.concat(current.children), [])
   );
 
   const getCurrentMenuSelectedKeys = () => {
-    const { pathname } = location;
     const keys = pathname.split("/").slice(1);
     if (keys.length === 1 && keys[0] === "") {
       return [menus[0].key];
@@ -50,12 +48,8 @@ const Index = () => {
 
   const [openKeys, setOpenKeys] = useState(getDefaultCollapsedSubMenus());
 
-  // 折叠
   const onCollapse = (collapsedParam) => {
-    dispatch({
-      type: "global/changeLayoutCollapsed",
-      payload: collapsedParam,
-    });
+    setCollapsed(collapsedParam);
   };
 
   const handleOpenChange = (openKeysParam) => {
@@ -63,7 +57,6 @@ const Index = () => {
     const isMainMenu = menus.some(
       (item) => item.key === lastOpenKey || item.path === lastOpenKey
     );
-
     setOpenKeys(isMainMenu ? [lastOpenKey] : [...openKeysParam]);
   };
 
@@ -123,10 +116,7 @@ const Index = () => {
   };
 
   const toggle = () => {
-    dispatch({
-      type: "global/changeLayoutCollapsed",
-      payload: !collapsed,
-    });
+    setCollapsed(!collapsed);
   };
 
   const menuProps = collapsed

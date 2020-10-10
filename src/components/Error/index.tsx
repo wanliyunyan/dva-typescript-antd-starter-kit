@@ -11,6 +11,12 @@ export default class Index extends PureComponent<any, State> {
     this.state = { error: false, info: "" };
   }
 
+  static getDerivedStateFromError(error) {
+    return {
+      error,
+    };
+  }
+
   public componentDidCatch(error, info) {
     this.setState({ error, info });
   }
