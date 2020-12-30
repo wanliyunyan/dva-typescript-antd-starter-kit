@@ -5,10 +5,7 @@ const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const devConfig = require("./webpack.dev");
-const prodConfig = require("./webpack.prod");
-
-module.exports = function (env) {
+module.exports = function (env, mode) {
   // Override the default theme of antd
   const themeVariables = lessToJs(
     fs.readFileSync(
@@ -24,9 +21,11 @@ module.exports = function (env) {
     publicPath: "assets/images",
   };
 
-  return merge(env === "development" ? devConfig : prodConfig, {
-    mode: env,
-    entry: ["react-hot-loader/patch", "./src"],
+  const dev = mode.mode === "development";
+  return merge(dev ? require("./webpack.dev") : require("./webpack.prod"), {
+    mode: mode.mode,
+    entry: ["./src"],
+    target: dev ? "web" : "browserslist",
     module: {
       rules: [
         {
@@ -35,6 +34,11 @@ module.exports = function (env) {
           use: [
             {
               loader: "babel-loader",
+              options: {
+                plugins: [dev && require.resolve("react-refresh/babel")].filter(
+                  Boolean
+                ),
+              },
             },
           ],
         },
@@ -61,7 +65,9 @@ module.exports = function (env) {
               options: {
                 importLoaders: 2,
                 modules: {
-                  localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                  localIdentName: dev
+                    ? "[path][name]__[local]"
+                    : "[hash:base64:5]",
                   exportLocalsConvention: "camelCase",
                 },
               },
@@ -124,7 +130,7 @@ module.exports = function (env) {
               loader: "url-loader",
               options: urlLoaderOption,
             },
-            {
+            /*{
               loader: "image-webpack-loader",
               options: {
                 mozjpeg: {
@@ -145,7 +151,7 @@ module.exports = function (env) {
                   quality: 75,
                 },
               },
-            },
+            },*/
           ],
         },
         {

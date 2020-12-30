@@ -10,12 +10,7 @@ import router from "./router";
 // registerObserver({ timeout: 30000 });
 
 // 1. Initialize
-let app = dva();
-if (process.env.NODE_ENV === "development") {
-  import("react-hot-loader/root").then(({ hot }) => {
-    app = hot(dva());
-  });
-}
+const app = dva();
 
 // 2. Plugins
 app.use(createLoading());

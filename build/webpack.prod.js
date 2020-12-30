@@ -28,8 +28,6 @@ module.exports = {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        cache: true, // Ignored in webpack 5! Please use https://webpack.js.org/configuration/other-options/#cache.
-        sourceMap: true, // Must be set to true if using source-maps in production
         parallel: os.cpus().length,
         // If you avoid building with comments, use this config:
         terserOptions: {

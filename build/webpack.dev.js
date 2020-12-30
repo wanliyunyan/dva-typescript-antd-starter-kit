@@ -4,6 +4,7 @@
  * @ use development
  */
 const webpack = require("webpack");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   output: {
@@ -32,6 +33,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    // new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
   ],
 };
