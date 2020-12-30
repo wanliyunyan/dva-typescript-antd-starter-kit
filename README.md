@@ -111,9 +111,7 @@ dependencies
 -   [mockjs](https://github.com/nuysoft/Mock) A simulation data generator.
 -   [query-string](https://github.com/sindresorhus/query-string) Parse and stringify URL query strings.
 -   [react](https://github.com/facebook/react) A declarative, efficient, and flexible JavaScript library for building user interfaces.
--   [react-container-query](https://github.com/d6u/react-container-query) Parse CSS and add vendor prefixes to rules by Can I Use.
 -   [react-dom](https://github.com/facebook/react) This package serves as the entry point of the DOM-related rendering paths. It is intended to be paired with the isomorphic React, which will be shipped as react to npm.
--   [react-hot-loader](https://github.com/gaearon/react-hot-loader) Tweak React components in real time.
 -   [swr](https://github.com/zeit/swr) React Hooks library for remote data fetching.
 
 devDependencies
@@ -151,7 +149,6 @@ devDependencies
 -   [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) ESLint plugin for Prettier formatting.
 -   [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) React specific linting rules for ESLint.
 -   [eslint-plugin-react-hooks](https://github.com/facebook/react) This ESLint plugin enforces the Rules of Hooks.
--   [expect](https://github.com/facebook/jest) 
 -   [file-loader](https://github.com/webpack-contrib/file-loader) File Loader.
 -   [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) Simplifies creation of HTML files to serve your webpack bundles.
 -   [husky](https://github.com/typicode/husky) Git hooks made easy.
