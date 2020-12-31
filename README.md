@@ -54,8 +54,8 @@ prettier format code
 ## Babel
 update to babel7
 
-## react-hot-loader
-dynamic import react-hot-loader in development mode
+## Webpack
+update to webpack5
 
 ## Contents
 
@@ -120,12 +120,12 @@ devDependencies
 -   [@babel/preset-react](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/preset-typescript](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
 -   [@babel/runtime](https://github.com/babel/babel) Babel is a compiler for writing next generation JavaScript. 
+-   [@pmmmwh/react-refresh-webpack-plugin](https://github.com/pmmmwh/react-refresh-webpack-plugin) A Webpack plugin to enable "Fast Refresh" (also previously known as Hot Reloading) for React components. 
 -   [@types/classnames](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react.
 -   [@types/lodash](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for lodash.
 -   [@types/react](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for classnames.
 -   [@types/react-dom](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for react-dom.
 -   [@types/webpack](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for webpack.
--   [@types/webpack-env](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for webpack-env.
 -   [@typescript-eslint/eslint-plugin](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for typescript-eslint/eslint-plugin.
 -   [@types/typescript-eslint/parser](https://github.com/DefinitelyTyped/DefinitelyTyped) This package contains type definitions for typescript-eslint/parser.
 -   [autoprefixer](https://github.com/postcss/autoprefixer) Parse CSS and add vendor prefixes to rules by Can I Use.
@@ -162,6 +162,7 @@ devDependencies
 -   [postcss-loader](https://github.com/postcss/postcss-loader) PostCSS loader for webpack.
 -   [postcss-preset-env](https://github.com/csstools/postcss-preset-env) Convert modern CSS into something browsers understand.
 -   [prettier](https://github.com/prettier/prettier) Prettier is an opinionated code formatter.
+-   [react-refresh](https://github.com/facebook/react)
 -   [sass-loader](https://github.com/webpack-contrib/sass-loader) Compiles Sass to CSS.
 -   [source-map-loader](https://github.com/webpack-contrib/source-map-loader) extract sourceMappingURL comments from modules and offer it to webpack.
 -   [stylelint](https://github.com/stylelint/stylelint) A mighty, modern CSS linter.
