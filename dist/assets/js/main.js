@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{360:function(n,w){}},[[570,3,4,1,0]]]);
+(self.webpackChunkdva_typescript_antd_starter_kit=self.webpackChunkdva_typescript_antd_starter_kit||[]).push([[179],{96533:function(){}},0,[[25424,700,514,923,24]]]);
