@@ -25,7 +25,7 @@ module.exports = {
     sourceType: "module",
     // 'project': './tsconfig.json',
   },
-  plugins: ["react-hooks", "@typescript-eslint", "react", "prettier"],
+  plugins: ["react-hooks", "@typescript-eslint", "react"],
   extends: [
     "airbnb", // https://www.npmjs.com/package/eslint-config-airbnb#eslint-configairbnbhooks
     "airbnb/hooks", // https://www.npmjs.com/package/eslint-config-airbnb#eslint-configairbnbhooks
@@ -33,9 +33,6 @@ module.exports = {
     "plugin:react/recommended", // https://github.com/yannickcr/eslint-plugin-react#recommended
     "plugin:@typescript-eslint/eslint-recommended", // https://www.npmjs.com/package/@typescript-eslint/eslint-plugin#usage
     "plugin:@typescript-eslint/recommended", // https://www.npmjs.com/package/@typescript-eslint/eslint-plugin#usage
-    "prettier", // https://github.com/prettier/eslint-config-prettier#installation
-    "prettier/@typescript-eslint", // https://github.com/prettier/eslint-config-prettier#installation
-    "prettier/react", // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
     "plugin:prettier/recommended", // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
   ],
   rules: {
