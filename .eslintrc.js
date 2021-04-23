@@ -25,13 +25,10 @@ module.exports = {
     sourceType: "module",
     // 'project': './tsconfig.json',
   },
-  plugins: ["react-hooks", "@typescript-eslint", "react"],
   extends: [
     "airbnb", // https://www.npmjs.com/package/eslint-config-airbnb#eslint-configairbnbhooks
     "airbnb/hooks", // https://www.npmjs.com/package/eslint-config-airbnb#eslint-configairbnbhooks
-    "eslint:recommended", // https://github.com/yannickcr/eslint-plugin-react#recommended
     "plugin:react/recommended", // https://github.com/yannickcr/eslint-plugin-react#recommended
-    "plugin:@typescript-eslint/eslint-recommended", // https://www.npmjs.com/package/@typescript-eslint/eslint-plugin#usage
     "plugin:@typescript-eslint/recommended", // https://www.npmjs.com/package/@typescript-eslint/eslint-plugin#usage
     "plugin:prettier/recommended", // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
   ],
