@@ -1,51 +1,128 @@
 import { message, notification } from "antd";
 import axios from "axios";
+import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios";
+import { IOption, ApiReturnType } from "../types";
+import { RequestEnum } from "../enums/httpEnum";
 
-const fetch = (url: string, options, config) => {
+const instance: AxiosInstance = axios.create();
+
+/**
+ * @description
+ * @param url
+ * @param options
+ * @param config
+ */
+const fetch = (url: string, options: IOption, config?: AxiosRequestConfig) => {
   const { method = "get", param } = options;
   switch (method.toLowerCase()) {
     case "get":
-      return axios.get(url, config);
+      return instance.get(url, config);
     case "delete":
-      return axios.delete(url, config);
+      return instance.delete(url, config);
     case "head":
-      return axios.head(url, config);
+      return instance.head(url, config);
     case "post":
-      return axios.post(url, param, config);
+      return instance.post(url, param, config);
     case "put":
-      return axios.put(url, param, config);
+      return instance.put(url, param, config);
     case "patch":
-      return axios.patch(url, param, config);
+      return instance.patch(url, param, config);
     default:
-      return axios(options);
+      return instance(options);
   }
 };
 
-const handleData = (result): any => {
+/**
+ * @description
+ * @param result
+ */
+const handleData = (
+  result: AxiosResponse<ApiReturnType>
+): ApiReturnType | never => {
   if (result) {
-    const { status, data } = result;
+    const {
+      status,
+      data,
+      config: { url },
+    } = result;
+
     if (!status) {
-      return { success: false };
+      throw new Error("Network Error");
     }
-    return { data, success: status >= 200 && status < 300 };
+
+    if (status >= 200 && status < 300) {
+      // 通过内部的code来判断最终是否获取到想要的结果
+      return { ...data, success: data?.code === 200 };
+    }
+
+    return { ...data, success: false };
   }
-  return { success: false };
+  throw new Error("Unknown Error");
 };
 
-const request = async <T>(url: string, options, config): Promise<T> =>
-  handleData(await fetch(url, options, config));
+/**
+ * @description
+ * @param url
+ * @param options
+ * @param config
+ */
+const request = async (
+  url: string,
+  options: IOption,
+  config?: AxiosRequestConfig
+): Promise<ApiReturnType> => handleData(await fetch(url, options, config));
 
-export const get = async <T>(url: string, options?, config?): Promise<T> =>
-  request(url, { ...options, method: "get" }, config);
+/**
+ * @description
+ * @param url
+ * @param param
+ * @param config
+ */
+export const get = (
+  url: string,
+  param?: Record<string, unknown>,
+  config?: AxiosRequestConfig
+): Promise<ApiReturnType> =>
+  request(url, { ...param, method: RequestEnum.GET }, config);
 
-export const post = async <T>(url: string, options?, config?): Promise<T> =>
-  request(url, { ...options, method: "post" }, config);
+/**
+ * @description
+ * @param url
+ * @param param
+ * @param config
+ */
+export const post = (
+  url: string,
+  param?: Record<string, unknown>,
+  config?: AxiosRequestConfig
+): Promise<ApiReturnType> =>
+  request(url, { ...param, method: RequestEnum.POST }, config);
 
-export const put = async <T>(url: string, options?, config?): Promise<T> =>
-  request(url, { ...options, method: "put" }, config);
+/**
+ * @description
+ * @param url
+ * @param param
+ * @param config
+ */
+export const put = (
+  url: string,
+  param?: Record<string, unknown>,
+  config?: AxiosRequestConfig
+): Promise<ApiReturnType> =>
+  request(url, { ...param, method: RequestEnum.PUT }, config);
 
-export const del = async <T>(url: string, options?, config?): Promise<T> =>
-  request(url, { ...options, method: "delete" }, config);
+/**
+ * @description
+ * @param url
+ * @param param
+ * @param config
+ */
+export const del = (
+  url: string,
+  param?: Record<string, unknown>,
+  config?: AxiosRequestConfig
+): Promise<ApiReturnType> =>
+  request(url, { ...param, method: RequestEnum.DELETE }, config);
 
 // interceptors
 axios.interceptors.request.use(
