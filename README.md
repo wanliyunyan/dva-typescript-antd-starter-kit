@@ -24,6 +24,7 @@ https://wanliyunyan.github.io/dva-typescript-antd-starter-kit/dist
 
 ```bash
 npm install
+npm install -g json-server # global
 ```
 
 ## Running Dev Server
