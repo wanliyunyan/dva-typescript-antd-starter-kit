@@ -1,7 +1,7 @@
 import { message, notification } from "antd";
 import axios from "axios";
 import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios";
-import { IOption, ApiReturnType } from "../types/index";
+import { IOption, ApiReturnType } from "../types";
 import { RequestEnum } from "../enums/httpEnum";
 
 const instance: AxiosInstance = axios.create();

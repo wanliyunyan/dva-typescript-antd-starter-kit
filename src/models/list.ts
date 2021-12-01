@@ -6,7 +6,7 @@ export default {
     list: [],
   },
   reducers: {
-    listSave(state, { payload }) {
+    listSave(state: any, { payload }: any) {
       return {
         ...state,
         list: payload,
@@ -18,7 +18,7 @@ export default {
   },
 
   effects: {
-    *create({ payload }, { call, put }) {
+    *create({ payload }: any, { call, put }: any) {
       try {
         const { success } = yield call(create, payload);
 
@@ -33,7 +33,7 @@ export default {
         // empty
       }
     },
-    *delete({ payload }, { call, put }) {
+    *delete({ payload }: any, { call, put }: any) {
       try {
         const { success } = yield call(remove, payload);
 
@@ -48,7 +48,7 @@ export default {
         // empty
       }
     },
-    *update({ payload }, { call, put }) {
+    *update({ payload }: any, { call, put }: any) {
       try {
         const { success } = yield call(update, payload);
 
@@ -63,7 +63,7 @@ export default {
         // empty
       }
     },
-    *query({ payload }, { call, put }) {
+    *query({ payload }: any, { call, put }: any) {
       try {
         const { data, success } = yield call(query, payload);
 
@@ -79,7 +79,7 @@ export default {
         // empty
       }
     },
-    *load({ payload }, { call, put }) {
+    *load({ payload }: any, { call, put }: any) {
       try {
         const { data, success } = yield call(load, payload);
 

@@ -16,7 +16,7 @@ const app = dva();
 app.use(createLoading());
 
 // 3. Model
-models.forEach((m): void => {
+models.forEach((m:any): void => {
   app.model(m.default);
 });
 
