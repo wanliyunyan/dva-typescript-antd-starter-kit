@@ -1,15 +1,20 @@
 import { Button, Card, Col, Divider, Row, Table } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
 import { useDispatch } from "dva";
-import { merge } from "lodash";
+import { merge } from "lodash-es";
 import React from "react";
-import useSWR, { trigger, mutate } from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import { get } from "src/utils/request";
 
-export default () => {
-  const { data, error, revalidate } = useSWR("/api/list", get);
+export default function () {
+  const { mutate } = useSWRConfig();
+  const { data } = useSWR("/api/list", get);
 
   const dispatch = useDispatch();
+
+  if (!data) {
+    return <div />;
+  }
 
   const columns = [
     {
@@ -36,14 +41,14 @@ export default () => {
       title: "images",
       dataIndex: "images",
       key: "images",
-      render: (text): React.ReactNode => (
+      render: (text: any): React.ReactNode => (
         <img src={text} style={{ height: "30px", width: "auto" }} alt="" />
       ),
     },
     {
       title: "Action",
       key: "action",
-      render: (text, row): React.ReactNode => (
+      render: (text: any, row: any): React.ReactNode => (
         <span>
           <Button
             type="link"
@@ -56,10 +61,10 @@ export default () => {
                 },
               });
 
-              mutate("/api/list", async (users) => {
+              mutate("/api/list", async (users: any) => {
                 return {
                   ...users,
-                  data: users.data.map((obj) => {
+                  data: users.data.map((obj: any) => {
                     if (obj.id === row.id) {
                       return merge(obj, {
                         ...row,
@@ -82,7 +87,7 @@ export default () => {
                 type: "list/delete",
                 payload: row.id,
               });
-              revalidate();
+              mutate("/api/list");
             }}
           >
             delete
@@ -129,7 +134,7 @@ export default () => {
           <Button
             htmlType="button"
             onClick={(): void => {
-              trigger("/api/list");
+              mutate("/api/list");
             }}
           >
             <ReloadOutlined />
@@ -138,10 +143,10 @@ export default () => {
       </Row>
       <Table
         columns={columns}
-        dataSource={(data as any)?.data}
+        dataSource={data?.data}
         rowKey="id"
         loading={!data}
       />
     </Card>
   );
-};
+}

@@ -1,9 +1,9 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep } from "lodash-es";
 import navData from "../common/nav";
 
-function getPlainNode(nodeList, parentPath = "") {
-  const arr = [];
-  nodeList.forEach((node) => {
+function getPlainNode(nodeList: any, parentPath = "") {
+  const arr: any = [];
+  nodeList.forEach((node: any) => {
     const item = node;
     item.path = `${parentPath}/${item.path || ""}`.replace(/\/+/g, "/");
     item.exact = true;

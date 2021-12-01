@@ -14,14 +14,15 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     open: true,
-    stats: "normal",
-    contentBase: "./src/",
+    // contentBase: "./src/",
     compress: true,
     // host: require('ip').address(),
     port: 8005,
-    overlay: {
-      errors: true,
-      warnings: false,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
     },
     proxy: {
       "/api/*": {

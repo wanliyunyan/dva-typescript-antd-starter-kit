@@ -1,3 +1,5 @@
 import React from "react";
 
-export default (props) => <div {...props} />;
+export default function (props) {
+  return <div {...props} />;
+}

@@ -3,7 +3,7 @@ import React from "react";
 import { getRouteData } from "../utils/utils";
 import styles from "./UserLayout.less";
 
-export default () => {
+export default function () {
   return (
     <div className={styles.main}>
       <div className={styles.top}>
@@ -28,4 +28,4 @@ export default () => {
       })}
     </div>
   );
-};
+}

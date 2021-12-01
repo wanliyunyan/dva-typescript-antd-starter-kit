@@ -1,5 +1,5 @@
 /*
-* @ author wanliyunyan
-*/
+ * @ author wanliyunyan
+ */
 
-module.exports =  require('./build/webpack.base');
+module.exports = require("./build/webpack.base");

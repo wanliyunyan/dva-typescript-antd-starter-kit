@@ -7,7 +7,7 @@ import styles from "./Login.less";
 
 const { Item } = Form;
 
-const Index = () => {
+const Index = function () {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const user = useSelector((state: GlobalStateProps) => state.user);

@@ -19,7 +19,7 @@ import styles from "./BasicLayout.less";
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
-const Index = () => {
+const Index = function () {
   const dispatch = useDispatch();
   const location = useLocation();
   const { pathname } = location;

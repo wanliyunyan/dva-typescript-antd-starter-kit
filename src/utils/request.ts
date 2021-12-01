@@ -1,7 +1,7 @@
 import { message, notification } from "antd";
 import axios from "axios";
 import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios";
-import { IOption, ApiReturnType } from "../types";
+import { IOption, ApiReturnType } from "../types/index";
 import { RequestEnum } from "../enums/httpEnum";
 
 const instance: AxiosInstance = axios.create();
@@ -36,9 +36,7 @@ const fetch = (url: string, options: IOption, config?: AxiosRequestConfig) => {
  * @description
  * @param result
  */
-const handleData = (
-  result: AxiosResponse<ApiReturnType>
-): ApiReturnType | never => {
+const handleData = (result: AxiosResponse<any>): any | never => {
   if (result) {
     const {
       status,
@@ -52,10 +50,10 @@ const handleData = (
 
     if (status >= 200 && status < 300) {
       // 通过内部的code来判断最终是否获取到想要的结果
-      return { ...data, success: data?.code === 200 };
+      return { data, success: data?.code === 200 };
     }
 
-    return { ...data, success: false };
+    return { data, success: false };
   }
   throw new Error("Unknown Error");
 };
@@ -70,7 +68,7 @@ const request = async (
   url: string,
   options: IOption,
   config?: AxiosRequestConfig
-): Promise<ApiReturnType> => handleData(await fetch(url, options, config));
+): Promise<any> => handleData(await fetch(url, options, config));
 
 /**
  * @description
@@ -82,8 +80,7 @@ export const get = (
   url: string,
   param?: Record<string, unknown>,
   config?: AxiosRequestConfig
-): Promise<ApiReturnType> =>
-  request(url, { ...param, method: RequestEnum.GET }, config);
+): Promise<any> => request(url, { ...param, method: RequestEnum.GET }, config);
 
 /**
  * @description
@@ -95,8 +92,7 @@ export const post = (
   url: string,
   param?: Record<string, unknown>,
   config?: AxiosRequestConfig
-): Promise<ApiReturnType> =>
-  request(url, { ...param, method: RequestEnum.POST }, config);
+): Promise<any> => request(url, { ...param, method: RequestEnum.POST }, config);
 
 /**
  * @description
@@ -108,8 +104,7 @@ export const put = (
   url: string,
   param?: Record<string, unknown>,
   config?: AxiosRequestConfig
-): Promise<ApiReturnType> =>
-  request(url, { ...param, method: RequestEnum.PUT }, config);
+): Promise<any> => request(url, { ...param, method: RequestEnum.PUT }, config);
 
 /**
  * @description
@@ -121,7 +116,7 @@ export const del = (
   url: string,
   param?: Record<string, unknown>,
   config?: AxiosRequestConfig
-): Promise<ApiReturnType> =>
+): Promise<any> =>
   request(url, { ...param, method: RequestEnum.DELETE }, config);
 
 // interceptors

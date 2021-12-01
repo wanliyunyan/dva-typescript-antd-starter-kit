@@ -6,23 +6,21 @@ import UserLayout from "./layouts/UserLayout";
 
 const { ConnectedRouter } = routerRedux;
 
-export default function ({ history }: any): React.ReactNode {
+export default function ({ history }: any) {
   return (
-    <>
-      <Error>
-        <ConnectedRouter history={history}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route path="/user">
-                <UserLayout />
-              </Route>
-              <Route path="/">
-                <BasicLayout />
-              </Route>
-            </Switch>
-          </Suspense>
-        </ConnectedRouter>
-      </Error>
-    </>
+    <Error>
+      <ConnectedRouter history={history}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/user">
+              <UserLayout />
+            </Route>
+            <Route path="/">
+              <BasicLayout />
+            </Route>
+          </Switch>
+        </Suspense>
+      </ConnectedRouter>
+    </Error>
   );
 }

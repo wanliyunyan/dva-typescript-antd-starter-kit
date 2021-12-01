@@ -26,6 +26,7 @@ module.exports = function (env, mode) {
     mode: mode.mode,
     entry: ["./src"],
     target: dev ? "web" : "browserslist",
+    stats: "normal",
     module: {
       rules: [
         {
@@ -130,7 +131,7 @@ module.exports = function (env, mode) {
               loader: "url-loader",
               options: urlLoaderOption,
             },
-            /*{
+            /* {
               loader: "image-webpack-loader",
               options: {
                 mozjpeg: {
@@ -151,7 +152,7 @@ module.exports = function (env, mode) {
                   quality: 75,
                 },
               },
-            },*/
+            }, */
           ],
         },
         {
