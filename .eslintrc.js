@@ -3,7 +3,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   env: {
     browser: true,
-    es6: true,
+    es2022: true,
     node: true,
   },
   settings: {
@@ -21,7 +21,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: "latest",
     sourceType: "module",
     // 'project': './tsconfig.json',
   },

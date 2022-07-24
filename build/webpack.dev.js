@@ -12,7 +12,6 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    hot: true,
     open: true,
     // contentBase: "./src/",
     compress: true,
